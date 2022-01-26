@@ -1,0 +1,613 @@
+.example-wrapper{
+    max-width: 1200px !important;
+}
+body{
+    /*background: #F6F6F6;*/
+}
+.primary-menu{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: calc(100% - 60px);
+    max-width: 1600px;
+    margin: 0 30px;
+    padding: 20px 0 12px;
+    background-color: #fff;
+    z-index: 10000000;
+    margin: auto;
+}
+.secondary-menu{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 30px;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    font-size: 12px;
+}
+.nav-left{
+    display: flex;
+    align-items: stretch;
+    font-size: 18px;
+    font-weight: 400;
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    width: 33%;
+    margin-right: 20px;
+}
+ul.menu-list{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0;
+}
+ul.menu-list li{
+    display: flex;
+    align-items: center;
+}
+a.menu-link {
+    color: #666;
+    text-decoration: none;
+    transition: color .2s ease;
+    display: block;
+    padding: 12px 15px;
+}
+a.menu-link:hover,
+a.sub-menu-link:hover{
+    color: #77DFE7;
+    background-color: #FFF !important;
+}
+a.sub-menu-link{
+    color: #666;
+    text-decoration: none;
+    transition: color .2s ease;
+    display: block;
+    padding: 3px 15px;
+    font-size:14px;
+}
+.nav-left .navbar-collapse .navbar-nav
+{
+    position: relative;
+    padding-right: 23px;
+}
+.nav-left .navbar-collapse .navbar-nav:nth-child(2) {
+    margin-right: 35px;
+    border-right: 1px solid #d4d4d4;
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    width: 220px;
+    overflow-x: hidden;
+    transition: width .25s ease;
+}
+.logo-header{
+    width: 250px;
+    margin-right: 5px;
+    position: relative;
+    top: -4px;
+    text-decoration: none;
+    transition: width 0s,opacity .1s ease;
+    opacity: 1;
+}
+.logo-header:hover{
+    opacity: 0.8;
+}
+.search-bar{
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    max-width: 1600px;
+    padding-top: 10px;
+    margin: auto;
+    padding-left:50px;
+}
+#search-bar-tab{
+    position: relative;
+    z-index: 60;
+    width: calc(100% - 60px);
+    max-width: 1600px;
+    margin: 0 0 -1px;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:hover
+{
+    color: #77DFE7;
+}
+.nav-link{
+    color: #666;
+}
+.search-bar-text-area{
+    border-right: 1px solid #d4d4d4;
+    padding: 10px 20px;
+    height: 58px;
+    width: 350px;
+    float: left;
+}
+.search-bar-text{
+    border: none;
+    padding: 10px;
+    min-width: 270px;
+}
+.range-price-area{
+    padding: 4px 4px;
+    height: 58px;
+    width: 240px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 35px;
+}
+.tab-content{
+    border: 1px solid #d4d4d4;
+    min-height: 60px;
+    border-radius: 0px 10px 10px 10px;
+    width: 96%;
+}
+.nav-tabs .nav-link + .nav-link{
+    border-radius: 0px !important;
+}
+.nav-tabs .nav-link{
+    border: solid 1px #d4d4d4;
+}
+.nav-tabs .nav-link:first-child{
+    border-top-left: 10px;
+}
+.nav-tabs .nav-link:last-child{
+    border-top-right: 10px;
+}
+#range-price-lbl,
+#property-type,
+.property-type,
+#badrooms-cretaria,
+#more-creteria,
+.more-creteria,
+#range-price-lbl,
+.cities-cretaria{
+    padding: 0px 10px;
+    background: #77DFE7;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 500;
+    width: auto;
+    text-align: center;
+    display: flex;
+    height: 23px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    float: left;
+}
+.cretaria-choice{
+    width: 100%;
+    display: flex;
+    padding: 10px 20px;
+    border-top: solid 1px #d4d4d4;
+}
+.cretaria-text{
+    float: left;
+    margin-right: 10px;
+}
+.cretaria-remove{
+    color: #2848A7;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    top: 3px;
+    position: relative;
+    right: 0;
+    z-index: 0;
+}
+.dropdown-list-cretaria{
+    border: solid 1px #d4d4d4;
+    float: left;
+    border-radius: 5px;
+    padding: 5px !important;
+    height: 40px;
+    text-align: center;
+    margin-top: 9px;
+}
+.types-properties-list{
+    padding: 10px;
+}
+.types-properties-list input{
+    margin-right: 10px;
+}
+.cretaria-choice-title{
+    float: left;
+    margin-right: 20px;
+}
+.btn-rechercher{
+    float: right;
+    margin-top: 10px;
+    margin-right: 20px;
+    border: none;
+    padding: 6px 20px;
+    font-size: 18px;
+    border-radius: 3px;
+    color: #FFF;
+    background: #006cfa;
+    font-weight: 400;
+}
+.btn-reset-cretaria{
+    border: none;
+    padding: 2px 20px;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #000;
+    right: 75px;
+    background: rgb(239, 239, 239);
+    font-weight: 500;
+    position: absolute;
+    width: 128px;
+}
+.btn-reset-cretaria:hover{
+    background: #9C9C9C;
+}
+.btn-connexion{
+    background: rgb(239, 239, 239);
+    border: 1px solid rgb(212, 212, 212);
+    color: rgb(102, 102, 102);
+    font-size: 14px;
+}
+.btn-connexion:hover{
+    background-color: #77DFE7;
+    color: #FFF;
+}
+#btn-search{
+    font-size: 25px;
+}
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
+}
+.types-property-subitems .form-group{
+    padding: 5px 16px;
+    float: left;
+    width: 100%;
+}
+.types-property-subitems .form-group input{
+    margin-right: 5px;
+    float: left;
+}
+.types-property-subitems .form-group label{
+    font-size: 14px;
+    margin-top: -4px;
+    float: left;
+}
+.combo-cretaria-title,
+.combo-cretaria-bedrooms-title{
+    border: solid 1px #d4d4d4;
+    float: left;
+    border-radius: 5px;
+    padding: 5px 10px !important;
+    height: 40px;
+    text-align: center;
+    margin-top: 9px;
+    color: #666;
+    cursor: pointer;
+}
+.combo-cretaria-title:hover{
+    color: #77DFE7;
+    text-decoration: none;
+    transition: color .2s ease;
+    display: block;
+    padding: 12px 15px;
+}
+.types-property-items,
+.bedrooms-items,
+.other-items{
+    display: inline;
+    position: absolute;
+    top: 110px;
+    border: solid 1px #d4d4d4;
+    margin-left: -170px;
+    width: 350px;
+    padding: 15px;
+    background: #FFF;
+    color: #666;
+    z-index: 1;
+    overflow-y: scroll;
+    height: 300px;
+}
+.types-property-item{
+    cursor: pointer;
+    color: #666;
+    width: 100%;
+    float: left;
+}
+.hidden{
+    display: none !important;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.cities-search-area{
+    margin-top: 58px;
+    position: absolute;
+    border: solid 1px #d4d4d4;
+    width: 350px;
+    padding: 15px;
+    background: #FFF;
+    color: #666;
+    z-index: 1;
+    overflow-y: auto;
+    border-radius: 10px;
+    height: 250px;
+}
+#cretaria-choices{
+    width: 80%;
+}
+.section-title-1{
+    margin-bottom: 40px;
+    color: #666;
+    font-weight: 600;
+    text-align: center;
+    font-size: 36px;
+    margin-top:60px;
+}
+.commission-slider-container{
+    width: 100%;
+    margin-top: 135px;
+}
+.commission-slider-container .irs-single{
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    text-align: center;
+    background-color: #fff !important;
+    box-shadow: 0 2px 10px #ddd;
+    margin-top: -105px;
+    padding: 25px 46px !important;
+    width: 280px;
+    height: 100px;
+    margin-left: 7px;
+    color: #6CD8E3 !important;
+}
+.commission-slider-container .irs-single:before{
+    position: absolute !important;
+    bottom: -15px !important;
+    left: 120px !important;
+    height: 30px !important;
+    width: 30px !important;
+    transform: rotate(-45deg) !important;
+    box-shadow: -2px 3px 4px #ddd !important;
+    background-color: #fff !important;
+    border-start-end-radius: 100% !important;
+    border: none !important;
+}
+.commission-slider-container .irs--round .irs-bar,
+.commission-slider-container .irs--round .irs-line
+{
+    top: 33px;
+    height: 10px;
+}
+.commission-slider-price{
+    color: #000 !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    float: left;
+}
+.irs-min,
+.irs-max{
+    display: none !important
+}
+#commission-result-area{
+    width: 100%;
+    margin-top: 30px;    
+}
+#commission-result-area .title{
+    width: 100%;
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+}
+#commission-result-area .price{
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    text-align: center;
+    width: 100%;
+    color: #6CD8E3 !important;
+}
+#commission-result-area .description{
+    width: 25%;
+    text-align: center;
+    color: #666;
+    font-size: 11px;
+    display: flex;
+    margin: auto;
+}
+.block-login{
+    max-width: 650px;
+    margin: auto;
+    padding: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 2px 10px #ddd;
+}
+.block-login button[type=submit]{
+    margin-top: 15px;
+    width: 100%;
+}
+.new-account-link{
+    float: right;
+    margin-top: -39px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.forgot-password-link{
+    width: 100%;
+    text-align: center;
+    float: left;
+    padding: 10px 0px;
+    text-decoration: none;
+}
+.footer{
+    flex-direction: column;
+    align-items: center;
+    padding: 55px 0;
+    background-color: #f6f6f6;
+}
+.footer-contact{
+    justify-content: space-between;
+    max-width: 1600px;
+    margin-bottom: 50px;
+    padding: 0px 60px;
+    font-size: 30px;
+}
+.footer-contact p{
+    color: #666;
+}
+.footer-contact .tel,
+.footer-contact .email{
+    font-size: 20px;
+    text-decoration: none;
+}
+.footer-contact .tel .fa,
+.footer-contact .social .fa{
+    font-size: 25px;
+}
+.footer-contact .email .fa{
+    font-size: 20px;
+}
+.footer-contact .email{
+    margin-left: 50px;
+}
+.footer-contact-left{
+    float: left;
+}
+.footer-contact-right{
+    float: right;
+}
+.footer-menu{
+    justify-content: space-between;
+    max-width: 1600px;
+    margin-bottom: 50px;
+    display: flex;
+    width: 100%;
+    padding: 40px 60px;
+}
+.footer-col{
+    float: left;
+    width: 30%;
+    margin-right: 20px;
+}
+.footer-col:last-child{
+    margin-right: 0px;
+}
+.footer-col a{
+    float: left;
+    width: 100%;
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+}
+.footer-col a:hover{
+    color: #6CD8E3;
+}
+.footer-menu p{
+    font-weight: 500;
+    font-size: 13px;
+}
+.user-links{
+    position: absolute;
+    margin-top: 45px;
+    border-radius: 5px;
+    border: solid 1px #666;
+    width: 305px;
+    padding: 20px 30px;
+    box-shadow: 0 2px 10px #ddd;
+    z-index: 999999;
+    background: #FFF;
+}
+.user-links .title{
+    font-size: 15px;
+    font-weight: 500;
+    float: left;
+    width: 100%;
+}
+.user-links a{
+    text-decoration: none;
+    color: #666;
+    font-size: 15px;
+    float: left;
+    width: 100%;
+    padding: 5px 0px;
+}
+.user-links a i{
+    float: left;
+    font-size: 22px;
+}
+.user-links a span{
+    float: left;
+    margin-left: 15px;
+    font-size: 15px;
+}
+.user-links hr{
+    float: left;
+    width: 100%;
+}
+.property-list-row{
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #d4d4d4;
+    margin: 10px 50px;
+    width: 70%;
+}
+.property-item{
+    padding: 6px 9px 10px 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #d4d4d4;
+    display: inline-block;
+    width: 30%;
+    margin-bottom: 26px;
+    margin-right: 26px;
+}
+.property-item .price{
+    font-size: 18px;
+    font-weight: 500;
+    color: #666;
+    margin: 0;
+}
+.property-item .city,
+.property-item .street,
+.property-item .description{
+    font-size: 13px;
+    color: #000;
+    margin: 0;
+}
+.property-item .description{
+    margin-top: 10px;
+}
+.add-favorit{
+    position: absolute;
+    margin-left: 230px;
+    margin-top: 10px;
+}
+.property-cretaria{
+    margin-top: 15px;
+}
+.property-cretaria span{
+    margin-right: 15px;
+}
+.pointer{
+    cursor: pointer;
+}
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{   }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}

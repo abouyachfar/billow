@@ -1,5 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        project_tel: '%project_tel%'
+        project_email: '%project_email%'
 
 when@test:
     twig:

@@ -172,7 +172,7 @@ button::-moz-focus-inner {
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    src: url(/build/fonts/proximanova-bold-webfont.woff2) format("woff2"), url(/build/fonts/proximanova-bold-webfont.woff) format("woff")
+    src: url(fonts/proximanova-bold-webfont.woff2) format("woff2"), url(fonts/proximanova-bold-webfont.woff) format("woff")
 }
 
 @font-face {
@@ -180,7 +180,7 @@ button::-moz-focus-inner {
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-    src: url(/build/fonts/proximanova-reg-webfont.woff2) format("woff2"), url(/build/fonts/proximanova-reg-webfont.woff) format("woff")
+    src: url(fonts/proximanova-reg-webfont.woff2) format("woff2"), url(fonts/proximanova-reg-webfont.woff) format("woff")
 }
 
 @font-face {
@@ -188,7 +188,7 @@ button::-moz-focus-inner {
     font-weight: 400;
     font-style: italic;
     font-display: swap;
-    src: url(/build/fonts/proximanova-regit-webfont.woff2) format("woff2"), url(/build/fonts/proximanova-regit-webfont.woff) format("woff")
+    src: url(fonts/proximanova-regit-webfont.woff2) format("woff2"), url(fonts/proximanova-regit-webfont.woff) format("woff")
 }
 
 @font-face {
@@ -196,7 +196,7 @@ button::-moz-focus-inner {
     font-weight: 600;
     font-style: normal;
     font-display: swap;
-    src: url(/build/fonts/proximanova-sbold-webfont.woff2) format("woff2"), url(/build/fonts/proximanova-sbold-webfont.woff) format("woff")
+    src: url(fonts/proximanova-sbold-webfont.woff2) format("woff2"), url(fonts/proximanova-sbold-webfont.woff) format("woff")
 }
 
 @font-face {
@@ -204,7 +204,7 @@ button::-moz-focus-inner {
     font-weight: 800;
     font-style: normal;
     font-display: swap;
-    src: url(/build/fonts/proximanova-xbold-webfont.woff2) format("woff2"), url(/build/fonts/proximanova-xbold-webfont.woff) format("woff")
+    src: url(fonts/proximanova-xbold-webfont.woff2) format("woff2"), url(fonts/proximanova-xbold-webfont.woff) format("woff")
 }
 
 @font-face {
@@ -212,7 +212,7 @@ button::-moz-focus-inner {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: local("Montserrat Regular"), local("Montserrat-Regular"), url(/build/fonts/montserrat-v14-latin-regular.woff2) format("woff2"), url(/build/fonts/montserrat-v14-latin-regular.woff) format("woff")
+    src: local("Montserrat Regular"), local("Montserrat-Regular"), url(fonts/montserrat-v14-latin-regular.woff2) format("woff2"), url(fonts/montserrat-v14-latin-regular.woff) format("woff")
 }
 
 @font-face {
@@ -220,7 +220,7 @@ button::-moz-focus-inner {
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: local("Montserrat SemiBold"), local("Montserrat-SemiBold"), url(/build/fonts/montserrat-v14-latin-600.woff2) format("woff2"), url(/build/fonts/montserrat-v14-latin-600.woff) format("woff")
+    src: local("Montserrat SemiBold"), local("Montserrat-SemiBold"), url(fonts/montserrat-v14-latin-600.woff2) format("woff2"), url(fonts/montserrat-v14-latin-600.woff) format("woff")
 }
 
 @font-face {
@@ -228,7 +228,7 @@ button::-moz-focus-inner {
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: local("Montserrat Bold"), local("Montserrat-Bold"), url(/build/fonts/montserrat-v14-latin-700.woff2) format("woff2"), url(/build/fonts/montserrat-v14-latin-700.woff) format("woff")
+    src: local("Montserrat Bold"), local("Montserrat-Bold"), url(fonts/montserrat-v14-latin-700.woff2) format("woff2"), url(fonts/montserrat-v14-latin-700.woff) format("woff")
 }
 
 .container {
@@ -808,7 +808,7 @@ input {
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    background-image: url(/build/img/jpg/purplebricks/alert-subscription/hero-desktop.jpg);
+    background-image: url(img/jpg/purplebricks/alert-subscription/hero-desktop.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat
@@ -842,7 +842,7 @@ input {
     .alert-subscription__content {
         width: 100%;
         padding: 40px 30px;
-        background-image: url(/build/img/jpg/purplebricks/alert-subscription/hero-mobile.jpg);
+        background-image: url(img/jpg/purplebricks/alert-subscription/hero-mobile.jpg);
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat
@@ -2807,11 +2807,11 @@ input {
 }
 
 .blog-hero--home {
-    background-image: url(/build/img/jpg/blog/home-hero-pb.jpg)
+    background-image: url(img/jpg/blog/home-hero-pb.jpg)
 }
 
 .duproprio .blog-hero--home {
-    background-image: url(/build/img/jpg/blog/home-hero-dp.jpg)
+    background-image: url(img/jpg/blog/home-hero-dp.jpg)
 }
 
 @media only screen and (max-width:1434px) and (min-width:980px) {
@@ -3364,13 +3364,13 @@ input {
 
 .webp .buy__experience.pitch-section .pitch-section__block--visual,
 .webpno-touch .buy__experience.pitch-section .pitch-section__block--visual {
-    background-image: url(/build/img/webp/buy/why-buy-with-duproprio.webp);
+    background-image: url(img/webp/buy/why-buy-with-duproprio.webp);
     background-position: center
 }
 
 .no-webp .buy__experience.pitch-section .pitch-section__block--visual,
 .no-webpno-touch .buy__experience.pitch-section .pitch-section__block--visual {
-    background-image: url(/build/img/jpg/buy/why-buy-with-duproprio.jpg);
+    background-image: url(img/jpg/buy/why-buy-with-duproprio.jpg);
     background-position: center
 }
 
@@ -3544,16 +3544,16 @@ input {
 }
 
 .modal .callback-form {
-    background: url(/build/img/jpg/purplebricks/modal-callback-buyer.jpg) center bottom no-repeat #fff;
+    background: url(img/jpg/purplebricks/modal-callback-buyer.jpg) center bottom no-repeat #fff;
     background-size: 100% auto
 }
 
 .is-seller .modal .callback-form {
-    background-image: url(/build/img/jpg/purplebricks/modal-callback-seller.jpg)
+    background-image: url(img/jpg/purplebricks/modal-callback-seller.jpg)
 }
 
 .is-home .modal .callback-form {
-    background-image: url(/build/img/jpg/purplebricks/modal-callback-homepage.jpg)
+    background-image: url(img/jpg/purplebricks/modal-callback-homepage.jpg)
 }
 
 @media (max-width:1400px) and (min-width:1020px) {
@@ -3637,7 +3637,7 @@ input {
     .is-home .modal .callback-form,
     .is-seller .modal .callback-form,
     .modal .callback-form {
-        background-image: url(/build/img/jpg/purplebricks/purplebricks-modal.jpg)
+        background-image: url(img/jpg/purplebricks/purplebricks-modal.jpg)
     }
 }
 
@@ -4552,7 +4552,7 @@ input {
     }
     .contact-us__tabs-list__item-link {
         padding: 10px 30px 10px 10px;
-        background: url(/build/img/svg/icn-footer-collapse-open-grey.svg) right 10px center no-repeat;
+        background: url(img/svg/icn-footer-collapse-open-grey.svg) right 10px center no-repeat;
         color: #666;
         font-size: .9rem;
         font-weight: 600;
@@ -4564,7 +4564,7 @@ input {
     .contact-us__tabs-list__item--active .contact-us__tabs-list__item-link,
     .contact-us__tabs-list__item-link:hover {
         padding: 10px;
-        background: url(/build/img/svg/icn-footer-collapse-close-white.svg) right 10px center no-repeat
+        background: url(img/svg/icn-footer-collapse-close-white.svg) right 10px center no-repeat
     }
     .contact-us__tabs-list--items-count-1 .contact-us__tabs-list__item--active .contact-us__tabs-list__item-link,
     .contact-us__tabs-list--items-count-1 .contact-us__tabs-list__item-link:hover {
@@ -8401,42 +8401,42 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 
 .webp .home-hero__image--qc-fr-gvl,
 .webpno-touch .home-hero__image--qc-fr-gvl {
-    background-image: url(/build/img/webp/home-hero/qc/fr/home-hero-gvl-rona.webp)
+    background-image: url(img/webp/home-hero/qc/fr/home-hero-gvl-rona.webp)
 }
 
 .webp .home-hero__image--qc-en-gvl,
 .webpno-touch .home-hero__image--qc-en-gvl {
-    background-image: url(/build/img/webp/home-hero/qc/en/home-hero-gvl-rona.webp)
+    background-image: url(img/webp/home-hero/qc/en/home-hero-gvl-rona.webp)
 }
 
 .webp .home-hero__image-one--builder,
 .webpno-touch .home-hero__image-one--builder {
-    background-image: url(/build/img/webp/home-hero/home-hero-builder-1.webp)
+    background-image: url(img/webp/home-hero/home-hero-builder-1.webp)
 }
 
 .webp .home-hero__image-two--builder,
 .webpno-touch .home-hero__image-two--builder {
-    background-image: url(/build/img/webp/home-hero/home-hero-builder-2.webp)
+    background-image: url(img/webp/home-hero/home-hero-builder-2.webp)
 }
 
 .webp .home-hero__image-three--builder,
 .webpno-touch .home-hero__image-three--builder {
-    background-image: url(/build/img/webp/home-hero/home-hero-builder-3.webp)
+    background-image: url(img/webp/home-hero/home-hero-builder-3.webp)
 }
 
 .webp .home-hero__image-four--builder,
 .webpno-touch .home-hero__image-four--builder {
-    background-image: url(/build/img/webp/home-hero/home-hero-builder-4.webp)
+    background-image: url(img/webp/home-hero/home-hero-builder-4.webp)
 }
 
 .webp .home-hero__image-five--builder,
 .webpno-touch .home-hero__image-five--builder {
-    background-image: url(/build/img/webp/home-hero/home-hero-builder-5.webp)
+    background-image: url(img/webp/home-hero/home-hero-builder-5.webp)
 }
 
 .webp .home-hero__image-one--rental,
 .webpno-touch .home-hero__image-one--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/desktop/home-hero-1.webp);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/desktop/home-hero-1.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8445,20 +8445,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .webp .home-hero__image-one--rental,
     .webpno-touch .home-hero__image-one--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/tablet/home-hero-1.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/tablet/home-hero-1.webp)
     }
 }
 
 @media only screen and (max-width:420px) {
     .webp .home-hero__image-one--rental,
     .webpno-touch .home-hero__image-one--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/mobile/home-hero-1.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/mobile/home-hero-1.webp)
     }
 }
 
 .webp .home-hero__image-two--rental,
 .webpno-touch .home-hero__image-two--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/desktop/home-hero-2.webp);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/desktop/home-hero-2.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8467,20 +8467,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .webp .home-hero__image-two--rental,
     .webpno-touch .home-hero__image-two--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/tablet/home-hero-2.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/tablet/home-hero-2.webp)
     }
 }
 
 @media only screen and (max-width:420px) {
     .webp .home-hero__image-two--rental,
     .webpno-touch .home-hero__image-two--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/mobile/home-hero-2.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/mobile/home-hero-2.webp)
     }
 }
 
 .webp .home-hero__image-three--rental,
 .webpno-touch .home-hero__image-three--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/desktop/home-hero-3.webp);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/desktop/home-hero-3.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8489,20 +8489,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .webp .home-hero__image-three--rental,
     .webpno-touch .home-hero__image-three--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/tablet/home-hero-3.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/tablet/home-hero-3.webp)
     }
 }
 
 @media only screen and (max-width:420px) {
     .webp .home-hero__image-three--rental,
     .webpno-touch .home-hero__image-three--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/mobile/home-hero-3.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/mobile/home-hero-3.webp)
     }
 }
 
 .webp .home-hero__image-four--rental,
 .webpno-touch .home-hero__image-four--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/desktop/home-hero-4.webp);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/desktop/home-hero-4.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8511,20 +8511,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .webp .home-hero__image-four--rental,
     .webpno-touch .home-hero__image-four--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/tablet/home-hero-4.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/tablet/home-hero-4.webp)
     }
 }
 
 @media only screen and (max-width:420px) {
     .webp .home-hero__image-four--rental,
     .webpno-touch .home-hero__image-four--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/mobile/home-hero-4.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/mobile/home-hero-4.webp)
     }
 }
 
 .webp .home-hero__image-five--rental,
 .webpno-touch .home-hero__image-five--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/desktop/home-hero-5.webp);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/desktop/home-hero-5.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8533,55 +8533,55 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .webp .home-hero__image-five--rental,
     .webpno-touch .home-hero__image-five--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/tablet/home-hero-5.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/tablet/home-hero-5.webp)
     }
 }
 
 @media only screen and (max-width:420px) {
     .webp .home-hero__image-five--rental,
     .webpno-touch .home-hero__image-five--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/mobile/home-hero-5.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/mobile/home-hero-5.webp)
     }
 }
 
 .no-webp .home-hero__image--qc-fr-gvl,
 .no-webpno-touch .home-hero__image--qc-fr-gvl {
-    background-image: url(/build/img/jpg/home-hero/qc/fr/home-hero-gvl-rona.jpg)
+    background-image: url(img/jpg/home-hero/qc/fr/home-hero-gvl-rona.jpg)
 }
 
 .no-webp .home-hero__image--qc-en-gvl,
 .no-webpno-touch .home-hero__image--qc-en-gvl {
-    background-image: url(/build/img/jpg/home-hero/qc/en/home-hero-gvl-rona.jpg)
+    background-image: url(img/jpg/home-hero/qc/en/home-hero-gvl-rona.jpg)
 }
 
 .no-webp .home-hero__image-one--builder,
 .no-webpno-touch .home-hero__image-one--builder {
-    background-image: url(/build/img/jpg/home-hero/home-hero-builder-1.jpg)
+    background-image: url(img/jpg/home-hero/home-hero-builder-1.jpg)
 }
 
 .no-webp .home-hero__image-two--builder,
 .no-webpno-touch .home-hero__image-two--builder {
-    background-image: url(/build/img/jpg/home-hero/home-hero-builder-2.jpg)
+    background-image: url(img/jpg/home-hero/home-hero-builder-2.jpg)
 }
 
 .no-webp .home-hero__image-three--builder,
 .no-webpno-touch .home-hero__image-three--builder {
-    background-image: url(/build/img/jpg/home-hero/home-hero-builder-3.jpg)
+    background-image: url(img/jpg/home-hero/home-hero-builder-3.jpg)
 }
 
 .no-webp .home-hero__image-four--builder,
 .no-webpno-touch .home-hero__image-four--builder {
-    background-image: url(/build/img/jpg/home-hero/home-hero-builder-4.jpg)
+    background-image: url(img/jpg/home-hero/home-hero-builder-4.jpg)
 }
 
 .no-webp .home-hero__image-five--builder,
 .no-webpno-touch .home-hero__image-five--builder {
-    background-image: url(/build/img/jpg/home-hero/home-hero-builder-5.jpg)
+    background-image: url(img/jpg/home-hero/home-hero-builder-5.jpg)
 }
 
 .no-webp .home-hero__image-one--rental,
 .no-webpno-touch .home-hero__image-one--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/desktop/home-hero-1.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/desktop/home-hero-1.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8590,20 +8590,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .no-webp .home-hero__image-one--rental,
     .no-webpno-touch .home-hero__image-one--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/tablet/home-hero-1.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/tablet/home-hero-1.jpg)
     }
 }
 
 @media only screen and (max-width:420px) {
     .no-webp .home-hero__image-one--rental,
     .no-webpno-touch .home-hero__image-one--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/mobile/home-hero-1.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/mobile/home-hero-1.jpg)
     }
 }
 
 .no-webp .home-hero__image-two--rental,
 .no-webpno-touch .home-hero__image-two--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/desktop/home-hero-2.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/desktop/home-hero-2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8612,20 +8612,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .no-webp .home-hero__image-two--rental,
     .no-webpno-touch .home-hero__image-two--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/tablet/home-hero-2.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/tablet/home-hero-2.jpg)
     }
 }
 
 @media only screen and (max-width:420px) {
     .no-webp .home-hero__image-two--rental,
     .no-webpno-touch .home-hero__image-two--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/mobile/home-hero-2.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/mobile/home-hero-2.jpg)
     }
 }
 
 .no-webp .home-hero__image-three--rental,
 .no-webpno-touch .home-hero__image-three--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/desktop/home-hero-3.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/desktop/home-hero-3.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8634,20 +8634,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .no-webp .home-hero__image-three--rental,
     .no-webpno-touch .home-hero__image-three--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/tablet/home-hero-3.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/tablet/home-hero-3.jpg)
     }
 }
 
 @media only screen and (max-width:420px) {
     .no-webp .home-hero__image-three--rental,
     .no-webpno-touch .home-hero__image-three--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/mobile/home-hero-3.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/mobile/home-hero-3.jpg)
     }
 }
 
 .no-webp .home-hero__image-four--rental,
 .no-webpno-touch .home-hero__image-four--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/desktop/home-hero-4.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/desktop/home-hero-4.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8656,20 +8656,20 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .no-webp .home-hero__image-four--rental,
     .no-webpno-touch .home-hero__image-four--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/tablet/home-hero-4.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/tablet/home-hero-4.jpg)
     }
 }
 
 @media only screen and (max-width:420px) {
     .no-webp .home-hero__image-four--rental,
     .no-webpno-touch .home-hero__image-four--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/mobile/home-hero-4.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/mobile/home-hero-4.jpg)
     }
 }
 
 .no-webp .home-hero__image-five--rental,
 .no-webpno-touch .home-hero__image-five--rental {
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/desktop/home-hero-4.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/desktop/home-hero-4.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover
@@ -8678,14 +8678,14 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media only screen and (max-width:768px) {
     .no-webp .home-hero__image-five--rental,
     .no-webpno-touch .home-hero__image-five--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/tablet/home-hero-4.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/tablet/home-hero-4.jpg)
     }
 }
 
 @media only screen and (max-width:420px) {
     .no-webp .home-hero__image-five--rental,
     .no-webpno-touch .home-hero__image-five--rental {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/mobile/home-hero-4.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/mobile/home-hero-4.jpg)
     }
 }
 
@@ -8705,11 +8705,11 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 @media (min-width:1021px) {
     .webp .home-hero__image,
     .webpno-touch .home-hero__image {
-        background-image: url(/build/img/webp/home-hero/sell/home-hero-jan-2022.webp)
+        background-image: url(img/webp/home-hero/sell/home-hero-jan-2022.webp)
     }
     .no-webp .home-hero__image,
     .no-webpno-touch .home-hero__image {
-        background-image: url(/build/img/jpg/home-hero/sell/home-hero-jan-2022.jpg)
+        background-image: url(img/jpg/home-hero/sell/home-hero-jan-2022.jpg)
     }
 }
 
@@ -8925,12 +8925,12 @@ body:not(.prov-qc) .header-secondary-nav__item--builder .header-secondary-nav__l
 }
 
 .how-to-steps--right .how-to-steps__arrow {
-    background: url(/build/img/svg/icn-bended-arrow-large-right.svg) left 42px no-repeat
+    background: url(img/svg/icn-bended-arrow-large-right.svg) left 42px no-repeat
 }
 
 .how-to-steps--left .how-to-steps__arrow {
     order: 1;
-    background: url(/build/img/svg/icn-bended-arrow-large-left.svg) right 42px no-repeat
+    background: url(img/svg/icn-bended-arrow-large-left.svg) right 42px no-repeat
 }
 
 .how-to-steps--left .how-to-steps__item,
@@ -10315,7 +10315,7 @@ body.big-open-house-landingpage:not(.in-mobile-app) {
     flex: 1;
     height: 100%;
     min-height: 1200px;
-    background: url(/build/img/jpg/landingpages/landing-big-open-house/bg-big-open-house.jpg) center 100% no-repeat
+    background: url(img/jpg/landingpages/landing-big-open-house/bg-big-open-house.jpg) center 100% no-repeat
 }
 
 .big-open-house-landingpage .container-wrapper {
@@ -10416,7 +10416,7 @@ body.big-open-house-landingpage:not(.in-mobile-app) {
     position: relative;
     flex: 1;
     height: 91px;
-    background: url(/build/img/png/landingpages/landing-big-open-house/counter.png) center right no-repeat;
+    background: url(img/png/landingpages/landing-big-open-house/counter.png) center right no-repeat;
     color: #ffff02
 }
 
@@ -10460,13 +10460,13 @@ body.big-open-house-landingpage:not(.in-mobile-app) {
 .big-open-house-landingpage .container-wrapper__content-map__footer-blog {
     margin: 10px 0 0 10px;
     padding: 5px 0 10px 110px;
-    background: url(/build/img/png/landingpages/landing-big-open-house/house-people.png) no-repeat
+    background: url(img/png/landingpages/landing-big-open-house/house-people.png) no-repeat
 }
 
 .big-open-house-landingpage .container-wrapper__content-map__footer__read-this {
     margin: 11px 0 0 10px;
     padding-left: 110px;
-    background: url(/build/img/png/landingpages/landing-big-open-house/le-blogue-fr.png) no-repeat
+    background: url(img/png/landingpages/landing-big-open-house/le-blogue-fr.png) no-repeat
 }
 
 .big-open-house-landingpage .container-wrapper__content-map__footer__read-this__list {
@@ -11818,12 +11818,12 @@ body.referral-landingpage {
     margin: 0 auto;
     width: 100%;
     height: 286px;
-    background: url(/build/img/jpg/landingpages/landing-referral/header-2022-fr.jpg) center center no-repeat;
+    background: url(img/jpg/landingpages/landing-referral/header-2022-fr.jpg) center center no-repeat;
     background-size: cover
 }
 
 .referral-landingpage--en .referral-page-hero__content-img {
-    background: url(/build/img/jpg/landingpages/landing-referral/header-2022-en.jpg) center center no-repeat;
+    background: url(img/jpg/landingpages/landing-referral/header-2022-en.jpg) center center no-repeat;
     background-size: cover
 }
 
@@ -11915,12 +11915,12 @@ body.referral-landingpage {
     }
     .referral-page-hero__content-img {
         height: 401px;
-        background: url(/build/img/jpg/landingpages/landing-referral/header-2022-mobile-fr.jpg) center center no-repeat;
+        background: url(img/jpg/landingpages/landing-referral/header-2022-mobile-fr.jpg) center center no-repeat;
         background-size: cover
     }
     .referral-landingpage--en .referral-page-hero__content-img {
         height: 401px;
-        background: url(/build/img/jpg/landingpages/landing-referral/header-2022-mobile-en.jpg) center center no-repeat;
+        background: url(img/jpg/landingpages/landing-referral/header-2022-mobile-en.jpg) center center no-repeat;
         background-size: cover
     }
     .referral-page-header__content-lang {
@@ -11969,23 +11969,23 @@ body.referral-landingpage {
 @media only screen and (max-width:420px) {
     .referral-page-hero__content-img {
         height: 340px;
-        background: url(/build/img/jpg/landingpages/landing-referral/header-2022-mobile-fr.jpg) center center no-repeat;
+        background: url(img/jpg/landingpages/landing-referral/header-2022-mobile-fr.jpg) center center no-repeat;
         background-size: cover
     }
     .referral-landingpage--en .referral-page-hero__content-img {
         height: 340px;
-        background: url(/build/img/jpg/landingpages/landing-referral/header-2022-mobile-en.jpg) center center no-repeat;
+        background: url(img/jpg/landingpages/landing-referral/header-2022-mobile-en.jpg) center center no-repeat;
         background-size: cover
     }
 }
 
 @media (min-width:1700px) {
     .referral-page-hero__content-img {
-        background: url(/build/img/jpg/landingpages/landing-referral/header-2022-fr.jpg) center center no-repeat #def9e9;
+        background: url(img/jpg/landingpages/landing-referral/header-2022-fr.jpg) center center no-repeat #def9e9;
         background-size: contain
     }
     .referral-landingpage--en .referral-page-hero__content-img {
-        background: url(/build/img/jpg/landingpages/landing-referral/header-2022-en.jpg) center center no-repeat #def9e9;
+        background: url(img/jpg/landingpages/landing-referral/header-2022-en.jpg) center center no-repeat #def9e9;
         background-size: contain
     }
 }
@@ -17618,7 +17618,7 @@ body.referral-landingpage {
     width: 38px;
     height: 38px;
     margin-right: 8px;
-    background: url(/build/img/svg/icn-type-selector-unchecked.svg) no-repeat;
+    background: url(img/svg/icn-type-selector-unchecked.svg) no-repeat;
     content: ''
 }
 
@@ -17642,7 +17642,7 @@ body.referral-landingpage {
 }
 
 .packages-selection__listingroup-selector-list-item--active::before {
-    background: url(/build/img/svg/icn-type-selector-checked.svg) no-repeat
+    background: url(img/svg/icn-type-selector-checked.svg) no-repeat
 }
 
 .packages-selection__boxes {
@@ -17903,7 +17903,7 @@ body.referral-landingpage {
     right: 30px;
     width: 89px;
     height: 94px;
-    background-image: url(/build/img/png/packages/duproprio-for-rent-sign-header.png);
+    background-image: url(img/png/packages/duproprio-for-rent-sign-header.png);
     content: ''
 }
 
@@ -21102,21 +21102,21 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
     justify-content: center;
     align-items: center;
     height: 220px;
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/desktop/home-hero-1.webp) center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/desktop/home-hero-1.webp) center no-repeat;
     background-size: cover
 }
 
 @media only screen and (max-width:768px) {
     .webp .page-hero--rental-packages,
     .webpno-touch .page-hero--rental-packages {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/tablet/home-hero-1.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/tablet/home-hero-1.webp)
     }
 }
 
 @media only screen and (max-width:420px) {
     .webp .page-hero--rental-packages,
     .webpno-touch .page-hero--rental-packages {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/webp/home-hero/rental/mobile/home-hero-1.webp)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/webp/home-hero/rental/mobile/home-hero-1.webp)
     }
 }
 
@@ -21126,21 +21126,21 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
     justify-content: center;
     align-items: center;
     height: 220px;
-    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/desktop/home-hero-1.jpg) center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/desktop/home-hero-1.jpg) center no-repeat;
     background-size: cover
 }
 
 @media only screen and (max-width:768px) {
     .no-webp .page-hero--rental-packages,
     .no-webpno-touch .page-hero--rental-packages {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/tablet/home-hero-1.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/tablet/home-hero-1.jpg)
     }
 }
 
 @media only screen and (max-width:420px) {
     .no-webp .page-hero--rental-packages,
     .no-webpno-touch .page-hero--rental-packages {
-        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(/build/img/jpg/home-hero/rental/mobile/home-hero-1.jpg)
+        background-image: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)), url(img/jpg/home-hero/rental/mobile/home-hero-1.jpg)
     }
 }
 
@@ -22500,7 +22500,7 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
 .pitch-section .pitch-section__block-number1 {
     display: flex;
     min-height: 300px;
-    background-image: url(/build/img/png/sell/number1.png);
+    background-image: url(img/png/sell/number1.png);
     background-repeat: no-repeat;
     background-size: 280px
 }
@@ -22662,7 +22662,7 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
 }
 
 .pitch-section--compare-satisfied .pitch-section__block--visual {
-    background: url(/build/img/jpg/compare/compare-satisfied.jpg)
+    background: url(img/jpg/compare/compare-satisfied.jpg)
 }
 
 .pitch-section--compare-satisfied .pitch-section__block--info .pitch-section__block-content p {
@@ -22715,7 +22715,7 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
 }
 
 .pitch-section--compare-protection .pitch-section__block--visual {
-    background: url(/build/img/jpg/compare/compare-protection.jpg)
+    background: url(img/jpg/compare/compare-protection.jpg)
 }
 
 .pitch-section--compare-protection .pitch-section__block--visual h3 {
@@ -22907,32 +22907,32 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
     width: 250px;
     height: 250px;
     padding: 80px 0;
-    background-image: url(/build/img/jpg/compare/la-facture.jpg);
+    background-image: url(img/jpg/compare/la-facture.jpg);
     background-position: -10px 0
 }
 
 .pitch-section__video-placeholder--time-fr {
-    background-image: url(/build/img/jpg/compare/video-compare-time.jpg);
+    background-image: url(img/jpg/compare/video-compare-time.jpg);
     border-color: transparent
 }
 
 .pitch-section__video-placeholder--delay-fr {
-    background-image: url(/build/img/jpg/compare/video-compare-delay.jpg);
+    background-image: url(img/jpg/compare/video-compare-delay.jpg);
     border-color: transparent
 }
 
 .pitch-section__video-placeholder--comparevisibility-fr {
-    background-image: url(/build/img/jpg/compare/video-compare-visibility.jpg);
+    background-image: url(img/jpg/compare/video-compare-visibility.jpg);
     border-color: transparent
 }
 
 .pitch-section__video-placeholder--truth-fr {
-    background-image: url(/build/img/jpg/compare/video-compare-truth.jpg);
+    background-image: url(img/jpg/compare/video-compare-truth.jpg);
     border-color: transparent
 }
 
 .pitch-section__video-placeholder--oaciq {
-    background-image: url(/build/img/jpg/compare/video-compare-oaciq.jpg);
+    background-image: url(img/jpg/compare/video-compare-oaciq.jpg);
     border-color: transparent
 }
 
@@ -23746,7 +23746,7 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
 .savings-calculator__handle__icon-left {
     top: 5px;
     left: 50%;
-    background: url(/build/img/svg/icn-arrow-green-white.svg) no-repeat;
+    background: url(img/svg/icn-arrow-green-white.svg) no-repeat;
     transform: rotate(180deg);
     animation-name: savingsCalculatorIconLeft
 }
@@ -23754,7 +23754,7 @@ body:not(.prov-qc) .mobile-menu__nav--network .mobile-menu__link--newhomes {
 .savings-calculator__handle__icon-right {
     top: 7px;
     right: 50%;
-    background: url(/build/img/svg/icn-arrow-green-white.svg) no-repeat;
+    background: url(img/svg/icn-arrow-green-white.svg) no-repeat;
     animation-name: savingsCalculatorIconRight
 }
 
@@ -27008,7 +27008,7 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
     align-items: center;
     width: 100%;
     padding: 10px 10px 10px 50px;
-    background: url(/build/img/svg/icn-searchbar-result-unchecked.svg) no-repeat;
+    background: url(img/svg/icn-searchbar-result-unchecked.svg) no-repeat;
     background-position-x: 18px;
     background-position-y: 12px;
     font-size: 14px;
@@ -27019,7 +27019,7 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
 .search-results__item.search-results__item--highlighted,
 .search-results__item:focus,
 .search-results__item:hover {
-    background: url(/build/img/svg/icn-searchbar-result-unchecked-highlighted.svg) no-repeat #58bf26;
+    background: url(img/svg/icn-searchbar-result-unchecked-highlighted.svg) no-repeat #58bf26;
     background-position-x: 18px;
     background-position-y: 12px
 }
@@ -27029,7 +27029,7 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
 }
 
 .search-results__item.search-results__item--selected {
-    background-image: url(/build/img/svg/icn-searchbar-result-checked.svg);
+    background-image: url(img/svg/icn-searchbar-result-checked.svg);
     background-repeat: no-repeat;
     background-position-x: 18px;
     background-position-y: 12px
@@ -29870,7 +29870,7 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
     height: 164px;
     width: 164px;
     padding: 34px;
-    background-image: url(/build/img/png/sell/stat-overlay.png);
+    background-image: url(img/png/sell/stat-overlay.png);
     text-align: center;
     font-size: 15px;
     color: #02bbff
@@ -32340,12 +32340,12 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
 
 .webp .faq__header,
 .webpno-touch .faq__header {
-    background: url(/build/img/webp/faq/header-bg.webp) center center no-repeat #58bf26
+    background: url(img/webp/faq/header-bg.webp) center center no-repeat #58bf26
 }
 
 .no-webp .faq__header,
 .no-webpno-touch .faq__header {
-    background: url(/build/img/jpg/faq/header-bg.jpg) center center no-repeat #58bf26
+    background: url(img/jpg/faq/header-bg.jpg) center center no-repeat #58bf26
 }
 
 .faq__header {
@@ -32378,11 +32378,11 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
 }
 
 .faq__header__content.fr::after {
-    background-image: url(/build/img/png/faq/sign.png)
+    background-image: url(img/png/faq/sign.png)
 }
 
 .faq__header__content.en::after {
-    background-image: url(/build/img/png/faq/sign_en.png)
+    background-image: url(img/png/faq/sign_en.png)
 }
 
 .faq__header__title {
@@ -33512,22 +33512,22 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
 }
 
 .team-profile--marie-christine-blain {
-    background-image: url(/build/img/png/about/team-profile/marie-christine-blain.png);
+    background-image: url(img/png/about/team-profile/marie-christine-blain.png);
     background-size: 264px auto
 }
 
 .team-profile--kim-ewchuk {
-    background-image: url(/build/img/png/about/team-profile/kim-ewchuk.png);
+    background-image: url(img/png/about/team-profile/kim-ewchuk.png);
     background-size: 264px auto
 }
 
 .team-profile--scott-bollinger {
-    background-image: url(/build/img/png/about/team-profile/scott-bollinger.png);
+    background-image: url(img/png/about/team-profile/scott-bollinger.png);
     background-size: 264px auto
 }
 
 .team-profile--randall-weese {
-    background-image: url(/build/img/png/about/team-profile/randall-weese.png);
+    background-image: url(img/png/about/team-profile/randall-weese.png);
     background-size: 264px auto
 }
 
@@ -34647,7 +34647,7 @@ body:not(.prov-qc) .search-bar-menu--visible.search-map {
     height: 400px;
     margin-top: 60px;
     padding-top: 40px;
-    background: url(/build/img/jpg/landingpages/landing-virtual-tour/img-virtual-tour.jpg) center no-repeat
+    background: url(img/jpg/landingpages/landing-virtual-tour/img-virtual-tour.jpg) center no-repeat
 }
 
 .virtual-tour-page .virtual-tour-page__video .wistia_embed {

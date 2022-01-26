@@ -9,6 +9,50 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Home Page</h1>
+    <div id="commission-slider-area">
+        <h1 class="section-title-1">Thousands of dollars saved in commission</h1>
+
+        <!-- Start Commission Slider -->
+        <div class="demo__item commission-slider-container">
+            <div class="demo__body">
+                <input style="display: none;" id="commission-slider" type="text" name="" value="" class="irs-hidden-input" tabindex="-1" readonly="">
+            </div>
+        </div>
+
+        <div id="commission-result-area">
+            <p class="title">{{ "You could save"|trans }}*</p>
+            <p class="price"></p>
+            <p class="description">*{{ "Compared to an average commission of 5%, including applicable taxes."|trans }}</p>
+        </div>
+        <!-- End Commission Slider -->
+    </div>
+    
 </div>
+
+<script>
+$(document).ready(function(){
+    var v = ((2.5 * (560000 - 100000))/100 + 5500) ;
+    $("#commission-result-area").find(".price").text("$" + Intl.NumberFormat().format(v));
+
+    var $range_price = $("#commission-slider").ionRangeSlider({
+                        min: 100000,
+                        max: 1000000,
+                        from: 560000,
+                        grid_snap: true,
+                        step: 20000,
+                        skin: "round",
+                        prefix: "<span class='commission-slider-price'>Price of your property</span><br/>$"
+                    });
+
+    $range_price.on("change", function () {
+        var $inp = $(this);
+        var commission_value = $inp.prop("value");
+
+        var v = ((2.5 * (commission_value - 100000))/100 + 5500) ;
+        $("#commission-result-area").find(".price").text("$" + Intl.NumberFormat().format(v));
+        
+    });
+})
+</script>
+
 {% endblock %}

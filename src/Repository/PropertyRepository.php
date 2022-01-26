@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Repository;
+
+use App\Entity\Property;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Exception;
+
+/**
+ * @method Property|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Property|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Property[]    findAll()
+ * @method Property[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class PropertyRepository extends ServiceEntityRepository
+{
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Property::class);
+    }
+
+    // /**
+    //  * @return Property[] Returns an array of Property objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Property
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
+
+    public function search($region, $city, $bedrooms)
+    {
+        $properties = null;
+
+        try{
+            $properties = $this->createQueryBuilder('p')
+                            ->andWhere('p.region = :region')
+                            ->andWhere('p.city = :city')
+                            ->andWhere('p.bedrooms = :bedrooms')
+                            ->setParameters(['region' => $region, 'city' => $city, 'bedrooms' => $bedrooms])
+                            ->orderBy('p.id', 'ASC')
+                            ->setMaxResults(10)
+                            ->getQuery()
+                            ->getResult();
+        }catch(Exception $e){
+            die(var_dump($e->getMessage()));
+        }
+
+        return $properties;
+    }
+}

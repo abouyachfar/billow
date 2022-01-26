@@ -2,437 +2,420 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <!-- <title>{% block title %}Welcome!{% endblock %}</title> -->
+        <title>Buy and Sell your House, Condo COMMISSION-FREE | Billow</title>
+
         {% block stylesheets %}
-            <!-- Style & Common Css --> 
-            <link rel="stylesheet" href="css/main.css">
+            <!-- Style & Common Css -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="/css/style.css">
+            <!-- font awsome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!--Plugin CSS file with desired skin-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
         {% endblock %}
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        
+        <!--jQuery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
-    <body class=" header-sticky prov-qc duproprio  is-page-home notranslate">
-        <header class="header" role="banner">
-            <!-- Début Secondary Nav -->
-            <div class="header-secondary-nav">
-                <nav class="header-secondary-nav-center-container">
-                    <ul class="header-secondary-nav--network">
-                        <li class="header-secondary-nav__item header-secondary-nav__item--duProprio">
-                            <a href="en.html" class="header__link header-secondary-nav__link gtm-header-link-website-main gtm__push-event gtm__push-event__network-duproprio ">DuProprio</a>
-                        </li>
-                        <li class="header-secondary-nav__item">
-                            <a href="en/rental.html" class="header__link header-secondary-nav__link header-secondary-nav__link--rental gtm-header-link-website-rental gtm__push-event gtm__push-event__network-rental ">Rentals</a>
-                        </li>
-                        <li class="header-secondary-nav__item header-secondary-nav__item--builder">
-                            <a href="http://neuves.duproprio.com/en" class="header__link header-secondary-nav__link gtm-header-link-website-newhomes gtm__push-event gtm__push-event__network-newly-built ">Newly built</a>
-                        </li>
-                        <li class="header-secondary-nav__item">
-                            <a href="https://duproprio.biz/en" class="header__link header-secondary-nav__link gtm-header-link-website-biz gtm__push-event gtm__push-event__network-duproprio-biz ">DuProprio.biz</a>
-                        </li>
-                        <li class="header-secondary-nav__item">
-                            <a href="tel:+18663877677" class="header__link header-secondary-nav__link header-secondary-nav__link--last gtm-header-link-call gtm__push-event gtm__push-event__network-phone-number ">1 866 387-7677</a>
-                        </li>
-                    </ul>
-                </nav>
+    <body>
+        <!-- Start Secondary Menu-->
+            <div class="secondary-menu">
+                <ul class="menu-list">
+                    <li><a href="{{ path('home') }}" class="menu-link">Billow</a></li>
+                    <li><a href="call: {{ project_tel }}" class="menu-link"> {{ project_tel }}</a></li>
+                </ul>
             </div>
-            <!-- Fin Secondary Nav -->
+        <!-- End Secondary Menu -->
 
-            <!-- Début Primary Nav -->
-            <div class="header-primary-nav">
-                <div class="header-primary-nav__left-container">
-                    <div class="header__logo-container">
-                        <a href="en.html" class="header__logo  gtm__push-event gtm__push-event__logo ">
-                            <span class="is-visually-hidden">Go back to DuProprio homepage</span>
-                            <div class="header__logo-image">
-                                <?xml version="1.0"?>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 31" class="header__logo-image-icon"><title>icn-home-logo</title><g fill="none" fill-rule="evenodd"><path fill="#00C6FF" d="M30.738 5.54H23.28l3.73 3.657"/><path fill="#CBDF00" d="M30.74 5.54l-3.73 3.657 3.73 3.66M18.008 18.024l12.73 12.48v-12.48"/><path fill="#00C6FF" d="M18.004 18.024H5.274v12.48l12.733-12.48"/><path fill="#90CE17" d="M18.004.37L12.73 5.543h10.55M0 18.024h5.275v-5.17M36.012 18.024l-5.272-5.168v5.168"/><path fill="#5CB147" d="M23.28 5.54H12.73L9.003 9.198l9.005 8.827 9.003-8.827"/><path fill="#59BE26" d="M30.74 12.856l-3.73-3.66-9.002 8.828h12.73"/><path fill="#619D73" d="M9.003 9.197l-3.728 3.656v5.17h12.73"/><path fill="#59BE26" d="M30.738 30.504l-6.366-6.24-6.365 6.24"/><path fill="#90CE17" d="M5.275 30.504h12.73l-6.366-6.24"/><path fill="#FF0" d="M24.373 24.263l-6.365-6.24-6.368 6.24 6.364 6.24h.004"/></g></svg>
-                                <?xml version="1.0"?>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 26" class="header__logo-image-text"><g fill="#000" fill-rule="evenodd"><path d="M52.1 5.475h4.345v2.458c1.04-1.976 2.46-2.65 4.89-2.746V9.77h-.23c-2.886 0-4.66 1.76-4.66 5.45v5.712H52.1V5.475zM79.19 5.468h4.347v2.22c1.057-1.442 2.514-2.51 4.773-2.51 3.574 0 6.977 2.826 6.977 7.99v.056c0 5.163-3.345 7.99-6.977 7.99-2.315 0-3.745-1.068-4.773-2.308v6.54H79.19V5.467zm11.753 7.756v-.056c0-2.568-1.716-4.27-3.747-4.27-2.03 0-3.717 1.702-3.717 4.27v.056c0 2.567 1.686 4.267 3.716 4.267 2.03 0 3.747-1.67 3.747-4.266zM.506 13.23v-.055c0-5.164 3.346-7.99 6.976-7.99 2.316 0 3.746 1.068 4.775 2.31V.974h4.346v19.957h-4.346v-2.22c-1.058 1.44-2.516 2.51-4.775 2.51-3.574 0-6.976-2.827-6.976-7.99m11.808 0v-.057c0-2.566-1.687-4.27-3.717-4.27-2.03 0-3.745 1.675-3.745 4.27v.056c0 2.568 1.715 4.27 3.745 4.27 2.03 0 3.717-1.702 3.717-4.27M18.697 15.48V5.476h4.345v8.623c0 2.076.97 3.142 2.63 3.142 1.658 0 2.716-1.066 2.716-3.142V5.475h4.345v15.457h-4.345V18.74c-1 1.297-2.288 2.48-4.49 2.48-3.286 0-5.2-2.192-5.2-5.74M61.478 13.225v-.06c0-4.44 3.544-8.044 8.32-8.044 4.743 0 8.26 3.55 8.26 7.99v.056c0 4.444-3.544 8.048-8.32 8.048-4.744 0-8.26-3.546-8.26-7.99m12.292 0v-.058c0-2.278-1.63-4.268-4.03-4.268-2.487 0-3.977 1.935-3.977 4.212v.056c0 2.28 1.633 4.27 4.034 4.27 2.488 0 3.973-1.933 3.973-4.21M96.652 5.475h4.346v2.458c1.043-1.976 2.46-2.65 4.887-2.746V9.77h-.23c-2.884 0-4.657 1.76-4.657 5.45v5.712h-4.346V5.475zM107.37 4.363h4.324V.976h-4.324v3.387zm.01 16.57h4.314V5.474h-4.315v15.457zM113.193 13.225v-.06c0-4.44 3.544-8.044 8.32-8.044 4.744 0 8.26 3.55 8.26 7.99v.056c0 4.444-3.543 8.048-8.317 8.048-4.75 0-8.263-3.546-8.263-7.99m12.292 0v-.058c0-2.278-1.63-4.268-4.03-4.268-2.49 0-3.975 1.935-3.975 4.212v.056c0 2.28 1.63 4.27 4.032 4.27 2.487 0 3.973-1.933 3.973-4.21M43.307.977h-8.184v19.955h4.406v-1.936l-.004-6.108 2.146 2.215h1.206c4.49 0 8.09-2.422 8.09-7.095V7.95c0-4.12-2.887-6.973-7.66-6.973zm3.202 7.117c0 1.73-1.288 3.058-3.492 3.058h-3.486V4.98h3.402c2.2 0 3.575 1.065 3.575 3.057v.057z"/></g></svg>
-                            </div>
-                        </a>
+        <!-- Start Primary Menu-->
+        <div id="primary-menu" class="primary-menu">
+            <div class="logo-container">
+                <a href="/" title="Billow"><img src="/img/logo.png" class="logo-header"></a>
+            </div>
+
+            <nav class="nav-left navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                            <a class="menu-link nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'Search'|trans }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'List'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Map'|trans }}</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                            <a class="menu-link nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'Buy'|trans }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'How does home-buying work?'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Why buy a home with DuProprio?'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Create an email alert'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Offer to purchase and other legal documents'|trans }}</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                            <a class="menu-link nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'Sell'|trans }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'How does it work?'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Will my listing be seen?'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'How much could I save?'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Will I sell?'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Free info session'|trans }}</a></li>
+                                <li><a class="sub-menu-link dropdown-item" href="#">{{ 'Free consultation'|trans }}</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li><a href="#" class="menu-link">FAQ</a></li>
+                            <li><a href="#" class="menu-link">{{ 'Pricing'|trans }}</a></li>
+                        </ul>
                     </div>
+                </div>
+            </nav>
+
+            <div class="nav-right">
+                <ul class="menu-list">
+                    <li><a href="#" class="menu-link">{{ 'Contact'|trans }}</a></li>
+                    {% if(app.request.locale == "fr") %}
+                        <li><a href="/en" class="menu-link">EN</a></li>
+                    {%  else  %}
+                        <li><a href="/fr" class="menu-link">FR</a></li>
+                    {% endif %}
                     
-                    <nav class="header-primary-nav__list-container">
-                        <ul class="header-primary-nav__list">
-                            <li class="header-primary-nav__item">
-                                <div class="sub-menu-navigation sub-menu-navigation-trigger sub-menu-navigation--enabled" id="">
-                                    <a href="en/search/list.html" class="sub-menu-navigation__header-link  gtm__push-event gtm__push-event__header-search ">
-                                        <div class="sub-menu-navigation__header">
-                                            <div class="sub-menu-navigation__arrow sub-menu-navigation-mobile-trigger">
-                                                <?xml version="1.0"?>
-                                                <svg viewBox="0 0 39 72" class="sub-menu-navigation__arrow-icon"><path d="M34.432.648C34.866.215 35.432 0 36 0c.565 0 1.13.215 1.56.648.864.864.864 2.262 0 3.125L5.34 36 37.56 68.227c.864.863.864 2.26 0 3.125-.862.863-2.26.863-3.128 0L.647 37.562c-.863-.863-.863-2.26 0-3.128L34.432.648z" fill-rule="evenodd"/></svg>
-                                            </div>
+                    {% if(is_granted('ROLE_USER')) %}
+                        {% if(app.user.firstname != "") %}
+                            <li><a id="btn-user" class="btn btn-connexion">{{ app.user.firstname }} <i class="fa fa-user-circle"></i></a></li>
+                        {% else %}
+                            <li><a id="btn-user" class="btn btn-connexion">{{ app.user.username }} <i class="fa fa-user-circle"></i></a></li>
+                        {% endif %}
 
-                                            <div class="sub-menu-navigation__current ">
-                                                <div class="sub-menu-navigation__current-item is-no-events">Search</div>
-                                                <div class="sub-menu-navigation__current-arrow">
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 15" class="sub-menu-navigation__current-arrow-icon"><path d="M1.395 4.14c-.512-.47-.77-1.086-.77-1.702 0-.616.258-1.23.77-1.7 1.023-.94 2.687-.94 3.712 0L13.75 8.66 22.395.737c1.024-.94 2.687-.94 3.712 0 1.026.94 1.026 2.463 0 3.403l-10.5 9.625c-1.024.94-2.686.94-3.71 0L1.395 4.14z" fill-rule="evenodd"/></svg>
-                                                </div>
-                                                <div class="sub-menu-navigation__current-icon-mobile hidden-large hidden-xlarge">
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" class="sub-menu-navigation-title__icon sub-menu-navigation-title__icon--closed"><path d="M15.022 10.978V2.31C15.022 1.04 14.112 0 13 0c-1.112 0-2.022 1.04-2.022 2.31v8.668H2.31C1.04 10.978 0 11.888 0 13c0 1.112 1.04 2.022 2.31 2.022h8.668v8.667c0 1.27.91 2.31 2.022 2.31 1.112 0 2.022-1.04 2.022-2.31V15.02h8.667c1.27 0 2.31-.91 2.31-2.022 0-1.112-1.04-2.022-2.31-2.022H15.02z" fill-rule="evenodd"/></svg>
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 6" class="sub-menu-navigation-title__icon sub-menu-navigation-title__icon--opened"><path d="M15.022.978H2.31C1.04.978 0 1.888 0 3c0 1.112 1.04 2.022 2.31 2.022H23.69C24.96 5.022 26 4.112 26 3 26 1.888 24.96.978 23.69.978H15.02z" fill-rule="evenodd"/></svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div class="sub-menu-navigation__content">
-                                        <ul class="sub-menu-navigation__list">
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/search/list.html" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-search-list ">list
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/search/map.html" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-search-map ">Map
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="header-primary-nav__item">
-                                <div class="sub-menu-navigation sub-menu-navigation-trigger sub-menu-navigation--enabled" id="">
-                                    <a href="en/buy.html" class="sub-menu-navigation__header-link  gtm__push-event gtm__push-event__header-buy ">
-                                        <div class="sub-menu-navigation__header">
-                                            <div class="sub-menu-navigation__arrow sub-menu-navigation-mobile-trigger">
-                                                <?xml version="1.0"?>
-                                                <svg viewBox="0 0 39 72" class="sub-menu-navigation__arrow-icon"><path d="M34.432.648C34.866.215 35.432 0 36 0c.565 0 1.13.215 1.56.648.864.864.864 2.262 0 3.125L5.34 36 37.56 68.227c.864.863.864 2.26 0 3.125-.862.863-2.26.863-3.128 0L.647 37.562c-.863-.863-.863-2.26 0-3.128L34.432.648z" fill-rule="evenodd"/></svg>
-                                            </div>
-                                            <div class="sub-menu-navigation__current ">
-                                                <div class="sub-menu-navigation__current-item is-no-events">Buy</div>
-                                                <div class="sub-menu-navigation__current-arrow">
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 15" class="sub-menu-navigation__current-arrow-icon"><path d="M1.395 4.14c-.512-.47-.77-1.086-.77-1.702 0-.616.258-1.23.77-1.7 1.023-.94 2.687-.94 3.712 0L13.75 8.66 22.395.737c1.024-.94 2.687-.94 3.712 0 1.026.94 1.026 2.463 0 3.403l-10.5 9.625c-1.024.94-2.686.94-3.71 0L1.395 4.14z" fill-rule="evenodd"/></svg>
-                                                </div>
-                                                <div class="sub-menu-navigation__current-icon-mobile hidden-large hidden-xlarge">
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" class="sub-menu-navigation-title__icon sub-menu-navigation-title__icon--closed"><path d="M15.022 10.978V2.31C15.022 1.04 14.112 0 13 0c-1.112 0-2.022 1.04-2.022 2.31v8.668H2.31C1.04 10.978 0 11.888 0 13c0 1.112 1.04 2.022 2.31 2.022h8.668v8.667c0 1.27.91 2.31 2.022 2.31 1.112 0 2.022-1.04 2.022-2.31V15.02h8.667c1.27 0 2.31-.91 2.31-2.022 0-1.112-1.04-2.022-2.31-2.022H15.02z" fill-rule="evenodd"/></svg>
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 6" class="sub-menu-navigation-title__icon sub-menu-navigation-title__icon--opened"><path d="M15.022.978H2.31C1.04.978 0 1.888 0 3c0 1.112 1.04 2.022 2.31 2.022H23.69C24.96 5.022 26 4.112 26 3 26 1.888 24.96.978 23.69.978H15.02z" fill-rule="evenodd"/></svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-        
-                                    <div class="sub-menu-navigation__content">
-                                        <ul class="sub-menu-navigation__list">
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/buy.html#how-it-works" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-buy-0 ">How does home-buying work?
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>                                                
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/buy.html#why-buy-with-duproprio" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-buy-1 ">Why buy a home with DuProprio?                                    
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                                    
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/buy.html#tools" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-buy-2 ">
-                                                    Create an email alert
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                                                                            
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/buy.html#documents" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-buy-3 ">Offer to purchase and other legal documents
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="header-primary-nav__item">
-                                <div class="sub-menu-navigation sub-menu-navigation-trigger sub-menu-navigation--enabled" id="">
-                                    <a href="en/sell.html" class="sub-menu-navigation__header-link  gtm__push-event gtm__push-event__header-sell ">
-                                        <div class="sub-menu-navigation__header">
-                                            <div class="sub-menu-navigation__arrow sub-menu-navigation-mobile-trigger">
-                                                <?xml version="1.0"?>
-                                                <svg viewBox="0 0 39 72" class="sub-menu-navigation__arrow-icon"><path d="M34.432.648C34.866.215 35.432 0 36 0c.565 0 1.13.215 1.56.648.864.864.864 2.262 0 3.125L5.34 36 37.56 68.227c.864.863.864 2.26 0 3.125-.862.863-2.26.863-3.128 0L.647 37.562c-.863-.863-.863-2.26 0-3.128L34.432.648z" fill-rule="evenodd"/></svg>
-                                            </div>
+                        <div class="user-links hidden">
+                            {% if(app.user.firstname != "") %}
+                                <p class="title">{{ app.user.firstname }} {{ app.user.lastname }}</p>
+                            {% else %}
+                                <p class="title">{{ app.user.username }}</p>
+                            {% endif %}
+                            
+                            <a href=""><i class="fa fa-home"></i> <span>{{ "My seller account"|trans }}</span></a>
+                            <a href=""><i class="fa fa-plus-circle"></i> <span>{{ "Add a new listing"|trans }}</span></a>
+                            <hr/>
+                            <a href=""><i class="fa fa-search"></i> <span>{{ "My buyer account"|trans }}</span></a>
+                            <a href=""><i class="fa fa-heart"></i> <span>{{ "My favorits"|trans }}</span></a>
+                            <a href=""><i class="fa fa-envelope-open"></i> <span>{{ "My allerts"|trans }}</span></a>
+                            <hr/>
+                            <a href=""><i class="fa fa-cog"></i> <span>{{ "Settings"|trans }}</span></a>
+                            <hr/>
+                            <a href="{{ path('app_logout') }}"><i class="fa fa-power-off"></i> <span>{{ "Logout"|trans }}</span></a>
+                        </div>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}" class="btn btn-connexion">{{ 'Login'|trans }} <i class="fa fa-user-circle"></i></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <!-- End Primary Menu-->
 
-                                            <div class="sub-menu-navigation__current ">
-                                                <div class="sub-menu-navigation__current-item is-no-events">Sell</div>
-                                                <div class="sub-menu-navigation__current-arrow"><?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 15" class="sub-menu-navigation__current-arrow-icon"><path d="M1.395 4.14c-.512-.47-.77-1.086-.77-1.702 0-.616.258-1.23.77-1.7 1.023-.94 2.687-.94 3.712 0L13.75 8.66 22.395.737c1.024-.94 2.687-.94 3.712 0 1.026.94 1.026 2.463 0 3.403l-10.5 9.625c-1.024.94-2.686.94-3.71 0L1.395 4.14z" fill-rule="evenodd"/></svg>
-                                                </div>
-                                                <div class="sub-menu-navigation__current-icon-mobile hidden-large hidden-xlarge">
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" class="sub-menu-navigation-title__icon sub-menu-navigation-title__icon--closed"><path d="M15.022 10.978V2.31C15.022 1.04 14.112 0 13 0c-1.112 0-2.022 1.04-2.022 2.31v8.668H2.31C1.04 10.978 0 11.888 0 13c0 1.112 1.04 2.022 2.31 2.022h8.668v8.667c0 1.27.91 2.31 2.022 2.31 1.112 0 2.022-1.04 2.022-2.31V15.02h8.667c1.27 0 2.31-.91 2.31-2.022 0-1.112-1.04-2.022-2.31-2.022H15.02z" fill-rule="evenodd"/></svg>
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 6" class="sub-menu-navigation-title__icon sub-menu-navigation-title__icon--opened"><path d="M15.022.978H2.31C1.04.978 0 1.888 0 3c0 1.112 1.04 2.022 2.31 2.022H23.69C24.96 5.022 26 4.112 26 3 26 1.888 24.96.978 23.69.978H15.02z" fill-rule="evenodd"/></svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-        
-                                    <div class="sub-menu-navigation__content">
-                                        <ul class="sub-menu-navigation__list">
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/sell.html#how-does-it-work" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-sell-3 ">How does it work?
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                            
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/sell.html#will-my-listing-be-seen" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-sell-4 ">Will my listing be seen?
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                                                                            
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/sell.html#how-much-could-i-save" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en">How much could I save?
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                                                                            
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="en/sell.html#will-i-sell" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en">Will I sell?
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="https://services.duproprio.com/webinar-on-demand/?itm_source=homepage&amp;itm_medium=navigation&amp;itm_campaign=dropdown-menu&amp;itm_content=sell-infosession" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-sell-infosession ">Free info session
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-navigation__item">
-                                                <a href="https://services.duproprio.com/consultation-en?itm_source=homepage&amp;itm_medium=navigation&amp;itm_campaign=dropdown-menu&amp;itm_content=sell-consultation" class="sub-menu-navigation__link gtm-header-secondary-nav-link-select-province-en gtm__push-event gtm__push-event__header-sell-consultation ">Free consultation
-                                                    <?xml version="1.0"?>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 22" class="sub-menu-navigation__link-icon-mobile hidden-large hidden-xlarge"><path d="M3.443 21.356c-.394.43-.91.644-1.426.644-.516 0-1.032-.215-1.426-.644-.787-.858-.787-2.252 0-3.112L7.233 11 .592 3.756C-.2 2.898-.2 1.504.59.646c.786-.86 2.063-.86 2.85 0l8.068 8.798c.788.86.788 2.253 0 3.112l-8.067 8.8z" fill-rule="evenodd"/></svg>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="header-primary-nav__item">
-                                <a href="blog.html" class="header__link header-primary-nav__link ">Blog</a>
-                            </li>
-                            <li class="header-primary-nav__item">
-                                <a href="en/faq.html" class="header__link header-primary-nav__link  gtm__push-event gtm__push-event__header-faq ">FAQ</a>
-                            </li>
-                            <li class="header-primary-nav__item">
-                                <a href="en/sell/pricing.html" data-cy="main-menu-pricing" class="header__link js-noPopup header-primary-nav__link  gtm__push-event gtm__push-event__header-packages ">Pricing</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+        <!-- Start Search Bar -->
+        <div class="search-bar">
+            <ul class="nav nav-tabs" id="search-bar-tab" role="tablist">
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{{ 'For Sale'|trans|upper }}</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{{ 'For Rent'|trans|upper }}</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">{{ 'Newly Built'|trans|upper }}</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <!-- Start Input Text Search -->
+                    <div class="search-bar-text-area">
+                        <span id="loup" class="fa fa-search"></span>
+                        <input type="text" id="input_search_text" class="search-bar-text" placeholder="{{ 'Search by region, city, street...'|trans }}" />
+                        <span id="btn-search" class="fa fa-map-marker"></span>
+                    </div>
+                    <div class="cities-search-area hidden">
+                        <span class="types-property-item"><i class="fa fa-angle-right"></i> Abitibi-Témiscamingue</span>
+                        <div class="types-property-subitems hidden">
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Toutes les villes" data-type="city"/><label>Toutes les villes</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Amos" data-label="Amos" data-type="city"/><label>Amos</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Authier" data-label="Authier" data-type="city"/><label>Authier</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Authier-Nord" data-label="Authier-Nord" data-type="city"/><label>Authier-Nord</label>
+                            </div>
+                        </div>
 
-                <div class="header-primary-nav__right-container">
-                    <nav>
-                        <ul class="header-primary-nav--contact">
-                            <li>
-                                <a href="en/contact-us.html" class="header__link header-primary-nav__link--contact gtm--secondary-nav-link-contact gtm__push-event gtm__push-event__network-contact ">Contact</a>
-                            </li>
-                            <li>
-                                <a href="https://www.jobs.net/jobs/duproprio/en-ca/" rel="noopener" class="header__link header-primary-nav__link--contact gtm-header-secondary-nav-link-website-career gtm__push-event gtm__push-event__network-hiring ">We’re hiring</a>
-                            </li>
-                            <li>
-                                <div class="province-selector__current">
-                                    <div class="province-selector__current-language">
-                                        <a href="index.html" class="province-selector__language-switch gtm__push-event gtm__push-event__network-languages ">FR</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div id="react-component-Login-Desktop">
-                        <div origin="Desktop" class="sc-fzqPZZ geXpqv">
-                            <a class="header__login-button" href="/login?url-next=file%3A%2F%2F%2FC%3A%2FMes%2520Sites%2520Web%2Fduproprio%2Fduproprio.com%2Fen.html" data-cy="account-button-login">
-                                <span class="account-label-login">Login</span><span class="sc-AxgMl fchEUl login" color="#979797"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.4 35.4"><path d="M17.7 0C8 0 0 8 0 17.7s8 17.7 17.7 17.7 17.7-7.9 17.7-17.7S27.5 0 17.7 0zm0 2c8.6 0 15.7 7 15.7 15.7 0 4-1.5 7.6-4 10.4-1.7-2.9-4.5-5.1-7.7-6.1 1.4-1.2 2.3-2.9 2.3-4.9 0-3.5-2.8-6.3-6.3-6.3s-6.3 2.8-6.3 6.3c0 2 .9 3.7 2.3 4.9-3.2 1-6 3.1-7.7 6.1-2.5-2.8-4-6.4-4-10.4C2 9.1 9.1 2 17.7 2zm0 19.4s-.1 0 0 0c-2.4-.1-4.3-2-4.3-4.3 0-2.4 1.9-4.3 4.3-4.3s4.3 1.9 4.3 4.3-1.9 4.3-4.3 4.3c.1 0 0 0 0 0zM7.5 29.6c2-3.7 5.8-6.1 10.1-6.1h.4c4.3.1 8.1 2.4 10.1 6.1-2.7 2.4-6.3 3.8-10.2 3.8-4.1 0-7.7-1.5-10.4-3.8z"></path></svg></span></a>
+                        <span class="types-property-item"><i class="fa fa-angle-right"></i> Bas-Saint-Laurent</span>
+                        <div class="types-property-subitems hidden">
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Toutes les villes" data-type="city"/><label>Toutes les villes</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Albertville" data-label="Albertville" data-type="city"/><label>Albertville</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Amqui" data-label="Amqui" data-type="city"/><label>Amqui</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Auclair" data-label="Auclair" data-type="city"/><label>Auclair</label>
+                            </div>
+                        </div>
+
+                        <span class="types-property-item"><i class="fa fa-angle-right"></i> Centre-du-Québec</span>
+                        <div class="types-property-subitems hidden">
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Toutes les villes" data-type="city"/><label>Toutes les villes</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Arthabaska" data-label="Arthabaska" data-type="city"/><label>Arthabaska</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Aston Jonction" data-label="Aston Jonction" data-type="city"/><label>Aston Jonction</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Aston Station" data-label="Aston Station" data-type="city"/><label>Aston Station</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </header>
 
-        <div id="react-component-WarningMessageBar"></div>
+                    <!-- End Input Text Search -->
 
-        <!-- Début Search Bar -->
-            <div id="react-component-SearchBar" class="search-bar-menu search-bar-menu--with-tags search-bar-menu--visible  mobile-menu mobile-menu--search">
-                <div class="search-bar search-bar--tabs-visible">
-                    <nav class="header-searchbar-nav__list-container">
-                        <ul class="header-searchbar-nav__list">
-                            <li class="header-searchbar-nav__item header-searchbar-nav__item--highlighted">
-                                <a href="//duproprio.com/en" class="header-searchbar-nav__link">For sale</a>
-                            </li>
-                            <li class="header-searchbar-nav__item">
-                                <a href="//duproprio.com/en/rental" class="header-searchbar-nav__link">For rent</a>
-                            </li>
-                            <li class="header-searchbar-nav__item">
-                                <a href="//neuves.duproprio.com/en" class="header-searchbar-nav__link">Newly built</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="search-bar__header-mobile">
-                        <span class="search-bar__header-mobile-title">Find a property</span>
-                        <div class="search-bar__header-mobile-close">
-                            <span class="isvg loaded search-bar__header-mobile-close-icon"><svg viewBox="0 0 27 27" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 16.048 14.701)" fill-rule="evenodd"><rect y="15.583" width="34" height="3.833" rx="1.917"></rect><rect transform="rotate(90 17 17.5)" y="15.583" width="34" height="3.833" rx="1.917"></rect></g></svg></span>
+                    <!-- Start Range Price -->
+                    <div class="demo__item range-price-area">
+                        <div class="demo__body">
+                            <input style="display: none;" id="demo_1" type="text" name="" value="" class="irs-hidden-input" tabindex="-1" readonly="">
                         </div>
                     </div>
-                    <div class="search-bar__input-wrapper">
-                        <div class="search-bar__input-wrapper__fields">
-                            <div class="search-field search-field--at-search-bar">
-                                <div class="search-field__magnifier">
-                                    <span class="isvg loaded search-field__magnifier-icon"><svg viewBox="0 0 16 17"><path d="M15.844 14.73L11.6 10.462c.12-.162.202-.276.26-.357l.008-.01c.047-.062.094-.126.138-.19l.004-.006c1.663-2.39 1.296-5.77-.904-7.97C9.876.7 8.243.025 6.506.025c-1.738 0-3.372.676-4.6 1.905C.676 3.16 0 4.795 0 6.534c0 1.738.677 3.37 1.905 4.6 1.226 1.226 2.856 1.9 4.59 1.9 1.04 0 2.075-.25 3.002-.73.104-.058.412-.238.66-.438l4.31 4.212c.028.026.166.155.37.155.087 0 .22-.026.348-.15l.216-.208c.166-.158.34-.325.463-.448.24-.24.123-.545-.018-.694v-.002zM6.476 1.776c2.62 0 4.75 2.13 4.75 4.75s-2.13 4.75-4.75 4.75-4.75-2.13-4.75-4.75 2.13-4.75 4.75-4.75z"></path></svg></span>
+                    <!-- End Range Price -->
+
+                    <!-- Start Types of property cretaria -->
+                    <div class="combo-critaria">
+                        <span class="combo-cretaria-title">{{ 'Types of Properties'|trans }} <i class="fa fa-angle-down"></i></span>
+
+                        <div class="types-property-items hidden">
+                            <span class="types-property-item"><i class="fa fa-angle-right"></i> Maison Unifamiliale</span>
+                            <div class="types-property-subitems hidden">
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Maison Unifamiliale" data-type="types_properties"/><label>Tous les sous-types</label>
                                 </div>
-                                <form class="search-field__form">
-                                    <label class="search-field__form__label">
-                                        <span class="is-visually-hidden">Search by region, city, street, phone</span>
-                                        <input class="search-field__form__input" placeholder="Search by region, city, street, phone" type="text" value="">
-                                    </label>
-                                </form>
-                                <div class="search-field__near-me gtm-search-geolocalized">
-                                    <button class="search-field__near-me-button gtm-search-geolocalized ">
-                                        <span class="is-visually-hidden">Use my location</span>
-                                        <span class="isvg loaded search-field__near-me-icon is-no-events"><svg enable-background="new 0 0 381.1 506.7" viewBox="0 0 381.1 506.7" xmlns="http://www.w3.org/2000/svg"><g transform="translate(.75 .75)"><path d="m189.4 255.8c-41.4 0-75.1-33.7-75.1-75.1s33.7-75.1 75.1-75.1 75.1 33.7 75.1 75.1-33.7 75.1-75.1 75.1zm0-125.4c-27.7 0-50.3 22.6-50.3 50.3s22.6 50.3 50.3 50.3 50.3-22.6 50.3-50.3c0-27.8-22.5-50.3-50.3-50.3z"></path><path d="m190.1 505.9-149.8-199.3c-26-33.1-40.4-74.8-40.4-117.2 0-50.8 19.8-98.6 55.7-134.5 35.9-36 83.7-55.8 134.5-55.8 104.9 0 190.2 85.4 190.2 190.2 0 42.4-14.4 84.1-40.5 117.4zm0-481.9c-44.2 0-85.7 17.2-117 48.4s-48.5 72.8-48.5 117c0 36.9 12.5 73.1 35.3 102.1l130.2 173.1 130-172.9c22.9-29.2 35.5-65.4 35.4-102.3 0-91.2-74.2-165.4-165.4-165.4z"></path></g></svg></span>
-                                        <span class="isvg loaded search-field__near-me-icon search-field__near-me-icon--hover is-no-events"><svg enable-background="new 0 0 381.1 506.7" viewBox="0 0 381.1 506.7" xmlns="http://www.w3.org/2000/svg"><path d="m190.9-.2c-50.9 0-98.7 19.9-134.6 55.9-35.8 35.8-55.6 83.6-55.6 134.5 0 42.4 14.4 84.1 40.4 117.2l149.8 199.3 149.7-199.2c26.1-33.3 40.5-75 40.5-117.4-.1-104.9-85.3-190.3-190.2-190.3zm-.7 256.7c-41.4 0-75.1-33.7-75.1-75.1s33.7-75.1 75.1-75.1 75.1 33.7 75.1 75.1c-.1 41.4-33.8 75.1-75.1 75.1z"></path></svg></span>
-                                    </button>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-1" data-label="Bungalo" value="Bungalo" data-type="types_properties"/><label>Bungalo</label>
                                 </div>
-                            </div>
-                            <div class="search-bar__input-wrapper__separator">&nbsp;</div>
-                            <div class="search-bar__input-wrapper__item">
-                                <div class="search-price-range ">
-                                    <div class="search-price-range__slider">
-                                        <div class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-                                            <div class="noUi-base">
-                                                <div class="noUi-origin noUi-connect" style="left: 28%;">
-                                                    <div class="noUi-handle noUi-handle-lower"></div>
-                                                </div>
-                                                <div class="noUi-origin noUi-background" style="left: 66.5%;">
-                                                    <div class="noUi-handle noUi-handle-upper"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="search-price-range__label"><span>$200,000</span><span>$475,000</span></div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-2" data-label="Jumelé" value="Jumelé" data-type="types_properties"/><label>Jumelé</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-3" data-label="Maison 2 étages" value="Maison 2 étages" data-type="types_properties"/><label>Maison 2 étages</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-4" data-label="Maison à 1 étage etage demi" value="Maison à 1 étage etage demi" data-type="types_properties"/><label>Maison à 1 étage et demi</label>
                                 </div>
                             </div>
-                            <div class="search-bar__input-wrapper__item">
-                                <div class="search-types ">
-                                    <button class="search-bar__options-button">
-                                        <span class="search-bar__options-button__label"><span class="search-bar__options-button__label-long">Types of properties</span><span class="search-bar__options-button__label-short">Type</span><span class="isvg loaded search-bar__options-button__arrow"><svg viewBox="0 0 27 15" xmlns="http://www.w3.org/2000/svg"><path d="M1.395 4.14c-.512-.47-.77-1.086-.77-1.702 0-.616.258-1.23.77-1.7 1.023-.94 2.687-.94 3.712 0L13.75 8.66 22.395.737c1.024-.94 2.687-.94 3.712 0 1.026.94 1.026 2.463 0 3.403l-10.5 9.625c-1.024.94-2.686.94-3.71 0L1.395 4.14z" fill-rule="evenodd"></path></svg></span></span>
-                                    </button>
+
+                            <span class="types-property-item"><i class="fa fa-angle-right"></i> Condo / Loft</span>
+                            <div class="types-property-subitems hidden">
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-0" data-label="Condo / Loft" value="Tous" data-type="types_properties"/><label>Tous les sous-types</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-1" data-label="Condo" value="Condo" data-type="types_properties"/><label>Condo</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-2" data-label="Loft" value="Loft" data-type="types_properties"/><label>Loft</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-3" data-label="Penthouse" value="Penthouse" data-type="types_properties"/><label>Penthouse</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-4" data-label="Résidence de retraités" value="Résidence de retraités" data-type="types_properties"/><label>Résidence de retraités</label>
                                 </div>
                             </div>
-                            <div class="search-bar__input-wrapper__item">
-                                <div class="search-rooms ">
-                                    <button class="search-bar__options-button"><span class="search-bar__options-button__label">Bedrooms</span><span class="isvg loaded search-bar__options-button__arrow"><svg viewBox="0 0 27 15" xmlns="http://www.w3.org/2000/svg"><path d="M1.395 4.14c-.512-.47-.77-1.086-.77-1.702 0-.616.258-1.23.77-1.7 1.023-.94 2.687-.94 3.712 0L13.75 8.66 22.395.737c1.024-.94 2.687-.94 3.712 0 1.026.94 1.026 2.463 0 3.403l-10.5 9.625c-1.024.94-2.686.94-3.71 0L1.395 4.14z" fill-rule="evenodd"></path></svg></span></button>
-                                </div>
-                            </div>
-                            <div class="search-bar__input-wrapper__item">
-                                <div class="search-additional-criteria">
-                                    <button class="search-bar__options-button search-bar__options-button--additional-criteria gtm-search-link-more-criterias"><span class="search-bar__options-button__label search-bar__options-button__label--additional-criteria ">More criteria</span><span class="isvg loaded search-bar__options-button__arrow is-no-events "><svg viewBox="0 0 27 15" xmlns="http://www.w3.org/2000/svg"><path d="M1.395 4.14c-.512-.47-.77-1.086-.77-1.702 0-.616.258-1.23.77-1.7 1.023-.94 2.687-.94 3.712 0L13.75 8.66 22.395.737c1.024-.94 2.687-.94 3.712 0 1.026.94 1.026 2.463 0 3.403l-10.5 9.625c-1.024.94-2.686.94-3.71 0L1.395 4.14z" fill-rule="evenodd"></path></svg></span></button>
-                                </div>
-                            </div>
-                            <button class="search-bar__input-wrapper__button gtm-header-link-search-bar-button ">Search</button>
-                            <div class="search-bar__input-wrapper__background search-bar__input-wrapper__background--visible-tags">&nbsp;</div>
-                            <div class="search-bar__input-wrapper__tags">
-                                <div class="search-bar__input-wrapper__tags-leftside"><span class="search-bar__input-wrapper__tags-label">Your criteria</span></div>
-                                <div class="search-bar__tags">
-                                    <div class="search-terms-item">
-                                        <div class="search-terms-item__name">Bas-Saint-Laurent</div>
-                                        <div class="search-terms-item__remove-button">×</div>
-                                    </div>
-                                    <div class="search-terms-item">
-                                        <div class="search-terms-item__name">Amos</div>
-                                        <div class="search-terms-item__remove-button">×</div>
-                                    </div>
-                                    <div class="search-terms-item">
-                                        <div class="search-terms-item__name">$200,000 — $475,000</div>
-                                        <div class="search-terms-item__remove-button">×</div>
-                                    </div>
-                                </div>
-                                <button class="search-bar__button search-bar__reset-button">Reset</button>
-                            </div>
-                        </div>
-                        <div class="search-bar__input-wrapper__actions">
-                            <button class="search-bar__button search-bar__reset-button">Reset</button>
-                            <button class="search-bar__input-wrapper__button gtm-header-link-search-bar-button ">Search</button>
                         </div>
                     </div>
-                    <div class="modified_criteria modified_criteria--hidden">One or more criteria has been modified<button class="search-bar__input-wrapper__button">Apply changes</button></div>
-                </div>
-            </div>
+                    <!-- End Types of property cretaria -->
 
-        <!-- Fin Search Bar -->
+                    <!-- Start chambres cretaria -->
+                    <div class="combo-critaria">
+                        <span class="combo-cretaria-bedrooms-title ml-10">{{ 'Bedrooms'|trans }} <i class="fa fa-angle-down"></i></span>
 
-        <!-- Début Menu Mobile -->
-        <header class="mobile-header mobile-header--sticky">
-            <div class="mobile-header__item  mobile-header__item--main js-mobile-menu-button" data-cy="main-menu-mobile-button" data-gtm-action="Click_Mob_Menu">
-                <div class="mobile-header__icon-container">
-                    <?xml version="1.0"?>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 23" class="mobile-header__icon mobile-header__icon--menu"><path d="M0 1.007C0 .45.455 0 1 0h32c.553 0 1 .44 1 1.007v1.82c0 .555-.455 1.006-1 1.006H1c-.553 0-1-.44-1-1.007v-1.82zm0 9.583c0-.556.455-1.007 1-1.007h32c.553 0 1 .44 1 1.007v1.82c0 .556-.455 1.007-1 1.007H1c-.553 0-1-.44-1-1.007v-1.82zm0 9.584c0-.556.455-1.007 1-1.007h32c.553 0 1 .44 1 1.007v1.82c0 .555-.455 1.006-1 1.006H1c-.553 0-1-.44-1-1.007v-1.82z" fill-rule="evenodd"/></svg>
-                    <?xml version="1.0"?>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" class="mobile-header__icon mobile-header__icon--close"><g transform="rotate(135 16.048 14.7)" fill-rule="evenodd"><rect y="15.583" width="34" height="3.833" rx="1.917"/><rect transform="rotate(90 17 17.5)" y="15.583" width="34" height="3.833" rx="1.917"/></g></svg>
-                </div>
-            </div>
-
-            <div class="mobile-header__item mobile-header__item--logo">
-                <div class="mobile-header__icon-container">
-                    <a href="en.html" class="mobile-header__logo">
-                        <span class="is-visually-hidden">Go back to DuProprio homepage</span>
-                        <div class="mobile-header__logo-image">
-                            <?xml version="1.0"?>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 31" class="mobile-header__icon mobile-header__icon--logo"><title>icn-home-logo</title><g fill="none" fill-rule="evenodd"><path fill="#00C6FF" d="M30.738 5.54H23.28l3.73 3.657"/><path fill="#CBDF00" d="M30.74 5.54l-3.73 3.657 3.73 3.66M18.008 18.024l12.73 12.48v-12.48"/><path fill="#00C6FF" d="M18.004 18.024H5.274v12.48l12.733-12.48"/><path fill="#90CE17" d="M18.004.37L12.73 5.543h10.55M0 18.024h5.275v-5.17M36.012 18.024l-5.272-5.168v5.168"/><path fill="#5CB147" d="M23.28 5.54H12.73L9.003 9.198l9.005 8.827 9.003-8.827"/><path fill="#59BE26" d="M30.74 12.856l-3.73-3.66-9.002 8.828h12.73"/><path fill="#619D73" d="M9.003 9.197l-3.728 3.656v5.17h12.73"/><path fill="#59BE26" d="M30.738 30.504l-6.366-6.24-6.365 6.24"/><path fill="#90CE17" d="M5.275 30.504h12.73l-6.366-6.24"/><path fill="#FF0" d="M24.373 24.263l-6.365-6.24-6.368 6.24 6.364 6.24h.004"/></g></svg>
-                            <?xml version="1.0"?>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 26" class="mobile-header__icon mobile-header__icon--logo-text"><g fill="#000" fill-rule="evenodd"><path d="M52.1 5.475h4.345v2.458c1.04-1.976 2.46-2.65 4.89-2.746V9.77h-.23c-2.886 0-4.66 1.76-4.66 5.45v5.712H52.1V5.475zM79.19 5.468h4.347v2.22c1.057-1.442 2.514-2.51 4.773-2.51 3.574 0 6.977 2.826 6.977 7.99v.056c0 5.163-3.345 7.99-6.977 7.99-2.315 0-3.745-1.068-4.773-2.308v6.54H79.19V5.467zm11.753 7.756v-.056c0-2.568-1.716-4.27-3.747-4.27-2.03 0-3.717 1.702-3.717 4.27v.056c0 2.567 1.686 4.267 3.716 4.267 2.03 0 3.747-1.67 3.747-4.266zM.506 13.23v-.055c0-5.164 3.346-7.99 6.976-7.99 2.316 0 3.746 1.068 4.775 2.31V.974h4.346v19.957h-4.346v-2.22c-1.058 1.44-2.516 2.51-4.775 2.51-3.574 0-6.976-2.827-6.976-7.99m11.808 0v-.057c0-2.566-1.687-4.27-3.717-4.27-2.03 0-3.745 1.675-3.745 4.27v.056c0 2.568 1.715 4.27 3.745 4.27 2.03 0 3.717-1.702 3.717-4.27M18.697 15.48V5.476h4.345v8.623c0 2.076.97 3.142 2.63 3.142 1.658 0 2.716-1.066 2.716-3.142V5.475h4.345v15.457h-4.345V18.74c-1 1.297-2.288 2.48-4.49 2.48-3.286 0-5.2-2.192-5.2-5.74M61.478 13.225v-.06c0-4.44 3.544-8.044 8.32-8.044 4.743 0 8.26 3.55 8.26 7.99v.056c0 4.444-3.544 8.048-8.32 8.048-4.744 0-8.26-3.546-8.26-7.99m12.292 0v-.058c0-2.278-1.63-4.268-4.03-4.268-2.487 0-3.977 1.935-3.977 4.212v.056c0 2.28 1.633 4.27 4.034 4.27 2.488 0 3.973-1.933 3.973-4.21M96.652 5.475h4.346v2.458c1.043-1.976 2.46-2.65 4.887-2.746V9.77h-.23c-2.884 0-4.657 1.76-4.657 5.45v5.712h-4.346V5.475zM107.37 4.363h4.324V.976h-4.324v3.387zm.01 16.57h4.314V5.474h-4.315v15.457zM113.193 13.225v-.06c0-4.44 3.544-8.044 8.32-8.044 4.744 0 8.26 3.55 8.26 7.99v.056c0 4.444-3.543 8.048-8.317 8.048-4.75 0-8.263-3.546-8.263-7.99m12.292 0v-.058c0-2.278-1.63-4.268-4.03-4.268-2.49 0-3.975 1.935-3.975 4.212v.056c0 2.28 1.63 4.27 4.032 4.27 2.487 0 3.973-1.933 3.973-4.21M43.307.977h-8.184v19.955h4.406v-1.936l-.004-6.108 2.146 2.215h1.206c4.49 0 8.09-2.422 8.09-7.095V7.95c0-4.12-2.887-6.973-7.66-6.973zm3.202 7.117c0 1.73-1.288 3.058-3.492 3.058h-3.486V4.98h3.402c2.2 0 3.575 1.065 3.575 3.057v.057z"/></g></svg>
+                        <div class="bedrooms-items hidden">
+                            <div class="form-group">
+                                <input type="radio" value="all" class="cretaria-element" data-type="chambres" data-label="Peu importe" /><label class="float-left ml-10">Peu importe</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="1" class="cretaria-element" data-type="chambres" data-label="1 chambre"/><label class="float-left ml-10">1</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="10" class="cretaria-element" data-type="chambres" data-label="1+ chambres"/><label class="float-left ml-10">1+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="2" class="cretaria-element" data-type="chambres" data-label="2 chambres"/><label class="float-left ml-10">2</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="20" class="cretaria-element" data-type="chambres" data-label="2+ chambres"/><label class="float-left ml-10">2+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="3" class="cretaria-element" data-type="chambres" data-label="3 chambres"/><label class="float-left ml-10">3</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="3+" class="cretaria-element" data-type="chambres" data-label="3+ chambres"/><label class="float-left ml-10">3+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="4" class="cretaria-element" data-type="chambres" data-label="4 chambres"/><label class="float-left ml-10">4</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="4+" class="cretaria-element" data-type="chambres" data-label="4+ chambres"/><label class="float-left ml-10">4+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="5" class="cretaria-element" data-type="chambres" data-label="5 chambres"/><label class="float-left ml-10">5</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" value="5+" class="cretaria-element" data-type="chambres" data-label="5+ chambres"/><label class="float-left ml-10">5+</label>
+                            </div>
                         </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
+                    <!-- End chambres cretaria -->
 
-            <div class="mobile-header__item mobile-header__item--search " data-gtm-action="Click_Mob_Search">
-                <div class="mobile-header__icon-container is-no-events">
-                    <?xml version="1.0"?>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 40" class="mobile-header__icon mobile-header__icon--search is-no-events"><path d="M38.546 35.774L28.218 25.39c.292-.394.496-.672.638-.867l.016-.025c.116-.152.23-.307.338-.463l.01-.015c4.046-5.813 3.15-14.038-2.2-19.386C24.03 1.646 20.056 0 15.83 0c-4.23 0-8.202 1.646-11.192 4.636C1.646 7.624 0 11.6 0 15.828c0 4.23 1.646 8.203 4.636 11.193 2.982 2.982 6.947 4.624 11.166 4.624 2.53 0 5.047-.61 7.303-1.778.253-.14 1.004-.578 1.607-1.065L35.2 39.05c.064.064.402.377.893.377.216 0 .54-.064.85-.367l.525-.506c.4-.384.82-.79 1.122-1.09.584-.587.3-1.326-.044-1.688zM15.754 4.26c6.373 0 11.556 5.183 11.556 11.556 0 6.37-5.183 11.557-11.556 11.557-6.37 0-11.557-5.186-11.557-11.56 0-6.37 5.186-11.553 11.557-11.553z" fill-rule="evenodd"/></svg>
-                    <?xml version="1.0"?>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 27" class="mobile-header__icon mobile-header__icon--close"><g transform="rotate(135 16.048 14.7)" fill-rule="evenodd"><rect y="15.583" width="34" height="3.833" rx="1.917"/><rect transform="rotate(90 17 17.5)" y="15.583" width="34" height="3.833" rx="1.917"/></g></svg>
-                </div>
-            </div>
+                    <!-- Start plus cretaria -->
+                    <div class="combo-critaria">
+                        <span class="combo-cretaria-title ml-10">{{ 'More Criteria'|trans }} <i class="fa fa-angle-down"></i></span>
 
-            <div class="mobile-header__item mobile-header__item--account">
-                <div class="mobile-header__icon-container">
-                    <div id="react-component-Login-MobileHeader"></div>
+                        <div class="other-items hidden">
+                        </div>
+                    </div>
+                    <!-- End plus cretaria -->
+
+                    <button class="btn-rechercher">{{ "Search"|trans }}</button>
+
+                    <div class="cretaria-choice hidden">
+                        <label class="cretaria-choice-title">{{ "Your criteria"|trans }}</label>
+                        
+                        <div id="cretaria-choices">
+                            <div id="range-price-lbl" class="hidden">
+                                <div class="cretaria-text">0$ - 1000$</div>
+                                <div class="cretaria-remove">X</div>
+                            </div>
+                        </div>
+
+                        <button class="btn-reset-cretaria">Réinitialiser</button>
+                    </div>
                 </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">... 2</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">... 3</div>
             </div>
-        </header>
-        <!-- Fin Menu Mobile -->
-        
+        </div>
+        <!-- End Search Bar -->
 
         {% block body %}{% endblock %}
 
+        <!-- Start Footer -->
+        <div class="footer">
+            <div class="footer-contact">
+                <div class="footer-contact-left">
+                    <p>Contact the Billow team</p>
+                    <div>
+                        <a href="tel:{{ project_tel }}" class="tel"><i class="fa fa-mobile"></i> {{ project_tel }}</a>
+                        <a class="email"><i class="fa fa-envelope-open"></i> {{ project_email }}</a>
+                    </div>
+                </div>
+                <div class="footer-contact-right">
+                    <div>
+                        <p>{{ "Follow us"|trans }}</p>
+                        <a href="" class="social"><i class="fa fa-facebook"></i></a>
+                        <a href="" class="social"><i class="fa fa-instagram"></i></a>
+                        <a href="" class="social"><i class="fa fa-twitter"></i></a>
+                        <a href="" class="social"><i class="fa fa-pinterest"></i></a>
+                        <a href="" class="social"><i class="fa fa-linkedin"></i></a>
+                        <a href="" class="social"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-menu">
+                <div class="footer-col">
+                    <p>{{ "Selling a property"|trans }}</p>
+                    <a href="" class="footer-link">{{ "How does it work?"|trans }}</a>
+                    <a href="" class="footer-link">{{ "Will my listing be seen?"|trans }}</a>
+                    <a href="" class="footer-link">{{ "How much could I save?"|trans }}</a>
+                    <a href="" class="footer-link">{{ "Pricing"|trans }}</a>
+                    <a href="" class="footer-link">{{ "Payment Options"|trans }}</a>
+                    <a href="" class="footer-link">{{ "Refer Billow contest"|trans }}</a>
+                </div>
+                <div class="footer-col">
+                    <p>{{ "Buying a property"|trans }}</p>
+                    <a href="" class="footer-link">{{ "Why buy a home with Billow?"|trans }}</a>
+                    <a href="" class="footer-link">{{ "How it works"|trans }}</a>
+                    <a href="" class="footer-link">{{ "House-hunting tools"|trans }}</a>
+                </div>
+                <div class="footer-col">
+                    <p>{{ "Find a property"|trans }}</p>
+                    <a href="" class="footer-link">{{ "By property type"|trans }}</a>
+                    <a href="" class="footer-link">{{ "By region"|trans }}</a>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer -->
 
-        <script>
-        /*! modernizr 3.6.0 (Custom Build) | MIT *
-        * https://modernizr.com/download/?-flexbox-flexboxlegacy-flexboxtweener-flexwrap-webp-setclasses !*/
-        !function(e,n,t){function r(e){var n=C.className,t=Modernizr._config.classPrefix||"";if(B&&(n=n.baseVal),Modernizr._config.enableJSClass){var r=new RegExp("(^|\\s)"+t+"no-js(\\s|$)");n=n.replace(r,"$1"+t+"js$2")}Modernizr._config.enableClasses&&(n+=" "+t+e.join(" "+t),B?C.className.baseVal=n:C.className=n)}function o(e,n){return typeof e===n}function i(){var e,n,t,r,i,s,a;for(var l in b)if(b.hasOwnProperty(l)){if(e=[],n=b[l],n.name&&(e.push(n.name.toLowerCase()),n.options&&n.options.aliases&&n.options.aliases.length))for(t=0;t<n.options.aliases.length;t++)e.push(n.options.aliases[t].toLowerCase());for(r=o(n.fn,"function")?n.fn():n.fn,i=0;i<e.length;i++)s=e[i],a=s.split("."),1===a.length?Modernizr[a[0]]=r:(!Modernizr[a[0]]||Modernizr[a[0]]instanceof Boolean||(Modernizr[a[0]]=new Boolean(Modernizr[a[0]])),Modernizr[a[0]][a[1]]=r),w.push((r?"":"no-")+a.join("-"))}}function s(e,n){if("object"==typeof e)for(var t in e)_(e,t)&&s(t,e[t]);else{e=e.toLowerCase();var o=e.split("."),i=Modernizr[o[0]];if(2==o.length&&(i=i[o[1]]),"undefined"!=typeof i)return Modernizr;n="function"==typeof n?n():n,1==o.length?Modernizr[o[0]]=n:(!Modernizr[o[0]]||Modernizr[o[0]]instanceof Boolean||(Modernizr[o[0]]=new Boolean(Modernizr[o[0]])),Modernizr[o[0]][o[1]]=n),r([(n&&0!=n?"":"no-")+o.join("-")]),Modernizr._trigger(e,n)}return Modernizr}function a(e,n){return function(){return e.apply(n,arguments)}}function l(e,n,t){var r;for(var i in e)if(e[i]in n)return t===!1?e[i]:(r=n[e[i]],o(r,"function")?a(r,t||n):r);return!1}function A(e,n){return!!~(""+e).indexOf(n)}function f(){return"function"!=typeof n.createElement?n.createElement(arguments[0]):B?n.createElementNS.call(n,"http://www.w3.org/2000/svg",arguments[0]):n.createElement.apply(n,arguments)}function u(e){return e.replace(/([a-z])-([a-z])/g,function(e,n,t){return n+t.toUpperCase()}).replace(/^-/,"")}function d(e){return e.replace(/([A-Z])/g,function(e,n){return"-"+n.toLowerCase()}).replace(/^ms-/,"-ms-")}function c(n,t,r){var o;if("getComputedStyle"in e){o=getComputedStyle.call(e,n,t);var i=e.console;if(null!==o)r&&(o=o.getPropertyValue(r));else if(i){var s=i.error?"error":"log";i[s].call(i,"getComputedStyle returning null, its possible modernizr test results are inaccurate")}}else o=!t&&n.currentStyle&&n.currentStyle[r];return o}function p(){var e=n.body;return e||(e=f(B?"svg":"body"),e.fake=!0),e}function m(e,t,r,o){var i,s,a,l,A="modernizr",u=f("div"),d=p();if(parseInt(r,10))for(;r--;)a=f("div"),a.id=o?o[r]:A+(r+1),u.appendChild(a);return i=f("style"),i.type="text/css",i.id="s"+A,(d.fake?d:u).appendChild(i),d.appendChild(u),i.styleSheet?i.styleSheet.cssText=e:i.appendChild(n.createTextNode(e)),u.id=A,d.fake&&(d.style.background="",d.style.overflow="hidden",l=C.style.overflow,C.style.overflow="hidden",C.appendChild(d)),s=t(u,e),d.fake?(d.parentNode.removeChild(d),C.style.overflow=l,C.offsetHeight):u.parentNode.removeChild(u),!!s}function g(n,r){var o=n.length;if("CSS"in e&&"supports"in e.CSS){for(;o--;)if(e.CSS.supports(d(n[o]),r))return!0;return!1}if("CSSSupportsRule"in e){for(var i=[];o--;)i.push("("+d(n[o])+":"+r+")");return i=i.join(" or "),m("@supports ("+i+") { #modernizr { position: absolute; } }",function(e){return"absolute"==c(e,null,"position")})}return t}function h(e,n,r,i){function s(){l&&(delete U.style,delete U.modElem)}if(i=o(i,"undefined")?!1:i,!o(r,"undefined")){var a=g(e,r);if(!o(a,"undefined"))return a}for(var l,d,c,p,m,h=["modernizr","tspan","samp"];!U.style&&h.length;)l=!0,U.modElem=f(h.shift()),U.style=U.modElem.style;for(c=e.length,d=0;c>d;d++)if(p=e[d],m=U.style[p],A(p,"-")&&(p=u(p)),U.style[p]!==t){if(i||o(r,"undefined"))return s(),"pfx"==n?p:!0;try{U.style[p]=r}catch(v){}if(U.style[p]!=m)return s(),"pfx"==n?p:!0}return s(),!1}function v(e,n,t,r,i){var s=e.charAt(0).toUpperCase()+e.slice(1),a=(e+" "+T.join(s+" ")+s).split(" ");return o(n,"string")||o(n,"undefined")?h(a,n,r,i):(a=(e+" "+Q.join(s+" ")+s).split(" "),l(a,n,t))}function y(e,n,r){return v(e,t,t,n,r)}var w=[],b=[],x={_version:"3.6.0",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,n){var t=this;setTimeout(function(){n(t[e])},0)},addTest:function(e,n,t){b.push({name:e,fn:n,options:t})},addAsyncTest:function(e){b.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=x,Modernizr=new Modernizr;var _,C=n.documentElement,B="svg"===C.nodeName.toLowerCase();!function(){var e={}.hasOwnProperty;_=o(e,"undefined")||o(e.call,"undefined")?function(e,n){return n in e&&o(e.constructor.prototype[n],"undefined")}:function(n,t){return e.call(n,t)}}(),x._l={},x.on=function(e,n){this._l[e]||(this._l[e]=[]),this._l[e].push(n),Modernizr.hasOwnProperty(e)&&setTimeout(function(){Modernizr._trigger(e,Modernizr[e])},0)},x._trigger=function(e,n){if(this._l[e]){var t=this._l[e];setTimeout(function(){var e,r;for(e=0;e<t.length;e++)(r=t[e])(n)},0),delete this._l[e]}},Modernizr._q.push(function(){x.addTest=s}),Modernizr.addAsyncTest(function(){function e(e,n,t){function r(n){var r=n&&"load"===n.type?1==o.width:!1,i="webp"===e;s(e,i&&r?new Boolean(r):r),t&&t(n)}var o=new Image;o.onerror=r,o.onload=r,o.src=n}var n=[{uri:"data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=",name:"webp"},{uri:"data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAABBxAR/Q9ERP8DAABWUDggGAAAADABAJ0BKgEAAQADADQlpAADcAD++/1QAA==",name:"webp.alpha"},{uri:"data:image/webp;base64,UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA",name:"webp.animation"},{uri:"data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=",name:"webp.lossless"}],t=n.shift();e(t.name,t.uri,function(t){if(t&&"load"===t.type)for(var r=0;r<n.length;r++)e(n[r].name,n[r].uri)})});var S="Moz O ms Webkit",Q=x._config.usePrefixes?S.toLowerCase().split(" "):[];x._domPrefixes=Q;var T=x._config.usePrefixes?S.split(" "):[];x._cssomPrefixes=T;var E={elem:f("modernizr")};Modernizr._q.push(function(){delete E.elem});var U={style:E.elem.style};Modernizr._q.unshift(function(){delete U.style}),x.testAllProps=v,x.testAllProps=y,Modernizr.addTest("flexbox",y("flexBasis","1px",!0)),Modernizr.addTest("flexwrap",y("flexWrap","wrap",!0)),Modernizr.addTest("flexboxlegacy",y("boxDirection","reverse",!0)),Modernizr.addTest("flexboxtweener",y("flexAlign","end",!0)),i(),r(w),delete x.addTest,delete x.addAsyncTest;for(var P=0;P<Modernizr._q.length;P++)Modernizr._q[P]();e.Modernizr=Modernizr}(window,document);
-            if ((!Modernizr.flexbox && !Modernizr.flexboxtweener && !Modernizr.flexboxlegacy) || !Modernizr.flexwrap) {
-                window.location = '/unsupported-browser';
-            }
-        </script>
+        {% block javascripts %}
+            <!--Plugin JavaScript file-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
 
-         {% block javascripts %}
-            <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
-            <script src="js/manifest.eab568.js"></script>
-            <script src="js/vendor.86be17.js"></script>
-            <script src="js/app.3f09c4.js"></script>
+            <!-- Main Script -->
+            <script src="/js/functions.js"></script>
+            <script src="/js/main.js"></script>
+
+            <script>
+                var $range_price = $("#demo_1").ionRangeSlider({
+                    type: "double",
+                    min: 0,
+                    max: 1000000,
+                    from: 0,
+                    to: 1000000,
+                    skin: "round",
+                    prefix: "$",
+                    step: 5000
+                });
+
+                $range_price.on("change", function () {
+                    var $inp = $(this);
+                    var from = Intl.NumberFormat().format($inp.data("from")); // reading input data-from attribute
+                    var to = Intl.NumberFormat().format($inp.data("to"));
+
+                    if ($("#range-price-lbl").find(".cretaria-text").length) {
+                        $("#range-price-lbl").find(".cretaria-text").text("$" + from + " - $" + to + "$");
+                        $("#range-price-lbl").removeClass("hidden");
+                        $(".cretaria-choice").removeClass("hidden");
+                    } else {
+                        var _html = '<div id="range-price-lbl"><div class="cretaria-text">' + from + '$ - ' + to + '$</div><div class="cretaria-remove">X</div></div>';
+                        $("#cretaria-choices").prepend(_html);
+                        $(".cretaria-choice").removeClass("hidden");
+                    }
+                });
+            </script>
         {% endblock %}
     </body>
 </html>
