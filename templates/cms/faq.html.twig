@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CMSController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ "FAQ"|trans }}</h1>
+        <p>
+            {{ "Selling a home commission-free can bring up a lot of questions, because selling a property isn’t something you do every day. But our team does!"|trans }}<br/><br/>
+        </p>
+    </div>
+    <div id="block-questions" class="cms-body">
+        <h1 class="cms-title">{{ "FAQ"|trans }}</h1>
+
+        <ul class="faq-list">
+        {% set m=1 %}
+        {% for f in faq %}
+            <li style="list-style: decimal;"><a href="#{{ m }}">{{ f.question|raw }}</a></li>
+            {% set m = m + 1 %}
+        {% endfor %}
+        </ul>
+
+        {% set n=1 %}
+        <ul style="margin: 0;padding: 0px 25px;">
+        {% for f in faq %}
+            <div id="{{ n }}" class="faq-block">
+                <li style="list-style: decimal;" class="question">{{ f.question|raw }}</li>
+                <div>
+                    {{ f.response|raw }}
+                </div>    
+
+                <a href="#block-questions" class="back-top">{{ "Back to top"|trans }} <i class="fa fa-angle-up"></i></a>
+            </div>
+
+            {% set n = n + 1 %}
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

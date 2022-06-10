@@ -1,0 +1,30 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Billow Admin Dashboard{% endblock %}
+{% block page_actions %}
+{% endblock %}
+
+{% block main %}
+    <p class="alert alert-success">
+        Manage your application from this platforme.
+        You can change your password using the option "Forgot my password" on the login page.
+    </p>
+
+    <br/>
+
+    <p class="alert alert-danger">
+        If you delete a user, all these properties, favorites, payments will be deleted.
+    </p>
+
+    <br/>
+
+    <p class="alert alert-danger">
+        If you proceed to delete a region, all related cities and properties will be deleted.
+    </p>
+
+    <br/>
+
+    <p class="alert alert-danger">
+        If you proceed to delete a city, all related properties will be deleted.
+    </p>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FavoritesController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ 'My favorites'|trans }}</h1> 
+    </div>
+
+    <div class="cms-body profile-body">
+        <div id="result-section" class="property-list-row" style="margin-left: 0px; padding: 0px; width: 100%!important">
+            {% if favorites|length > 0 %}
+                <div class="row-title">
+                    <span class="nbr-property-found">{{ favorites|length }}</span> <h1 class="carousel-title">{{ "properties found"|trans }}</h1>
+                </div>
+
+                <ul class="items">
+                    {% for favorite in favorites %}
+                        <li class="item">
+                            <a href="{{ path('details', {'id': favorite.property.id, 'page_name': 'list'}) }}">
+                                <div class="property-item-img">
+                                    {% for picture in favorite.property.pictures %}
+                                        {% if picture.isCover == 1 %}
+                                            <img src="{{ picture.url }}" />
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </a>
+                            
+                            <div class="property-item-content">
+                                <i class="remove_favorites active add-favorit fa fa-heart pointer" title="{{ 'Remove from my favorites'|trans }}" data-id="{{ favorite.property.id }}"></i>
+                                <a href="{{ path('details', {'id': favorite.property.id, 'page_name': 'list'}) }}">
+                                    <p class="price">${{ favorite.property.price }}</p>
+                                    <h3 class="city">{{ favorite.property.city.label }}</h3>
+                                    <h3 class="street">{{ favorite.property.street }}</h3>
+                                    <p class="description">{{ favorite.property.title }} – {{ favorite.property.description|slice(0,60) }}...</p>
+                                </a>
+                            </div>
+                            <a href="{{ path('details', {'id': favorite.property.id, 'page_name': 'list'}) }}">
+                                <div class="property-cretaria">
+                                    <span><i class="fa fa-bed"></i> {{ favorite.property.bedrooms }}</span>
+                                    <span><i class="fa fa-bath"></i> {{ favorite.property.bathrooms }}</span>
+                                    <span><i class="fa fa-home"></i> {{ favorite.property.livingSpace }}</span>
+                                    <span><i class="fa fa-map"></i> {{ favorite.property.lotDimensions }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-result">{{ "Any property was added in your favorites"|trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

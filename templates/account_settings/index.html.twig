@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountSettingsController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        {% for label, messages in app.flashes(['success']) %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% for label, messages in app.flashes(['error', 'warning']) %}
+            {% for message in errors %}
+                <div class="alert alert-danger alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <h1>Account Settings</h1>
+    </div>
+
+    <div class="cms-body profile-body">
+        <form method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('accountSettings') }}">
+
+            <div class="block-contact-form">
+                <h1>{{ "My informations"|trans }}</h1>
+
+                <hr/>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="form-group put-left col-6">
+                        {% if app.user.showEmail == true %}
+                            <input type="checkbox" name="showEmail" id="checkShowEmail" checked >
+                        {% else %}
+                            <input type="checkbox" name="showEmail" id="checkShowEmail" >
+                        {% endif %}
+
+                        <label for="checkShowEmail">{{ "Show my email address"|trans }}</label>
+                    </div>
+                    
+                    <div class="form-group put-left col-6">
+                        {% if app.user.showPhone == true %}
+                            <input type="checkbox" name="showPhone" id="checkShowPhone" checked >
+                        {% else %}
+                            <input type="checkbox" name="showPhone" id="checkShowPhone" >
+                        {% endif %}
+
+                        <label for="checkShowPhone">{{ "Show my phone number"|trans }}</label>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="row">
+                    <div class="form-group put-left col-6">
+                        <label for="inputEmail">{{ "Email"|trans }}</label>
+                        <input type="email" value="{{ app.user.email }}" name="email" id="inputEmail" class="form-control" required>
+                    </div>
+
+                    <div class="form-group put-left col-6">
+                        <label for="inputTel">{{ "Phone"|trans }}</label>
+                        <input type="text" value="{{ app.user.tel }}" name="tel" id="inputTel" class="form-control" >
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="form-group put-left col-6">
+                        <label for="inputFirstName">{{ "First name"|trans }}</label>
+                        <input type="text" value="{{ app.user.firstName }}" name="firstName" id="inputFirstName" class="form-control" required>
+                    </div>
+
+                    <div class="form-group put-left col-6">
+                        <label for="inputLastName">{{ "Last name"|trans }}</label>
+                        <input type="text" value="{{ app.user.lastName }}" name="lastName" id="inputLastName" class="form-control" required >
+                    </div>
+                </div>
+
+                <div style="display: flow-root;">
+                    <button class="btn btn-lg btn-primary put-right" type="submit">
+                        {{ "Save"|trans }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

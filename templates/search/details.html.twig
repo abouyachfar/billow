@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Billow - Property Page Details{% endblock %}
+
+{% block body %}
+
+<div class="row detail-content detail">
+    <div class="detail-col1 no-padding">
+        <div id="myCarouselDetail" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                {% set i=0 %}
+                {% for picture in property.pictures %}
+                    {% set i=i+1 %}
+                    {% if picture is not empty %}
+                        {% if i == 1 %}
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="{{ picture.url }}" alt="{{ property.title }}">
+                            </div>
+                        {% else %}
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="{{ picture.url }}" alt="{{ property.title }}">
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <a class="carousel-control-prev" href="#myCarouselDetail" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"><</span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarouselDetail" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true">></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="detail-col2 no-padding">
+        <h2 class="detail-price">${{ property.price }}</h2>
+        <h3 class="detail-type">{{ property.propertyType.label }} for sale</h3>
+        <p class="detail-address">
+            {{ property.street }}<br/>
+            {{ property.city.label }}<br/>
+            {{ property.region.label }}<br/>
+            No. {{ property.reference }}
+        </p>
+        <div class="detail-contact">
+            <span class="detail-contact-title">{{ 'Contact the owner'|trans }}</span>
+            {% if(is_granted('ROLE_USER') == true) %}
+                {% if property.owner.showPhone == true %}
+                    <span class="detail-contact-item"><a href="tel:{{ property.owner.tel }}"><i class="fa fa-phone"></i> {{ property.owner.tel }}</a></span>
+                {% endif %}
+
+                {% if property.owner.showEmail == true or property.owner.showPhone != true and property.owner.showEmail != true %}
+                    <span class="detail-contact-item"><a href="mailto:{{ property.owner.email }}"><i class="fa fa-envelope-open"></i> {{ property.owner.email }}</a></span>
+                {% endif %}
+                
+            {% else %}
+                <span class="detail-contact-item" style="border: none;"><a href='/en/login' class='btn btn-connexion'>{{ 'Log in'|trans }}</a> {{ 'to show contact'|trans }}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row detail-content detail" style="margin-bottom: 50px;">
+    <div class="row"><h2 class="detail-title">{{ property.title }}</h2></div>
+    <div class="row property-params">
+        <div><i class="fa fa-bed"></i> {{ property.bedrooms }} {{ 'bedrooms'|trans }}</div>
+        <div><i class="fa fa-bath"></i> {{ property.bathrooms }} {{ 'bathrooms'|trans }}</div>
+        <!-- <div><i class="fa fa-tint"></i> {{ property.halfbarth }} {{ 'halfbaths'|trans }}</div> -->
+        <div><i class="fa fa-building"></i> {{ property.level }} {{ 'levels'|trans }}</div>
+        <div><i class="fa fa-home"></i> {{ 'living space area'|trans }} {{ property.livingSpace }} sq. Ft</div>
+        <div><i class="fa fa-map"></i> {{ 'land size (sq. ft)'|trans }} {{ property.lotDimensions }} sq. Ft</div>
+    </div>
+    <div class="row property-desc">{{ property.description | raw}}</div>
+</div>
+
+{% endblock %}

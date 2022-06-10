@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PropertyController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ 'New property'|trans }}</h1>
+        <a href="{{ path('myListing') }}" class="btn btn-light"><i class="fa fa-chevron-circle-left"></i> {{ "Go Back"|trans }}</a>
+
+        <br/><br/>
+
+        {% if errorMessages is defined and errorMessages is not empty %}
+            <div class="alert alert-danger alert-dismissible fade show flash-error">
+                <ul>
+                {% for errorMessage in errorMessages %}
+                    <li>{{ errorMessage }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="cms-body profile-body">
+        <div id="result-section" class="profile-body-content">
+            <form id="frm-property" name="frm-property" method="POST" action="{{ path('saveProperty') }}" enctype="multipart/form-data">
+                <div class="div-frm">
+                    <div class="frm-group-title">
+                        <span>{{ "Description"|trans }}</span>
+                        <hr/>
+                    </div>
+
+                    <div class="form-group" style="width: 100%">
+                        <label for="title">{{ "Title"|trans }} <span class="star">*</span></label>
+                        <input type="text" id="title" name="title" />
+                    </div>
+
+                    <div class="form-group" style="width: 100%">
+                        <label for="description">{{ "Description"|trans }} <span class="star">*</span></label>
+                        <textarea id="description" name="description" rows="10"></textarea>
+                        
+                    </div>
+                </div>
+
+                <div class="div-frm">
+                    <div class="frm-group-title">
+                        <span>{{ "Pictures"|trans }}</span>
+                        <hr/>
+                    </div>
+                    <a class="btn btn-primary" id="add-new-picture"><i class="fa fa-plus-circle"></i> {{ "Add new picture"|trans }}</a>
+                    <div id="div-pictures"></div>
+                </div>
+
+                <div class="profile-frm">
+                    <div class="div-frm div-frm-half-pr-50">
+                        <div class="frm-group-title">
+                            <span>{{ "Criteria"|trans }}</span>
+                            <hr/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propertytype">{{ "Property Type"|trans }} <span class="star">*</span></label>
+                            <select id="propertytype" name="propertytype">
+                                {% for ptype in propertyType %}
+                                    <option value="{{ ptype.id }}">{{ ptype.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">{{ "Price"|trans }} <span class="star">*</span></label>
+                            <input type="number" id="price" name="price" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bedrooms">{{ "Bedrooms"|trans }}</label>
+                            <input type="number" id="bedrooms" name="bedrooms"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bathrooms">{{ "Bathrooms"|trans }}</label>
+                            <input type="number" id="bathrooms" name="bathrooms"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="livingspace">{{ "Living space"|trans }}</label>
+                            <input type="number" id="livingspace" name="livingspace"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lotdimensions">{{ "land size (sq. ft)"|trans }}</label>
+                            <input type="number" id="lotdimensions" name="lotdimensions"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="level">{{ "Level"|trans }}</label>
+                            <input type="number" id="level" name="level" />
+                        </div>
+                    </div>
+
+                    <div class="div-frm div-frm-half-pl-50">
+                        <div class="frm-group-title">
+                            <span>{{ "Address"|trans }}</span>
+                            <hr/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">{{ "Region"|trans }} <span class="star">*</span></label>
+                            <select id="region" name="region">
+                                {% for region in regions %}
+                                    <option value="{{ region.id }}" data-id="{{ region.id }}">{{ region.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">{{ "Sub-Area"|trans }} <span class="star">*</span></label>
+                            <select id="city" name="city">
+                                {% for city in cities %}
+                                    <option value="{{ city.id }}">{{ city.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="street">{{ "Address"|trans }} <span class="star">*</span></label>
+                            <input type="text" id="street" name="street" class="street-class" />
+                            <div id="address-autocomplete" class="address-autocomplete-class hidden"></div>
+                        </div>
+
+                        <div class="form-group hidden">
+                            <label for="latitude">{{ "Latitude"|trans }}</label>
+                            <input type="text" step="any" id="latitude" name="latitude" />
+                        </div>
+
+                        <div class="form-group hidden">
+                            <label for="longitude">{{ "Longitude"|trans }}</label>
+                            <input type="text" step="any" id="longitude" name="longitude" />
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="div-frm div-btn-frm text-right">
+                    <a href="{{ path('myListing') }}" class="btn btn-danger">{{ "Cancel"|trans }}</a>
+                    <input type="submit" class="btn btn-primary" value='{{ "Save"|trans }}' />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' );
+</script>
+
+{% endblock %}

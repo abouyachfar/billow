@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Billow - Search by list{% endblock %}
+
+{% block body %}
+
+{% if featuredHomesProperties is not empty %}
+<div class="featured-homes-carousel row mx-auto my-auto">
+    <h1 class="carousel-title">{{ "Featured Homes"|trans }}</h1>
+
+    <div id="myCarousel" class="carousel slide w-100" data-ride="carousel" style="padding: 0px 20px 0px 10px">
+        <div class="carousel-inner w-100" role="listbox">
+            {% set i=0 %}
+            {% for featuredHome in featuredHomesProperties %}
+                {% set i=i+1 %}
+                {% if featuredHome.pictures is not empty %}
+                    {% if i == 1 %}
+                        <div class="carousel-item active">
+                            <div class="col-lg-3 col-md-6" style="padding: 0px 10px">
+                                <a href="{{ path('details', {'id': featuredHome.id, 'page_name': 'list'}) }}">
+                                    <img class="img-fluid" src="{{ (featuredHome.pictures[0]).url }}">    
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="carousel-item">
+                            <div class="col-lg-3 col-md-6" style="padding: 0px 10px">
+                                <a href="{{ path('details', {'id': featuredHome.id, 'page_name': 'list'}) }}">
+                                    <img class="img-fluid" src="{{ (featuredHome.pictures[0]).url }}">    
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev bg-dark w-auto" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"><</span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next bg-dark w-auto" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true">></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<div id="result-section" class="property-list-row">
+    <div class="row-title">
+        <span class="nbr-property-found">{{ properties|length }}</span> <h1 class="carousel-title">{{ "properties found"|trans }}</h1>
+    </div>
+
+    {% if properties|length > 0 %}
+        <ul class="items">
+        {% for property in properties %}
+
+            <li class="item">
+                <a href="{{ path('details', {'id': property.id, 'page_name': 'list'}) }}">
+                    {% set trv=false %}
+                    {% for picture in property.pictures %}
+                        {% if picture.isCover == 1 %}
+                            {% set trv=true %}
+                            <div class="property-item-img" style="background: url({{ picture.url }}); background-position: center; background-size: cover; width: 100%; height: 230px;"></div>
+                        {% endif %}
+                    {% endfor %}
+                            
+                    {% if (trv==false) %}
+                        <div class="property-item-img" style="width: 100%; height: 230px;"></div>
+                    {% endif %}
+                </a>
+
+                <div class="property-item-content">
+                    {% set trv = false %}
+
+                    {% if properties|length > 0 %}
+                        {% for favorite in favorites %}
+                            {% if favorite.property.id == property.id %}
+                                {% set trv = true %}
+                                <i class="active remove_favorites add-favorit fa fa-heart pointer" title="{{ 'Remove from my favorites'|trans }}" data-id="{{ property.id }}"></i>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if trv == false %}
+                        <i class="add_favorites add-favorit fa fa-heart pointer" title="{{ 'Add to favorite'|trans }}" data-id="{{ property.id }}"></i>
+                    {% endif %}
+                    
+                    <a href="{{ path('details', {'id': property.id, 'page_name': 'list'}) }}">
+                        <p class="price">${{ property.price }}</p>
+                        <h3 class="city">{{ property.city.label }}</h3>
+                        <h3 class="street">{{ property.street }}</h3>
+                        <p class="description">{{ property.title }} – {{ property.description|striptags|slice(0,60) }}...</p>
+                    </a>
+                </div>
+                <a href="{{ path('details', {'id': property.id, 'page_name': 'list'}) }}">
+                    <div class="property-cretaria">
+                        <span><i class="fa fa-bed"></i> {{ property.bedrooms }}</span>
+                        <span><i class="fa fa-bath"></i> {{ property.bathrooms }}</span>
+                        <span><i class="fa fa-home"></i> {{ property.livingSpace }}</span>
+                        <span><i class="fa fa-map"></i> {{ property.lotDimensions }}</span>
+                    </div>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        {% if is_granted('ROLE_USER') %}
+            <button id="create_my_alert" class="link-create-alert btn btn-primary">{{ "Create my alert"|trans }}</button>
+        {% endif %}
+
+        <div class="navigation">
+            {{ knp_pagination_render(properties) }}
+        </div>
+    {% else %}
+        <p style="margin-top: 0;margin-bottom: 1rem;display: inline-block;text-align: center;width: 100%;padding: 40px;font-weight: 600;">{{ "No results match your criteria"|trans }}<br/>{{ 'try with other criteria'|trans }}</p>
+    {% endif %}
+</div>
+
+{% endblock %}

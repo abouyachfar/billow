@@ -19,6 +19,7 @@ class City
      * @ORM\Column(type="integer")
      * @Groups("region:read")
      * @Groups("property:read")
+     * @Groups("city:read")
      */
     private $id;
 
@@ -32,11 +33,12 @@ class City
      * @ORM\Column(type="string", length=255)
      * @Groups("region:read")
      * @Groups("property:read")
+     * @Groups("city:read")
      */
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="city")
+     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="city", cascade={"all"}, orphanRemoval=true)
      */
     private $properties;
 
@@ -102,5 +104,10 @@ class City
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getLabel();
     }
 }

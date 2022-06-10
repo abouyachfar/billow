@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -16,7 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="`user`")
  * @UniqueEntity(
  *  fields={"email"},
- *  message="L'adresse mail est déjà utilisé"
+ *  message="Account already exists with this login"
  * )
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -92,6 +94,52 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favorites::class, mappedBy="user", cascade={"all"}, orphanRemoval=true)
+     */
+    private $favorites;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $code;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pack::class, inversedBy="user")
+     */
+    private $pack;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $packDate;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Payment::class, mappedBy="user", orphanRemoval=true, cascade={"all"}, orphanRemoval=true)
+     */
+    private $payments;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showPhone;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showEmail;
+
+    public function __construct()
+    {
+        $this->favorites = new ArrayCollection();
+        $this->payments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -294,6 +342,143 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(?string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorites[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorites $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorites $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getUser() === $this) {
+                $favorite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getCode(): ?int
+    {
+        return $this->code;
+    }
+
+    public function setCode(?int $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function getPack(): ?Pack
+    {
+        return $this->pack;
+    }
+
+    public function setPack(?Pack $pack): self
+    {
+        $this->pack = $pack;
+
+        return $this;
+    }
+
+    public function getPackDate(): ?\DateTimeInterface
+    {
+        return $this->packDate;
+    }
+
+    public function setPackDate(?\DateTimeInterface $packDate): self
+    {
+        $this->packDate = $packDate;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (!empty($this->getFirstName()) && !empty($this->getLastName())) ? $this->getFirstName() . ' ' . $this->getLastName() : $this->getEmail();
+    }
+
+    /**
+     * @return Collection<int, Payment>
+     */
+    public function getPayments(): Collection
+    {
+        return $this->payments;
+    }
+
+    public function addPayment(Payment $payment): self
+    {
+        if (!$this->payments->contains($payment)) {
+            $this->payments[] = $payment;
+            $payment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayment(Payment $payment): self
+    {
+        if ($this->payments->removeElement($payment)) {
+            // set the owning side to null (unless already changed)
+            if ($payment->getUser() === $this) {
+                $payment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getShowPhone(): ?bool
+    {
+        return $this->showPhone;
+    }
+
+    public function setShowPhone(?bool $showPhone): self
+    {
+        $this->showPhone = $showPhone;
+
+        return $this;
+    }
+
+    public function getShowEmail(): ?bool
+    {
+        return $this->showEmail;
+    }
+
+    public function setShowEmail(?bool $showEmail): self
+    {
+        $this->showEmail = $showEmail;
 
         return $this;
     }

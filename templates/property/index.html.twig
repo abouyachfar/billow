@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PropertyController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ 'My listings'|trans }}</h1>
+        <a href="{{ path('newProperty') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> {{ "Add new"|trans }}</a>
+
+        <br/><br/>
+
+        {% for label, messages in app.flashes(['success']) %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% for label, messages in app.flashes(['error', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% if errorMessages is defined and errorMessages is not empty %}
+            <div class="alert alert-danger alert-dismissible fade show flash-error">
+                <ul>
+                {% for errorMessage in errorMessages %}
+                    <li>{{ errorMessage }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="cms-body profile-body">
+        {% if properties|length > 0 %}
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ "Property Type"|trans }}
+                        <th>{{ "Sub-Area"|trans }}</th>
+                        <th>{{ "Title"|trans }}</th>
+                        <th width="350px">{{ "Description"|trans }}</th>
+                        <th>{{ "Price"|trans }}</th>
+                        <th width="160px">{{ "Created At"|trans }}</th>
+                        <th with="100px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if properties|length > 0 %}
+                        {% for property in properties %}
+                            <tr>
+                                <td>{{ property.propertyType.label }}</td>
+                                <td>{{ property.city.label }}</td>
+                                <td>{{ (property.title|length > 10 ? property.title|slice(0, 10) ~ '…' : property.title)  }}</td>
+                                <td>{{ property.description|striptags|slice(0, 40) ~ '…'  }}</td>
+                                <td>${{ property.price }}</td>
+                                <td>{{ property.createdAt|date("d/m/Y") }}</td>
+                                <td>
+                                    <a href="{{ path('property', {'id': property.id}) }}" title="{{ "Edit"|trans }}"><i class="fa fa-edit"></i></a>
+                                    {% if ( property.isOnline == 1 ) %}
+                                        <a href="{{ path('disableProperty', {"id": property.id}) }}" title="{{ "Disable Property"|trans }}" class="enable-property"><i class="fa fa-toggle-on"></i></a>
+                                    {% else %}
+                                        <a href="{{ path('enableProperty', {"id": property.id}) }}" title="{{ "Enable Property"|trans }}" class="disable-property"><i class="fa fa-toggle-off"></i></a>
+                                    {% endif %}
+                                    <a title="{{ "Delete"|trans }}" class="remove-property pointer" data-id="{{ property.id }}" data-toggle="modal" data-target="#deletePropertyModal" ><i class="fa fa-trash"></i></a>    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+
+            <div class="navigation" style="float: right;margin-top: 20px;">
+                {{ knp_pagination_render(properties) }}
+            </div>
+        {% else %}
+            <p class="no-result">{{ "Any property was added in your listings"|trans }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="modal fade" id="deletePropertyModal" tabindex="-1" role="dialog" aria-labelledby="deletePropertyModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "Delete Property"|trans }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: #FF0000;"><b>{{ "Once deleted, all data related to this property will be deleted and not recoverable a second time."|trans }}</b></p>
+        <p>{{ "Do you really want to delete this property ?" }}</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-property" type="button" class="btn btn-primary">{{ "Yes, I want to delete"|trans }}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ "Close"|trans }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

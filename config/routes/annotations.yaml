@@ -4,7 +4,7 @@ controllers:
     prefix:
         fr: '/fr'
         en: '/en'
-        de: '/de'
+        cn: '/cn'
     requirements:
         _locale: '%app_locales%'
     defaults:

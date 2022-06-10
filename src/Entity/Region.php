@@ -30,13 +30,13 @@ class Region
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity=City::class, mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=City::class, mappedBy="region", cascade={"all"}, orphanRemoval=true)
      * @Groups("region:read")
      */
     private $cities;
 
     /**
-     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="region", cascade={"all"}, orphanRemoval=true)
      */
     private $properties;
 
@@ -121,5 +121,10 @@ class Region
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->label;
     }
 }

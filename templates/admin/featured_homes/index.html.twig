@@ -1,0 +1,120 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_content %}
+    <style>
+        .admin-search{
+            width: 45px;
+            height: 35px;
+            text-align: center;
+            position: absolute;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 35px;
+            right: 50px;
+            background: #5368d5;
+            margin-top: 0px;
+            color: #FFF;
+        }
+        .filter-featured-homes{
+            margin-left: 15px; 
+            margin-right: 15px;
+        }
+        .admin-filter{
+            padding: 15px 15px; 
+            border: solid 1px #e2e8f0; 
+            border-radius: 5px; 
+            margin: 20px 0px;
+        }
+        .form-group{
+            padding: 12px 12px 12px 0px;
+        }
+        .form-group:last-child{
+            padding: 12px 0px;
+        }
+    </style>
+    <h1 class="title">Featured Homes</h1>
+
+    <div class="row admin-filter">
+        <span id="featured-home-search" class="admin-search" title="{{ 'Search'|trans }}"><i class="fa fa-search"></i></span>
+
+        <div class="form-group put-left col-md-12">
+            {% if isFeaturedHomes is defined and isFeaturedHomes == 1 %}
+                <input type="checkbox" class="form-check-input" id="filter-featured-checkbox" name="filter-featured-checkbox" checked />
+            {% else %}
+                <input type="checkbox" class="form-check-input" id="filter-featured-checkbox" name="filter-featured-checkbox" />
+            {% endif %}
+            <label for="filter-featured-checkbox" style="cursor: pointer;">{{ 'Featured Homes'|trans }}</label>
+        </div>
+        <div class="form-group put-left col-md-4">
+            <label for="filter-owner-text" class="col-md-12">{{ 'Owner'|trans }}</label>
+            <input type="text" id="filter-owner-text" name="filter-owner-text" class="form-control" value="{{ owner }}" />
+        </div>
+        <div class="form-group put-left col-md-4">
+            <label for="filter-property-text" class="col-md-12">{{ 'Property'|trans }}</label>
+            <input type="text" id="filter-property-text" name="filter-property-text" class="form-control" value="{{ property }}" />
+        </div>
+        <div class="form-group put-left col-md-4">
+            <label for="filter-city-text" class="col-md-12">{{ 'City'|trans }}</label>
+            <input type="text" id="filter-city-text" name="filter-city-text" class="form-control" value="{{ city }}" />
+        </div>
+    </div>
+
+    <hr style="margin: 35px 0px 15px 0px;" />
+
+    <section id="main" class="content-body">
+
+        <table class="table datagrid">
+            <thead>
+            <tr style="height: 40px">
+                <th>
+                    {{ 'Owner'|trans }}</i>
+                </th>
+                <th>
+                    {{ 'Property'|trans }}</i>
+                </th>
+                <th>
+                    {{ 'City'|trans }}
+                </th>
+                <th>
+                    {{ 'Price'|trans }}
+                </th>
+                <th>
+                    {{ 'Featured Home'|trans }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for property in featuredHomes %}
+                    <tr>
+                        {% if property.owner.firstname != "" and property.owner.lastname != "" %}
+                            <td><span style="cursor: pointer;" title="{{ property.owner.email }} - {{ property.owner.tel }}">{{ property.owner.firstname }} {{ property.owner.lastname }}</span></td>
+                        {% else %}
+                            <td><span style="cursor: pointer;" title="{{ property.owner.email }} - {{ property.owner.tel }}">{{ property.owner.email }}</span></td>
+                        {% endif %}
+                        <td>{{ property.title }}</td>
+                        <td>{{ property.city.label }}</td>
+                        <td>{{ property.price }}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                {% if property.isFeatured %}
+	                                <input type="checkbox" class="form-check-input featured-home-checkbox" data-id="{{ property.id }}" checked />
+                                {% else %}
+                                    <input type="checkbox" class="form-check-input featured-home-checkbox" data-id="{{ property.id }}" />
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(featuredHomes) }}
+        </div>
+
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/admin-main.js"></script>
+{% endblock %}

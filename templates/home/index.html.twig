@@ -10,7 +10,7 @@
 
 <div class="example-wrapper">
     <div id="commission-slider-area">
-        <h1 class="section-title-1">Thousands of dollars saved in commission</h1>
+        <h1 class="section-title-1">{{ 'Thousands of dollars saved in commission'|trans }}</h1>
 
         <!-- Start Commission Slider -->
         <div class="demo__item commission-slider-container">
@@ -22,7 +22,7 @@
         <div id="commission-result-area">
             <p class="title">{{ "You could save"|trans }}*</p>
             <p class="price"></p>
-            <p class="description">*{{ "Compared to an average commission of 5%, including applicable taxes."|trans }}</p>
+            <p class="description">*{{ "Based on common industry commission structure."|trans }}</p>
         </div>
         <!-- End Commission Slider -->
     </div>
@@ -36,12 +36,12 @@ $(document).ready(function(){
 
     var $range_price = $("#commission-slider").ionRangeSlider({
                         min: 100000,
-                        max: 1000000,
+                        max: 3000000,
                         from: 560000,
                         grid_snap: true,
                         step: 20000,
                         skin: "round",
-                        prefix: "<span class='commission-slider-price'>Price of your property</span><br/>$"
+                        prefix: "<span class='commission-slider-price'>{{ 'Price of your property'|trans }}</span><br/>$"
                     });
 
     $range_price.on("change", function () {
@@ -50,7 +50,6 @@ $(document).ready(function(){
 
         var v = ((2.5 * (commission_value - 100000))/100 + 5500) ;
         $("#commission-result-area").find(".price").text("$" + Intl.NumberFormat().format(v));
-        
     });
 })
 </script>

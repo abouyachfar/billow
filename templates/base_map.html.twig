@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <title>{% block title %}Welcome!{% endblock %}</title> -->
+        <title>Buy and Sell your House, Condo COMMISSION-FREE | Billow</title>
+        <link href="/img/favicon.png" rel="icon" sizes="192x192">
+        <link href="/img/favicon.png" rel="apple-touch-icon">
+        <link href="/img/favicon.png" rel="shortcut icon" type="image/png">
+
+        {% block stylesheets %}
+            <!-- JQuery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <!-- Style & Common Css -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="/css/style.css">
+            <!-- font awsome -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!--Plugin CSS file with desired skin-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+            <!-- Carousel -->
+            <link rel="stylesheet" href="/css/carousel.css">
+
+        {% endblock %}
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap JS -->
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <!--stylesheets / link tags loaded here-->
+        <link rel="stylesheet" href="/css/carousel.css">
+        <style>
+            .container { margin: 150px auto; }
+        </style>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <style>
+            #result-section{
+                padding: 0px;
+            }
+            #map{ 
+                height: 400px;
+                position: relative;
+                outline: none;
+                border-radius: 10px;
+                z-index: 0;
+            }
+        </style>
+
+        <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PGLVFF5WS6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-PGLVFF5WS6');
+        </script>
+    </head>
+    <body>
+        <!-- Start Secondary Menu-->
+            <div class="secondary-menu">
+                <ul class="menu-list">
+                    <li><i class="fa fa-home" style="font-size: 23px;"></i> <a href="{{ path('home') }}" class="menu-link" style="padding: 12px 20px 12px 5px">Billow</a></li>
+                    <li><i class="fa fa-mobile" style="font-size: 25px;"></i> <a style="padding: 12px 20px 12px 5px" href="tel: {{ project_tel }}" class="menu-link">{{ project_tel }}</a></li>
+                    {% if(is_granted('ROLE_USER') == true and is_granted('ROLE_ADMIN') == false) %}
+                        <li><i class="fa fa-plus-circle" style="font-size: 23px;"></i> <a style="padding: 5px;" class="menu-link" href="{{ path('myListing') }}"> {{ "My listings"|trans }}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        <!-- End Secondary Menu -->
+
+        <!-- Start Primary Menu-->
+        <div id="primary-menu" class="primary-menu">
+            <div class="logo-container">
+                <a href="/{{ app.request.locale }}" title="Billow"><img src="/img/logo.png" class="logo-header"></a>
+            </div>
+
+            <nav class="nav-left navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                            <a class="menu-link nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'Search'|trans }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a href="{{ path('list_result') }}" class="sub-menu-link dropdown-item" href="#">{{ 'List'|trans }}</a></li>
+                                <li><a href="{{ path('map') }}"class="sub-menu-link dropdown-item" href="#">{{ 'Map'|trans }}</a></li>
+                            </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                            <a class="menu-link nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'Buy'|trans }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                {% if buyPages is defined and buyPages is not empty %}
+                                    {% for buy in buyPages %}
+                                        <li><a class="sub-menu-link dropdown-item" href="/{{ app.request.locale }}/buy/{{ buy.id }}">{{ buy.title|trans }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                            <a class="menu-link nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'Sell'|trans }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                {% if sellPages is defined and sellPages is not empty %}
+                                    {% for sell in sellPages %}
+                                        <li><a class="sub-menu-link dropdown-item" href="/{{ app.request.locale }}/sell/{{ sell.id }}">{{ sell.title|trans }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li><a href="{{ path('faq') }}" class="menu-link">{{ 'FAQ'|trans }}</a></li>
+                            <li><a href="{{ path('pricing') }}" class="menu-link">{{ 'Pricing'|trans }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="nav-right">
+                <ul class="menu-list">
+                    <li><a href="{{ path('contact') }}" class="menu-link">{{ 'Contact'|trans }}</a></li>
+                    {% if(app.request.locale != "en") %}
+                        <li><a href="/en" title="English" class="menu-link">EN</a></li>
+                    {%  else  %}
+                        <li><a href="/cn" title="Chinese" class="menu-link">CN</a></li>
+                    {% endif %}
+                    
+                    {% if(is_granted('ROLE_USER') == true and is_granted('ROLE_ADMIN') == false) %}
+                        {% if(app.user.firstname != "") %}
+                            <li><a id="btn-user" class="btn btn-connexion">{{ app.user.firstname }} <i class="fa fa-user-circle"></i></a></li>
+                        {% else %}
+                            <li><a id="btn-user" class="btn btn-connexion">{{ app.user.username }} <i class="fa fa-user-circle"></i></a></li>
+                        {% endif %}
+
+                        <div class="user-links hidden">
+                            {% if(app.user.firstname != "") %}
+                                <p class="title">{{ app.user.firstname }} {{ app.user.lastname }}</p>
+                            {% else %}
+                                <p class="title">{{ app.user.username }}</p>
+                            {% endif %}
+                            
+                            <a href="{{ path('seller_account') }}"><i class="fa fa-home"></i> <span>{{ "My seller account"|trans }}</span></a>
+                            <a href="{{ path('myListing') }}"><i class="fa fa-plus-circle"></i> <span>{{ "Add a new listing"|trans }}</span></a>
+                            <hr/>
+                            <!-- <a href=""><i class="fa fa-search"></i> <span>{{ "My buyer account"|trans }}</span></a> -->
+                            <a href="{{ path('my_favorites') }}"><i class="fa fa-heart"></i> <span>{{ "My favorits"|trans }}</span></a>
+                            <a href="{{ path('my_alert') }}}"><i class="fa fa-envelope-open"></i> <span>{{ "My alerts"|trans }}</span></a>
+                            <hr/>
+                            <a href="{{ path('account_settings') }}"><i class="fa fa-cog"></i> <span>{{ "Settings"|trans }}</span></a>
+                            <hr/>
+                            <a href="{{ path('app_logout') }}"><i class="fa fa-power-off"></i> <span>{{ "Logout"|trans }}</span></a>
+                        </div>
+                    {% else %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin') }}" class="btn btn-connexion">{{ 'Billow Admin'|trans }} <i class="fa fa-user-circle"></i></a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}" class="btn btn-connexion">{{ 'Login'|trans }} <i class="fa fa-user-circle"></i></a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <!-- End Primary Menu-->
+
+        <!-- Start Mobile Menu -->
+        <div class="topnav">
+            <a href="#home" class="active">{{ 'Menu'|trans }}</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a href="{{ path('list_result') }}">{{ 'Search by list'|trans }}</a>
+                <a href="{{ path('map') }}">{{ 'Search by map'|trans }}</a>
+                <a href="#">{{ 'Buy'|trans }}</a>
+                <a href="#">{{ 'Sell'|trans }}</a>
+                <a href="{{ path('faq') }}">{{ 'FAQ'|trans }}</a>
+                <a href="{{ path('pricing') }}">{{ 'Pricing'|trans }}</a>
+                <a href="{{ path('contact') }}">{{ 'Contact'|trans }}</a>
+            </div>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <!-- End Mobile Menu -->
+
+        {% if subTitle is defined and subTitle == true %}
+            <h1 class="subtitle-home">{{ "Vancouver’s Best Commission Free Solution"|trans }}</h1></div>
+        {% endif %}
+
+        {% if (has_search) %}
+        <!-- Start Search Bar -->
+        <div class="search-bar">
+            <ul class="nav nav-tabs" id="search-bar-tab" role="tablist">
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{{ 'For Sale'|trans|upper }}</button>
+                </li>
+                <!-- <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{{ 'For Rent'|trans|upper }}</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">{{ 'Newly Built'|trans|upper }}</button>
+                </li> -->
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="search-toolbar tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <!-- Start Input Text Search -->
+                    <div class="search-bar-text-area">
+                        <span id="loup" class="fa fa-search"></span>
+                        <input type="text" id="input_search_text" class="search-bar-text" placeholder="{{ 'Search by region, city, street...'|trans }}" />
+                        <span id="btn-search" class="fa fa-map-marker"></span>
+                    </div>
+                    <div id="address-search-area" class="address-search-area hidden"></div>
+                    <div class="cities-search-area hidden">
+                        <span class="types-property-item"><i class="fa fa-angle-right"></i> Abitibi-Témiscamingue</span>
+                        <div class="types-property-subitems hidden">
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Toutes les villes" data-type="city"/><label>Toutes les villes</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Amos" data-label="Amos" data-type="city"/><label>Amos</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Authier" data-label="Authier" data-type="city"/><label>Authier</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Authier-Nord" data-label="Authier-Nord" data-type="city"/><label>Authier-Nord</label>
+                            </div>
+                        </div>
+
+                        <span class="types-property-item"><i class="fa fa-angle-right"></i> Bas-Saint-Laurent</span>
+                        <div class="types-property-subitems hidden">
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Toutes les villes" data-type="city"/><label>Toutes les villes</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Albertville" data-label="Albertville" data-type="city"/><label>Albertville</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Amqui" data-label="Amqui" data-type="city"/><label>Amqui</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Auclair" data-label="Auclair" data-type="city"/><label>Auclair</label>
+                            </div>
+                        </div>
+
+                        <span class="types-property-item"><i class="fa fa-angle-right"></i> Centre-du-Québec</span>
+                        <div class="types-property-subitems hidden">
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Toutes les villes" data-type="city"/><label>Toutes les villes</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Arthabaska" data-label="Arthabaska" data-type="city"/><label>Arthabaska</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Aston Jonction" data-label="Aston Jonction" data-type="city"/><label>Aston Jonction</label>
+                            </div>
+                            <div class="form-group">
+                                <input class="cretaria-element" type="checkbox" id="1-0" value="Aston Station" data-label="Aston Station" data-type="city"/><label>Aston Station</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Input Text Search -->
+
+                    <!-- Start Range Price -->
+                    <div class="demo__item range-price-area">
+                        <div class="demo__body">
+                            <input style="display: none;" id="demo_1" type="text" name="" value="" class="irs-hidden-input" tabindex="-1" readonly="">
+                        </div>
+                    </div>
+                    <!-- End Range Price -->
+
+                    <!-- Start Types of property cretaria -->
+                    <div class="combo-critaria critaria-combo-1">
+                        <span class="combo-cretaria-title">{{ 'Types of Properties'|trans }} <i class="fa fa-angle-down"></i></span>
+
+                        <div class="types-property-items hidden">
+                            <span class="types-property-item"><i class="fa fa-angle-right"></i> Maison Unifamiliale</span>
+                            <div class="types-property-subitems">
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-0" value="Tous" data-label="Maison Unifamiliale" data-type="types_properties"/><label>Tous les sous-types</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-1" data-label="Bungalo" value="Bungalo" data-type="types_properties"/><label>Bungalo</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-2" data-label="Jumelé" value="Jumelé" data-type="types_properties"/><label>Jumelé</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-3" data-label="Maison 2 étages" value="Maison 2 étages" data-type="types_properties"/><label>Maison 2 étages</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-4" data-label="Maison à 1 étage etage demi" value="Maison à 1 étage etage demi" data-type="types_properties"/><label>Maison à 1 étage et demi</label>
+                                </div>
+                            </div>
+
+                            <span class="types-property-item"><i class="fa fa-angle-right"></i> Condo / Loft</span>
+                            <div class="types-property-subitems hidden">
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-0" data-label="Condo / Loft" value="Tous" data-type="types_properties"/><label>Tous les sous-types</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-1" data-label="Condo" value="Condo" data-type="types_properties"/><label>Condo</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-2" data-label="Loft" value="Loft" data-type="types_properties"/><label>Loft</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-3" data-label="Penthouse" value="Penthouse" data-type="types_properties"/><label>Penthouse</label>
+                                </div>
+                                <div class="form-group">
+                                    <input class="cretaria-element" type="checkbox" id="1-4" data-label="Résidence de retraités" value="Résidence de retraités" data-type="types_properties"/><label>Résidence de retraités</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Types of property cretaria -->
+
+                    <!-- Start chambres cretaria -->
+                    <div class="combo-critaria critaria-combo-1">
+                        <span class="combo-cretaria-bedrooms-title ml-10">{{ 'Bedrooms'|trans }} <i class="fa fa-angle-down"></i></span>
+
+                        <div class="bedrooms-items hidden">
+                            <div class="form-group">
+                                <input type="radio" data-value="1" class="cretaria-element" data-type="chambres" data-label="1 chambre" id="bedrooms-1" /><label for="bedrooms-1" class="float-left ml-10">1</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="1+" class="cretaria-element" data-type="chambres" data-label="1+ chambres" id="bedrooms-1+" /><label for="bedrooms-1+"class="float-left ml-10">1+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="2" class="cretaria-element" data-type="chambres" data-label="2 chambres" id="bedrooms-2" /><label for="bedrooms-2" class="float-left ml-10">2</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="2+" class="cretaria-element" data-type="chambres" data-label="2+ chambres" id="bedrooms-2+"/><label for="bedrooms-2+" class="float-left ml-10">2+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="3" class="cretaria-element" data-type="chambres" data-label="3 chambres" id="bedrooms-3" /><label for="bedrooms-3" class="float-left ml-10">3</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="3+" class="cretaria-element" data-type="chambres" data-label="3+ chambres" id="bedrooms-3+" /><label for="bedrooms-3+" class="float-left ml-10">3+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="4" class="cretaria-element" data-type="chambres" data-label="4 chambres" id="bedrooms-4" /><label for="bedrooms-4" class="float-left ml-10">4</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="4+" class="cretaria-element" data-type="chambres" data-label="4+ chambres" id="bedrooms-4+"/><label for="bedrooms-4+" class="float-left ml-10">4+</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="5" class="cretaria-element" data-type="chambres" data-label="5 chambres" id="bedrooms-5" /><label for="bedrooms-5" class="float-left ml-10">5</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" data-value="5+" class="cretaria-element" data-type="chambres" data-label="5+ chambres" id="bedrooms-5+" /><label for="bedrooms-5+" class="float-left ml-10">5+</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End chambres cretaria -->
+
+                    <!-- Start plus cretaria -->
+                    <div class="combo-critaria critaria-combo-1">
+                        <span class="combo-cretaria-more-title ml-10">{{ 'More Criteria'|trans }} <i class="fa fa-angle-down"></i></span>
+
+                        <div class="other-criterias-items hidden">
+                            <div class="other-criteria-item">
+                                <label class="put-left more-criterias-label">{{ "Bathrooms"|trans }}</label>
+                                <span class="combo-cretaria-bathrooms-title ml-10">1 <i class="fa fa-angle-down"></i></span>
+
+                                <div class="bathrooms-items hidden">
+                                    <div class="form-group">
+                                        <input type="radio" data-value="1" class="cretaria-element" data-type="bathrooms" data-label="1" id="bathrooms-1" checked /><label for="bathrooms-1" class="float-left ml-10">1</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="1+" class="cretaria-element" data-type="bathrooms" data-label="1+" id="bathrooms-1+" /><label for="bathrooms-1+"class="float-left ml-10">1+</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="2" class="cretaria-element" data-type="bathrooms" data-label="2" id="bathrooms-2" /><label for="bathrooms-2" class="float-left ml-10">2</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="2+" class="cretaria-element" data-type="bathrooms" data-label="2+" id="bathrooms-2+"/><label for="bathrooms-2+" class="float-left ml-10">2+</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="3" class="cretaria-element" data-type="bathrooms" data-label="3" id="bathrooms-3" /><label for="bathrooms-3" class="float-left ml-10">3</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="3+" class="cretaria-element" data-type="bathrooms" data-label="3+" id="bathrooms-3+" /><label for="bathrooms-3+" class="float-left ml-10">3+</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="4" class="cretaria-element" data-type="bathrooms" data-label="4" id="bathrooms-4" /><label for="bathrooms-4" class="float-left ml-10">4</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="4+" class="cretaria-element" data-type="bathrooms" data-label="4+" id="bathrooms-4+"/><label for="bathrooms-4+" class="float-left ml-10">4+</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="5" class="cretaria-element" data-type="bathrooms" data-label="5" id="bathrooms-5" /><label for="bathrooms-5" class="float-left ml-10">5</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" data-value="5+" class="cretaria-element" data-type="bathrooms" data-label="5+" id="bathrooms-5+" /><label for="bedrooms-5+" class="float-left ml-10">5+</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="other-criteria-item">
+                                <label class="put-left more-criterias-label">{{ "Living area (sq. ft.)"|trans }}</label>
+
+                                <span class="combo-cretaria-living-area-title min ml-10">{{ 'Min'|trans }} <i class="fa fa-angle-down"></i></span>
+                                <div class="living-area-items hidden">
+                                    <span class="living-area-min" data-label="Min" data-value="0">{{ 'Min'|trans }}</span>
+                                    <span class="living-area-min" data-label="400" data-value="400">400</span>
+                                    <span class="living-area-min" data-label="500" data-value="500">500</span>
+                                    <span class="living-area-min" data-label="700" data-value="700">700</span>
+                                    <span class="living-area-min" data-label="1000" data-value="1000">1000</span>
+                                    <span class="living-area-min" data-label="1500" data-value="1500">1500</span>
+                                    <span class="living-area-min" data-label="2000" data-value="2000">2000</span>
+                                    <span class="living-area-min" data-label="3000" data-value="3000">3000</span>
+                                    <span class="living-area-min" data-label="5000" data-value="5000">5000</span>
+                                </div>
+
+                                <span class="combo-cretaria-living-area-title max ml-10">{{ 'Max'|trans }} <i class="fa fa-angle-down"></i></span>
+                                <div class="living-area-items max hidden">
+                                    <span class="living-area-max" data-label="Max" data-value="1000000">{{ 'Max'|trans }}</span>
+                                    <span class="living-area-max" data-label="500" data-value="500">500</span>
+                                    <span class="living-area-max" data-label="700" data-value="700">700</span>
+                                    <span class="living-area-max" data-label="1000" data-value="1000">1000</span>
+                                    <span class="living-area-max" data-label="1500" data-value="1500">1500</span>
+                                    <span class="living-area-max" data-label="2000" data-value="2000">2000</span>
+                                    <span class="living-area-max" data-label="3000" data-value="3000">3000</span>
+                                    <span class="living-area-max" data-label="5000" data-value="5000">5000</span>
+                                </div>
+                            </div>
+
+                            <div class="other-criteria-item">
+                                <label class="put-left more-criterias-label">{{ "Lot size (sq. ft.)"|trans }}</label>
+
+                                <span class="combo-cretaria-lot-size-title min ml-10">{{ 'Min'|trans }} <i class="fa fa-angle-down"></i></span>
+                                <div class="lot-size-items hidden">
+                                    <span class="lot-size-min" data-label="Min" data-value="0">{{ 'Min'|trans }}</span>
+                                    <span class="lot-size-min" data-label="400" data-value="400">400</span>
+                                    <span class="lot-size-min" data-label="500" data-value="500">500</span>
+                                    <span class="lot-size-min" data-label="700" data-value="700">700</span>
+                                    <span class="lot-size-min" data-label="1000" data-value="1000">1000</span>
+                                    <span class="lot-size-min" data-label="1500" data-value="1500">1500</span>
+                                    <span class="lot-size-min" data-label="2000" data-value="2000">2000</span>
+                                    <span class="lot-size-min" data-label="3000" data-value="3000">3000</span>
+                                    <span class="lot-size-min" data-label="5000" data-value="5000">5000</span>
+                                </div>
+
+                                <span class="combo-cretaria-lot-size-title max ml-10">{{ 'Max'|trans }} <i class="fa fa-angle-down"></i></span>
+                                <div class="lot-size-items max hidden">
+                                    <span class="lot-size-max" data-label="Max" data-value="1000000">{{ 'Max'|trans }}</span>
+                                    <span class="lot-size-max" data-label="500" data-value="500">500</span>
+                                    <span class="lot-size-max" data-label="700" data-value="700">700</span>
+                                    <span class="lot-size-max" data-label="1000" data-value="1000">1000</span>
+                                    <span class="lot-size-max" data-label="1500" data-value="1500">1500</span>
+                                    <span class="lot-size-max" data-label="2000" data-value="2000">2000</span>
+                                    <span class="lot-size-max" data-label="3000" data-value="3000">3000</span>
+                                    <span class="lot-size-max" data-label="5000" data-value="5000">5000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End plus cretaria -->
+                    {% if page_name is not defined %}
+                        <button class="btn-rechercher" data-pagename="list_result">{{ "Search"|trans }}</button>
+                    {% else %}
+                        <button class="btn-rechercher" data-pagename="{{ page_name }}">{{ "Search"|trans }}</button>
+                    {% endif %}
+
+                    <div class="cretaria-choice hidden">
+                        <label class="cretaria-choice-title">{{ "Your criteria"|trans }}</label>
+                        
+                        <div id="cretaria-choices">
+                            <div id="range-price-lbl" class="hidden">
+                                <div class="cretaria-text"><span id="price_min"></span>$ - <span id="price_max"></span>$</div>
+                                <div class="cretaria-remove">X</div>
+                            </div>
+                        </div>
+
+                        <button class="btn-reset-cretaria">{{ 'Clear Criteria'|trans }}</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">... 2</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">... 3</div>
+            </div>
+        </div>
+        <!-- End Search Bar -->
+        {% endif %}
+
+        {% block body %}{% endblock %}
+
+        <!-- Start Footer -->
+        <div class="footer">
+            <div class="footer-contact">
+                <div class="footer-contact-left">
+                    <p>{{ "Contact the Billow team"|trans }}</p>
+                    <div>
+                        <a href="tel:{{ project_tel }}" class="tel"><i class="fa fa-mobile"></i> {{ project_tel }}</a>
+                        <a href="mailto:{{ project_email }}" class="email"><i class="fa fa-envelope-open"></i> {{ project_email }}</a>
+                    </div>
+                </div>
+                <div class="footer-contact-right">
+                    <div>
+                        <p>{{ "Follow us"|trans }}</p>
+                        <a href="" class="social" title="instagram"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-menu">
+                <div class="footer-col">
+                    <p>{{ "Buying a property"|trans }}</p>
+                    {% if buyPages is defined and buyPages is not empty %}
+                        {% for buy in buyPages %}
+                            <a href="/{{ app.request.locale }}/buy/{{ buy.id }}" class="footer-link">{{ buy.title }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
+                <div class="footer-col">
+                    <p>{{ "Selling a property"|trans }}</p>
+                    {% if sellPages is defined and sellPages is not empty %}
+                        {% for sell in sellPages %}
+                            <a href="/{{ app.request.locale }}/sell/{{ sell.id }}" class="footer-link">{{ sell.title|trans }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
+                <div class="footer-col">
+                    <p>{{ "Find a property"|trans }}</p>
+                    <a href="{{ path('list_result') }}" class="footer-link">{{ "By list"|trans }}</a>
+                    <a href="{{ path('map') }}" class="footer-link">{{ "By map"|trans }}</a>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer -->
+
+        {% block javascripts %}
+            <!--Plugin JavaScript file-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+
+            <!-- Main Script -->
+            <script src="/js/functions.js"></script>
+            <script src="/js/main.js"></script>
+
+            <!--scripts loaded here-->
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <script src="/js/carousel.js"></script>
+
+            <script>
+                var $range_price = $("#demo_1").ionRangeSlider({
+                    type: "double",
+                    min: 0,
+                    max: 5000000,
+                    to: 5000000,
+                    from: 0,
+                    skin: "round",
+                    prefix: "$",
+                    step: 5000,
+                    max_postfix: "+",
+                });
+
+                $range_price.on("change", function () {
+                    var $inp = $(this);
+                    var from = Intl.NumberFormat().format($inp.data("from")); // reading input data-from attribute
+                    var to = Intl.NumberFormat().format($inp.data("to"));
+
+                    if ($("#range-price-lbl").find(".cretaria-text").length) {
+                        $("#range-price-lbl").find(".cretaria-text").html("$<span id='price_min'>" + from + "</span> - $<span id='price_max'>" + to + "</span>");
+                        $("#range-price-lbl").removeClass("hidden");
+                        $(".cretaria-choice").removeClass("hidden");
+                    } else {
+                        var _html = '<div id="range-price-lbl"><div class="cretaria-text">$<span id="price_min">' + from + '</span> - $<span id="price_max">' + to + '</span></div><div class="cretaria-remove">X</div></div>';
+                        $("#cretaria-choices").prepend(_html);
+                        $(".cretaria-choice").removeClass("hidden");
+                    }
+                });
+            </script>
+
+            <script>var markers = [];</script>
+
+            {% if properties|length > 0 %}
+                {% for property in properties %}
+                    <script>
+                        var id = {{ property.id }};
+                        var latitude = {{ property.latitude }};
+                        var longitude = {{ property.longitude }};
+                        var price = {{ property.price }};
+                        var city = "{{ property.city.label }}";
+                        var street = "{{ property.street }}";
+                        var img = "";
+                        
+                        {% if property.pictures is not empty %}
+                            img = "{{ property.pictures[0].url }}";
+                        {% endif %}
+                        
+                        markers.push([latitude, longitude, price, city, street, img, id]);
+                    </script>
+                {% endfor %}
+            {% endif %}
+
+            <script>
+                jQuery(document).ready(function(){
+                    // Default View
+                    var view = [56.130366, -106.346771];
+
+                    // Set first marker as view
+                    if (markers.length > 0) {
+                        view = [markers[0][0], markers[0][1]];
+                    }
+                    
+                    // Creat map and set view
+                    var map = L.map('map').setView(view, 6);
+
+                    // Set tileLayer
+                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox/streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        accessToken: 'sk.eyJ1IjoiYWJvdXlhY2hmYXIiLCJhIjoiY2t6azIzc2k0MGM5ZjJ1bnowb3dod3d4YiJ9.GU0AVkLTkYscMAf_PBOq_Q'
+                    }).addTo(map);
+
+                    // Set Markers
+                    var marker = [];
+                    var i;
+                    for (i=0; i<markers.length; i++) {
+                        if(markers[i][0] != "" && markers[i][1] != ""
+                            && markers[i][0] != undefined && markers[i][1] != undefined) {
+                                _html = '<div class="map-desc">';
+                                _html += '<div class="map-img">';
+                                _html += '<img src="' + markers[i][5] + '"/>';
+                                _html += '</div>';
+
+                                _html += '<div class="map-desc-text">';
+                                _html += '<p class="price">$' + markers[i][2] + '</p>';
+                                _html += '<p class="city">' + markers[i][3] + '</p>';
+                                _html += '<p class="street">' + markers[i][4] + '</p>';
+                                _html += '</div>';
+                                _html += '</div>';
+
+                                marker[i] = new L.Marker([markers[i][0], markers[i][1]], {
+                                    win_url: "/{{ app.request.locale }}/details/" + markers[i][6] + "/" + "{{ page_name }}"
+                                });
+                                marker[i].bindTooltip(_html).openTooltip().addTo(map);
+                                marker[i].on('click', onClick);
+                        }
+                    }
+                });
+
+                function onClick(e) {
+                    window.location = this.options.win_url;
+                }
+            </script>
+
+            <!-- Translation words on js -->
+            <script>
+                $.get("http://billow.ca/messages/{{ app.request.locale }}.json", function(data){
+                    transMessages = data;
+                });
+            </script>
+            <script language="javascript" src="/js/GetText.js"></script>
+        {% endblock %}
+    </body>
+</html>

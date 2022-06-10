@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Seller Account{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>Seller Account</h1>
+
+        {% for label, messages in app.flashes(['success']) %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% for label, messages in app.flashes(['error', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        
+    </div>
+
+    <div class="cms-body profile-body">
+        {% if pack is not null %}
+            <div class="row profile-section-border">
+                <p class="text-center">
+                    {{ pack_picto[pack.id]|raw }}
+                </p>
+
+                <h2 class="text-center title package-{{ pack_class[pack.id] }}">{{ pack.title }}</h2>
+                
+                {% if packDate is not null and expired==false %}
+                    <p class="text-center my-pack-date">(Valid until {{ packDate }})</p>
+                {% elseif expired %}
+                    <p class="text-center my-pack-date alert alert-danger" style="color: #721c24"><b>{{ "Your pack has expired. Please renew or upgrade."|trans }}</b></p>
+                {% else %}
+                    <br/><br/>
+                {% endif %}
+
+                <div class="row text-center no-margin">
+                    {% if expired %}
+                        <div style="margin: auto; width: 400px;margin-top: 30px;">
+                            <a href="{{ path('pricing') }}" class="btn btn-primary" style="width: 180px;">Upgrade</a>
+                            <a href="{{ path('goPayment', {packId: pack.id}) }}" class="btn btn-success" style="width: 180px;">Renew</a>
+                        </div>
+                    {% else %}
+                        <a href="{{ path('pricing') }}" class="btn btn-primary" style="margin-top: 30px;width: 180px;margin: auto;">Upgrade</a>
+                    {% endif %}
+                </div>
+
+                <hr style="margin: 50px 0px;" />
+
+                <ul class="pricing-options">
+                {% for option in pack.getPackOptions %}
+                    <li class="pack-option-elem" data-id="{{ option.id }}" data-toggle="modal" data-target="#myModal">{% if option.activ == false %}<del>{% endif %}{{ option.title }}{% if option.activ %}</del>{% endif %} <i class="fa fa-info-circle put-right"></i></li>
+                    <div class="option-title hidden" data-id="{{ option.id }}">{{ option.title }}</div>
+                    <div class="option-description hidden" data-id="{{ option.id }}">{{ option.description }}</div>
+                {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="row profile-section-border">
+                <div class="row text-center no-margin">
+                    <a href="{{ path('pricing') }}" class="btn btn-primary" style="width: 180px;margin: auto;">Bey a pack</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

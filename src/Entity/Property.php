@@ -40,13 +40,13 @@ class Property
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Groups("property:read")
      */
     private $bedrooms;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Groups("property:read")
      */
     private $bathrooms;
@@ -72,19 +72,19 @@ class Property
     private $street;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
      * @Groups("property:read")
      */
     private $living_space;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
      * @Groups("property:read")
      */
     private $lot_dimensions;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Groups("property:read")
      */
     private $level;
@@ -109,7 +109,7 @@ class Property
     private $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="property")
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="property", cascade={"all"}, orphanRemoval=true)
      * @Groups("property:read")
      */
     private $pictures;
@@ -133,14 +133,51 @@ class Property
     private $is_online;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @Groups("property:read")
      */
     private $online_from;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=PropertyType::class, inversedBy="properties")
+     * @Groups("property:read")
+     */
+    private $PropertyType;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favorites::class, mappedBy="property", cascade={"all"}, orphanRemoval=true)
+     */
+    private $favorites;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $expired;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $disabledByAdmin;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isFeatured;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,7 +226,7 @@ class Property
         return $this->bedrooms;
     }
 
-    public function setBedrooms(int $bedrooms): self
+    public function setBedrooms(?int $bedrooms): self
     {
         $this->bedrooms = $bedrooms;
 
@@ -201,7 +238,7 @@ class Property
         return $this->bathrooms;
     }
 
-    public function setBathrooms(int $bathrooms): self
+    public function setBathrooms(?int $bathrooms): self
     {
         $this->bathrooms = $bathrooms;
 
@@ -249,7 +286,7 @@ class Property
         return $this->living_space;
     }
 
-    public function setLivingSpace(string $living_space): self
+    public function setLivingSpace(?string $living_space): self
     {
         $this->living_space = $living_space;
 
@@ -261,7 +298,7 @@ class Property
         return $this->lot_dimensions;
     }
 
-    public function setLotDimensions(string $lot_dimensions): self
+    public function setLotDimensions(?string $lot_dimensions): self
     {
         $this->lot_dimensions = $lot_dimensions;
 
@@ -273,7 +310,7 @@ class Property
         return $this->level;
     }
 
-    public function setLevel(int $level): self
+    public function setLevel(?int $level): self
     {
         $this->level = $level;
 
@@ -390,6 +427,108 @@ class Property
     public function setOnlineFrom(\DateTimeInterface $online_from): self
     {
         $this->online_from = $online_from;
+
+        return $this;
+    }
+
+    public function getPropertyType(): ?PropertyType
+    {
+        return $this->PropertyType;
+    }
+
+    public function setPropertyType(?PropertyType $PropertyType): self
+    {
+        $this->PropertyType = $PropertyType;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?string $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?string $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorites[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorites $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorites $favorite): self
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getProperty() === $this) {
+                $favorite->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getExpired(): ?bool
+    {
+        return $this->expired;
+    }
+
+    public function setExpired(?bool $expired): self
+    {
+        $this->expired = $expired;
+
+        return $this;
+    }
+
+    public function getDisabledByAdmin(): ?bool
+    {
+        return $this->disabledByAdmin;
+    }
+
+    public function setDisabledByAdmin(?bool $disabledByAdmin): self
+    {
+        $this->disabledByAdmin = $disabledByAdmin;
+
+        return $this;
+    }
+
+    public function getIsFeatured(): ?bool
+    {
+        return $this->isFeatured;
+    }
+
+    public function setIsFeatured(?bool $isFeatured): self
+    {
+        $this->isFeatured = $isFeatured;
 
         return $this;
     }

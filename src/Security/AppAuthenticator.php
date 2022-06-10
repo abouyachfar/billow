@@ -2,6 +2,9 @@
 
 namespace App\Security;
 
+use App\Repository\UserRepository;
+use Exception;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,25 +25,38 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private UrlGeneratorInterface $urlGenerator;
+    private $userRepository;
+    private $user;
+    private $logger;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, UserRepository $userRepository,
+        LoggerInterface $logger)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->userRepository = $userRepository;
+        $this->logger = $logger;
     }
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email', '');
+        try {
+            $email = $request->request->get('email', '');
 
-        $request->getSession()->set(Security::LAST_USERNAME, $email);
+            $request->getSession()->set(Security::LAST_USERNAME, $email);
 
-        return new Passport(
-            new UserBadge($email),
-            new PasswordCredentials($request->request->get('password', '')),
-            [
-                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
-            ]
-        );
+            return new Passport(
+                new UserBadge($email, function ($userIdentifier) {
+                    $this->user = $this->userRepository->getActivatedUserByEmail(['email' => $userIdentifier]);
+                    return $this->user;
+                }),
+                new PasswordCredentials($request->request->get('password', '')),
+                [
+                    new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+                ]
+            );
+        } catch (Exception $e) {
+            $this->logger->error("[app_authenticator] - " . $e->getMessage());
+        }
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
@@ -49,8 +65,11 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+        if (in_array("ROLE_ADMIN", $this->user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('admin'));
+        } else if (in_array("ROLE_USER", $this->user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('myListing'));
+        }
     }
 
     protected function getLoginUrl(Request $request): string

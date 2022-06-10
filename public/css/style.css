@@ -104,6 +104,8 @@ a.sub-menu-link{
     padding-top: 10px;
     margin: auto;
     padding-left:50px;
+    margin-bottom: 50px;
+    background: #FFF;
 }
 #search-bar-tab{
     position: relative;
@@ -122,21 +124,28 @@ a.sub-menu-link{
 }
 .search-bar-text-area{
     border-right: 1px solid #d4d4d4;
-    padding: 10px 20px;
-    height: 58px;
-    width: 350px;
+    padding: 25px 15px;
+    height: 89px;
+    width: 300px;
     float: left;
 }
 .search-bar-text{
     border: none;
-    padding: 10px;
-    min-width: 270px;
+    padding: 10px 5px;
+    min-width: 225px;
+}
+.cretaria-element{
+    cursor: pointer;
+}
+.bedrooms-items .form-group label{
+    cursor: pointer;
 }
 .range-price-area{
     padding: 4px 4px;
-    height: 58px;
-    width: 240px;
+    height: 70px;
+    width: 296px;
     float: left;
+    margin-top: 18px;
     margin-left: 10px;
     margin-right: 35px;
 }
@@ -145,6 +154,16 @@ a.sub-menu-link{
     min-height: 60px;
     border-radius: 0px 10px 10px 10px;
     width: 96%;
+    box-shadow: 0 2px 10px #ddd;
+    min-height: 90px;
+    background: #FFF;
+}
+.critaria-combo-1{
+    margin-top: 15px;
+    float: left;
+}
+.critaria-combo-1:last-child{
+    margin-right: 0px;
 }
 .nav-tabs .nav-link + .nav-link{
     border-radius: 0px !important;
@@ -165,7 +184,10 @@ a.sub-menu-link{
 #more-creteria,
 .more-creteria,
 #range-price-lbl,
-.cities-cretaria{
+.cities-cretaria,
+#bathrooms-cretaria,
+#living-area-cretaria,
+#lot-size-cretaria{
     padding: 0px 10px;
     background: #77DFE7;
     border-radius: 5px;
@@ -218,15 +240,16 @@ a.sub-menu-link{
 .cretaria-choice-title{
     float: left;
     margin-right: 20px;
+    color: #666;
 }
 .btn-rechercher{
     float: right;
-    margin-top: 10px;
+    margin-top: 24.5px;
     margin-right: 20px;
     border: none;
-    padding: 6px 20px;
+    padding: 5.8px 20px;
     font-size: 18px;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #FFF;
     background: #006cfa;
     font-weight: 400;
@@ -278,14 +301,20 @@ a.sub-menu-link{
 .types-property-subitems .form-group input{
     margin-right: 5px;
     float: left;
+    cursor: pointer;
 }
 .types-property-subitems .form-group label{
     font-size: 14px;
     margin-top: -4px;
     float: left;
+    cursor: pointer;
 }
 .combo-cretaria-title,
-.combo-cretaria-bedrooms-title{
+.combo-cretaria-bedrooms-title,
+.combo-cretaria-more-title,
+.combo-cretaria-bathrooms-title,
+.combo-cretaria-living-area-title,
+.combo-cretaria-lot-size-title{
     border: solid 1px #d4d4d4;
     float: left;
     border-radius: 5px;
@@ -305,12 +334,13 @@ a.sub-menu-link{
 }
 .types-property-items,
 .bedrooms-items,
-.other-items{
+.other-items,
+.bathrooms-items{
     display: inline;
     position: absolute;
-    top: 110px;
+    top: 141px;
     border: solid 1px #d4d4d4;
-    margin-left: -170px;
+    margin-left: -174px;
     width: 350px;
     padding: 15px;
     background: #FFF;
@@ -331,8 +361,9 @@ a.sub-menu-link{
 .ml-10{
     margin-left: 10px;
 }
-.cities-search-area{
-    margin-top: 58px;
+.cities-search-area,
+.address-search-area{
+    margin-top: 89px;
     position: absolute;
     border: solid 1px #d4d4d4;
     width: 350px;
@@ -341,8 +372,28 @@ a.sub-menu-link{
     color: #666;
     z-index: 1;
     overflow-y: auto;
-    border-radius: 10px;
     height: 250px;
+}
+.address-search-area{
+    padding: 0px;
+    overflow-y: auto;
+    width: 450px;
+    min-height: 50px;
+    border-radius: 5px;
+    z-index: 500;
+}
+.address-search-item{
+    border-bottom: solid 1px #666;
+    padding: 20px;
+}
+.address-search-item:hover{
+    color: #FFF;
+    background-color: #77DFE7;
+}
+.loading{
+    text-align: center;
+    width: 100%;
+    padding: 20px;
 }
 #cretaria-choices{
     width: 80%;
@@ -395,6 +446,8 @@ a.sub-menu-link{
     font-weight: 600 !important;
     font-size: 18px !important;
     float: left;
+    width: 100%;
+    text-align: center;
 }
 .irs-min,
 .irs-max{
@@ -419,12 +472,10 @@ a.sub-menu-link{
     color: #6CD8E3 !important;
 }
 #commission-result-area .description{
-    width: 25%;
+    width: 100%;
     text-align: center;
     color: #666;
     font-size: 11px;
-    display: flex;
-    margin: auto;
 }
 .block-login{
     max-width: 650px;
@@ -433,6 +484,20 @@ a.sub-menu-link{
     margin-top: 50px;
     margin-bottom: 50px;
     box-shadow: 0 2px 10px #ddd;
+}
+.container.block-contact-form{
+    margin: 50px auto;
+}
+.block-contact-form{
+    padding: 50px;
+    margin-top: 0px;
+    box-shadow: 0 2px 10px #ddd;
+}
+#contact div{
+    width: 45%;
+}
+#contact div:last-child{
+    width: 100%;
 }
 .block-login button[type=submit]{
     margin-top: 15px;
@@ -557,15 +622,32 @@ a.sub-menu-link{
     width: 100%;
 }
 .property-list-row{
-    padding: 25px;
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #d4d4d4;
-    margin: 10px 50px;
-    width: 70%;
+    margin: 20px 50px;
+    width: 92.5%!important;
+    padding: 0px 10px;
+}
+.property-list-row .row-title{
+    padding: 10px 11px 0px 10px;
+    margin: 0px;
+    float: left;
+    width: 100%;
+}
+.property-list-row a i{
+    color: #666;
+}
+.property-list-row a .property-cretaria span{
+    color: #000;
+    width: 23%;
+    text-align: center;
+    display: inline-table;
+    padding: 0px;
+    margin: 0px;
 }
 .property-item{
-    padding: 6px 9px 10px 10px;
+    padding: 0px;
     background-color: #fff;
     border-radius: 5px;
     border: 1px solid #d4d4d4;
@@ -579,30 +661,867 @@ a.sub-menu-link{
     font-weight: 500;
     color: #666;
     margin: 0;
+    margin-bottom: 5px;
 }
 .property-item .city,
-.property-item .street,
-.property-item .description{
-    font-size: 13px;
+.property-item .street{
+    font-size: 14px;
     color: #000;
     margin: 0;
+    font-weight: 500;
 }
 .property-item .description{
     margin-top: 10px;
+    font-size: 13px;
+    color: #000;
 }
 .add-favorit{
-    position: absolute;
-    margin-left: 230px;
-    margin-top: 10px;
+    float: right;
+    margin-top: 5px;
+    color: #DFDDDD!important;
 }
-.property-cretaria{
-    margin-top: 15px;
+.add-favorit:hover,
+.add-favorit.active{
+    color: #666!important;
+    background-color: transparent!important;
 }
 .property-cretaria span{
-    margin-right: 15px;
+    width: 25%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
 }
 .pointer{
     cursor: pointer;
+}
+.property-item-img{
+    width: 100%;
+    height: 185px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.property-item-img img{
+    width: 100%;
+}
+.property-item-content{
+    padding: 10px;
+}
+.property-item-content .price{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px;
+}
+.property-item-content .city{
+    margin: 5px 0px 0px;
+    font-size: 18px;
+}
+.property-item-content .street{
+    font-size: 18px;
+}
+.property-item-content .description{
+    height: 45px;
+}
+.property-cretaria {
+    display: flex;
+    padding: 0px 10px 10px 10px;
+}
+.featured-homes-carousel {
+    width: 92.5%!important;
+    position: relative;
+    margin: 10px 50px!important;
+    background: #FFF;
+    border: 1px solid #d4d4d4;
+    height: 180px!important;
+    border-radius: 10px;
+    padding: 10px;
+}
+#myCarousel{
+    height: 120px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.carousel-inner{
+    height: 100%;
+}
+.carousel-control-prev{
+    padding: 24px 16px 24px 10px;
+    border-radius: 0 50px 50px 0;
+    border-left: 0;
+    background: #FFF!important;
+    border: 1px solid #d4d4d4;
+    height: 80px;
+    opacity: 1;
+    margin-top: 20px;
+    width: 40px!important;
+    border-left: none;
+    margin-left: 12px;
+}
+.carousel-control-next{
+    padding: 24px 10px 24px 16px;
+    border-radius: 50px 0 0 50px;
+    border-left: 0;
+    background: #FFF!important;
+    border: 1px solid #d4d4d4;
+    height: 80px;
+    opacity: 1;
+    margin-top: 20px;
+    width: 40px!important;
+    margin-right: 12px;
+    border-right: none;
+}
+.carousel-item{
+    height: 100%!important;
+    width: 70%;
+}
+.carousel-item .img-fluid{
+    height: 100%;
+    width: 95%;
+    border-radius: 5px;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon{
+    color: #666;
+    font-size: 20px;
+    height: auto !important;
+    background-image: none!important;
+    font-weight: 600;
+}
+.carousel-title{
+    font-size: 19px;
+    color: #666;
+    margin: 0px;
+    height: 10px;
+}
+.nbr-property-found{
+    color: #77DFE7;
+    float: left;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.cms-top{
+    background: #77DFE7;
+    color: #FFF;
+    padding: 45px 200px;
+}
+.example-wrapper.cms{
+    margin: 0;
+    width: 100%;
+    max-width: 100%!important;
+}
+.cms-body{
+    padding: 45px 200px;
+}
+.cms-content-border{
+    border: solid 1px #77DFE7;
+    padding: 30px;
+    height: auto !important;
+    max-height: 500px!important;
+    display: flex;
+    margin-bottom: 50px;
+}
+.cms-content{
+    width: 50%;
+    height: 200px;
+    padding: 30px 40px;
+    font-size: 28px;
+}
+.cms-content + .cms-content{
+    padding: 20px 40px;
+}
+.border-right{
+    border-right: solid 1px #77DFE7;
+}
+.cms-content .title{
+    font-size: 25px;
+    font-weight: 600;
+    color: #77DFE7;
+}
+.cms-content .title .fa-envelope-open{
+    font-size: 20px;
+    margin-top: 7px;
+    float: left;
+    margin-right: 7px;
+}
+.cms-content .desc{
+    font-size: 17px;
+}
+.half-width{
+    width: 50%;
+}
+.put-left{
+    float: left;
+}
+.block-contact-form .btn{
+    margin-top: 20px;
+}
+.block-contact-form h1{
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+h1.cms-title{
+    margin-bottom: 5px;
+    font-size: 28px;
+    color: #77DFE7;
+}
+.faq-list{
+    padding: 0px 25px;
+    list-style: none;
+    color: #666;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+.faq-list li a{
+    color: #666;
+    text-decoration: none;
+}
+.faq-list li a:hover{
+    color: #FFF;
+    background: #666;
+    padding: 5px;
+}
+.faq-list li a div:hover{
+    color: #FFF;
+    background: #666;
+    padding: 5px;
+}
+.faq-block{
+    padding: 40px 0px;
+    border-top: 1px solid rgb(212, 212, 212);
+}
+.faq-block .question{
+    color: #77DFE7;
+    font-size: 20px;
+}
+.back-top{
+    float: right;
+    text-decoration: none;
+    color: #77DFE7;
+}
+.back-top:hover{
+    color: #666;
+}
+#result-section ul.items{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0px;
+}
+#result-section ul.items li.item{
+    display: flex;
+    width: 31%;
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1px solid #d4d4d4;
+    background: #FFF;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 10%) 0 0 8px;
+    margin: 10px;
+}
+#result-section ul.items li.item a{
+    text-decoration: none;
+    color: inherit;
+}
+.pricing-list{
+    width: 100%;
+    display: flex;
+    margin-top: 40px;
+}
+.princing-block{
+    width: 33%!important;
+    border: solid 1px #666;
+    float: left;
+    margin-right: 4px;
+    border-radius: 10px;
+    padding: 40px 35px;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 2px 10px #ddd;
+}
+.title.package-bronze{
+    color: rgb(173, 138, 86);
+    margin: 8px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.title.package-silver{
+    color: rgb(180, 180, 180);
+    margin: 8px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.title.package-gold{
+    color: rgb(212, 175, 55);
+    margin: 8px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.pricing-price{
+    font-size: 40px;
+    font-weight: 600;
+    color: rgb(51, 51, 51);
+}
+.subtitle{
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+}
+.subtitle-home-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+.subtitle-home{
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #666;
+}
+.all-width{
+    width: 100%;
+}
+.mt-20{
+    margin-top: 20px;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+ul.pricing-options{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+ul.pricing-options li{
+    color: #666;
+    width: 100%;
+    font-size: 13px;
+    margin: 15px 0px;
+    cursor: pointer;
+}
+li.disabled{
+    color: rgb(190, 190, 190);
+    text-decoration: line-through;
+}
+.put-right{
+    float: right;
+}
+.put-left{
+    float: left;
+}
+.modal-header .close{
+    border: none;
+    background: #FFF;
+    font-size: 50px;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+    height: 10px;
+    line-height: 10px;
+}
+.other-criterias-items{
+    width: 450px;
+    position: absolute;
+    background: #FFF;
+    border: solid 1px #d4d4d4;
+    margin-left: -136px;
+    margin-top: 74px;
+    padding: 15px;
+    z-index: 999;
+    color: #666;
+}
+.bathrooms-items{
+    top: 70px;
+    margin-left: -55px;
+    width: 80px;
+    border-radius: 5px;
+    height: 272px;
+    overflow: hidden;
+}
+.living-area-items{
+    top: 117px;
+    margin-left: 155px;
+    width: 64px;
+    position: absolute;
+    border-radius: 5px;
+    height: auto;
+    overflow: hidden;
+    background: #FFF;
+    border: solid 1px #666;
+    padding: 7px 7px;
+}
+.living-area-items.max{
+    margin-left: 230px;
+    height: auto;
+}
+.lot-size-items{
+    top: 167px;
+    margin-left: 156px;
+    width: 64px;
+    border-radius: 5px;
+    height: auto;
+    position: absolute;
+    overflow: hidden;
+    background: #FFF;
+    border: solid 1px #666;
+    padding: 7px;
+}
+.lot-size-items.max{
+    margin-left: 230px;
+    height: auto;
+}
+.more-criterias-label{
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 130px;
+}
+.other-criteria-item{
+    float: left;
+    width: 100%;
+}
+.living-area-max,
+.living-area-min,
+.lot-size-min,
+.lot-size-max{
+    background: #FFF;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    float: left;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.living-area-max:hover,
+.living-area-max.active,
+.living-area-min:hover,
+.living-area-min.active,
+.lot-size-min:hover,
+.lot-size-min:active,
+.lot-size-max:hover,
+.lot-size-max:active{
+    background: #77DFE7;
+    color: #FFF;
+}
+.form-group label{
+    cursor: pointer;
+}
+.map-desc{
+    width: 330px!important; 
+    height: 90px!important;
+}
+.map-img{
+    width: 40%; 
+    height: 100%; 
+    float: left;
+}
+.map-img img{
+    width: 100%;
+    height: 100%;
+}
+.map-desc-text{
+    float: right; 
+    width: 60%; 
+    height: 100%; 
+    padding: 12px; 
+    overflow: hidden;
+}
+.map-desc-text .price{
+    width: 100%; 
+    float: left; 
+    margin: 0px; 
+    padding: 0px; 
+    font-size: 19px;
+    font-weight: 500;
+    color: #77DFE7;
+}
+.map-desc-text .city{
+    width: 100%; 
+    float: left; 
+    margin: 0px; 
+    padding: 0px; 
+    font-size: 12px; 
+    color: #666;
+}
+.map-desc-text .street{
+    width: 100%; 
+    float: left; 
+    margin: 0px; 
+    padding: 0px; 
+    font-size: 12px; 
+    color: #666;
+}
+#registration div{
+    margin-bottom: 15px;
+}
+.no-result{
+    text-align: center;
+    padding: 50px 0px;
+    margin: 0;
+}
+.profile-content-body{
+    padding: 0;
+    margin: 0;
+    width: 100%!important;
+    margin-top: 30px; 
+    border: none
+}
+.table thead{
+    background: rgb(239, 239, 239);
+    color: rgb(102, 102, 102);
+    border: 1px solid rgb(212, 212, 212);
+}
+.profile-frm{
+    display: flex;
+}
+.div-frm .frm-group label{
+    width: 100%;
+}
+.div-frm .form-group input,
+.div-frm .form-group select{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: solid 1px #666;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+.div-frm .form-group textarea{
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: solid 1px #666;
+    padding: 5px;
+}
+.div-frm{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.div-frm-half-pl-50{
+    width: 50%;
+    padding-left: 50px;
+}
+.div-frm-half-pr-50{
+    width: 50%;
+    padding-right: 50px;
+}
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.frm-group-title{
+    width: 100%;
+    margin-bottom: 25px;
+    float: left;
+}
+.frm-group-title span{
+    width: auto;
+    margin-right: 20px;
+    color: #77DFE7;
+    font-weight: 500;
+    font-size: 24px;
+    float: left;
+}
+.frm-group-title hr{
+    height: 2px;
+    width: auto;
+    background:  #666;
+}
+.profile-body{
+    padding: 45px 100px;
+}
+.div-btn-frm{
+    border-top: solid 2px #adb5bd;
+    padding-top: 25px;
+}
+.star{
+    color: #FF0000;
+}
+.div-picture{
+    width: 238px;
+    display: inline-block;
+    height: 240px;
+    border: solid 1px #666;
+    text-align: center;
+    margin: 10px;
+    border-radius: 5px;
+}
+.div-picture-content-img{
+    float: left;
+    width: 94%;
+    border: solid 5px rgb(212, 212, 212);
+    height: 75%;
+    border-radius: 5px;
+    margin: 8px;
+}
+.div-picture .btn{
+    width: 94.5%;
+}
+#add-new-picture{
+    margin-bottom: 10px;
+    text-align: left;
+}
+.picture-delete{
+    position: absolute;
+    margin-left: -45px;
+    margin-top: 16px;
+    background: #FFF;
+    padding: 1px 8px;
+    color: #666;
+    cursor: pointer;
+}
+.my-pack-date{
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+.no-margin{
+    margin: 0;
+}
+.no-padding{
+    padding: 0;
+}
+.profile-section-border{
+    border: 1px solid #d4d4d4;
+    border-radius: 10px;
+    padding: 50px 30px;
+}
+.link-create-alert{
+    margin: auto;
+    width: 140px;
+    display: block;
+    margin-bottom: 26px;
+}
+.payment-form-group{
+    padding:10px;
+}
+.detail-col1{
+    width: 80%;
+    padding: 20px;
+}
+.detail-col2{
+    width: 20%;
+}
+#myCarouselDetail{
+    width: 100%;
+    height: 455px;
+    border-radius: 10px 10px 0px 0px;
+}
+#myCarouselDetail .carousel .carousel-inner > .item > img {
+    width:640px;
+    height:360px;
+  }
+#myCarouselDetail .carousel-item{
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+#myCarouselDetail .carousel-inner{
+    border-radius: 10px 10px 0px 0px;
+}
+#myCarouselDetail .carousel-item img{
+    border-radius: 10px 10px 0px 0px;
+}
+#myCarouselDetail .carousel-control-prev,
+#myCarouselDetail .carousel-control-next{
+    margin-top: 230px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.detail-content{
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    max-width: 1600px;
+    padding-top: 10px;
+    margin: auto;
+    padding-left: 50px;
+}
+.detail-col1{
+    width: 69%;
+    margin-right: 25px;
+    background: #f6f6f6;
+    border: 1px solid #d4d4d4;
+    border-radius: 10px 10px 0px 0px;
+    padding: 0;
+    float: left;
+    height: 457px;
+}
+.detail-col2{
+    background: #f6f6f6;
+    border: 1px solid #d4d4d4;
+    border-radius: 10px 10px 0px 0px;
+    width: 25%;
+    float: left;
+}
+.carousel-item img{
+    width: 100%!important;
+}
+.detail-price{
+    font-size: 28px;
+    color: #333;
+    font-weight: 700;
+    padding: 20px 20px 10px 20px;
+}
+.detail-title{
+    font-size: 28px;
+    color: #333;
+    font-weight: 700;
+    padding: 20px;
+}
+.detail-type{
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0px 20px;
+}
+.detail-address{
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0px 20px;
+}
+.detail-contact{
+    background: #77DFE7;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    height: auto;
+    margin-top: 20px;
+    padding-bottom: 40px;
+    float: left;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.detail-contact-title{
+    display: block;
+    font-size: 20px;
+    margin: 0;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+.detail-contact-item{
+    color: #666;
+    border: solid 1px #666;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+}
+.detail-contact-item a{
+    text-decoration: none;
+    color: inherit;
+}
+.property-params{
+    border-radius: 10px;
+    border: 1px solid #d4d4d4;
+    position: relative;
+    margin: auto;
+    width: 96%;
+    float: left;
+    margin-left: 0;
+    padding: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+.property-params div{
+    width: 20%;
+    float: left;
+    margin-bottom: 20px;
+}
+.property-desc{
+    border-radius: 10px;
+    border: 1px solid #d4d4d4;
+    position: relative;
+    margin: auto;
+    width: 96%;
+    float: left;
+    margin-left: 0;
+    padding: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+.irs--round .irs-handle{
+    cursor: pointer;
+}
+
+/* Style the navigation menu */
+.topnav {
+    display: none;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+    display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    background: #666;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+    background: #666;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+    text-decoration: underline;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+    background-color: #77DFE7;
+    color: white;
+}
+
+.search-toolbar{
+    background: none!important;
+}
+
+#address-autocomplete{
+    border: solid 1px #666;
+    border-radius: 5px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.address-autocomplete-item{
+    background: #FFF;
+    color: #666;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: solid 1px #666;
 }
 
 @media all and (min-width: 992px) {
@@ -610,4 +1529,230 @@ a.sub-menu-link{
 	.navbar .nav-item:hover .nav-link{   }
 	.navbar .nav-item:hover .dropdown-menu{ display: block; }
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+
+@media all and (max-width: 992px) {
+    .detail-content{
+        margin-left: 0;
+        padding: 25px;
+        padding-top: 0px;
+    }
+    .detail-col1{
+        width: 100%;
+        margin: 0;
+        margin-left: 0 !important;
+        border-radius: 10px;
+    }
+    .detail-col2{
+        width: 100%;
+        margin-top: 25px;
+        border-radius: 10px;
+    }
+    .detail-contact{
+        border-radius: 0px 0px 10px 10px;
+    }
+    .subtitle-home{
+        padding: 25px 5px;
+    }
+    .block-contact-form div{
+        width: 100%;
+    }
+    .cms-content-border{
+        height: 460px!important;
+        display: block;
+        padding: 40px;
+        margin: 0;
+        margin-bottom: 40px;
+    }
+    .cms-content{
+        width: 100%;
+        padding: 0px;
+        margin: 0;
+        border: none;
+        height: 150px;
+    }
+    .cms-content + .cms-content {
+        padding: 0px;
+    }
+    .topnav{
+        display: block;
+    }
+    .search-bar{
+        height: auto;
+        display: grid;
+        margin-left: 0px;
+        width: 100%;
+        padding: 20px;
+    }
+    .cities-search-area,
+    .address-search-area{
+        width: 92.5%;
+        z-index: 1000000;
+    }
+    .tab-content{
+        height: 100%;
+        width: 100%;
+        padding: 30px 0px;
+        margin-left: 0px!important;
+    }
+    .search-bar-text-area{
+        border: none;
+        border-bottom: solid 1px #d4d4d4;
+        width: 100%;
+    }
+    .search-bar-text{
+        width: 90%;
+    }
+    .range-price-area{
+        width: 95%;
+    }
+    .combo-cretaria-title{
+        width: 100%;
+    }
+    .combo-critaria.critaria-combo-1{
+        float: left;
+        width: 98.7%;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .types-property-items{
+        top: 343px;
+        left: 200px;
+        height: 135px;
+        width: 91.2%;
+    }
+    .bedrooms-items{
+        top: 396px;
+        left: 200px;
+        height: 275px;
+        width: 91.2%;
+    }
+    .combo-cretaria-bedrooms-title{
+        width: 100%;
+        margin: 0px;
+    }
+    .combo-cretaria-more-title{
+        width: 100%;
+        margin: 0px;
+    }
+    .btn-rechercher{
+        width: 98%;
+        margin-left: 5px;
+        float: left;
+    }
+    .other-criterias-items{
+        left: 162px;
+        top: 377px;
+        width: 91%;
+        height: 190px;
+    }
+    .btn-reset-cretaria{
+        width: 90.4%;
+        height: 40px;
+        border-radius: 5px;
+        left: 27px;
+    }
+    .cretaria-choice-title{
+        margin-top: 50px;
+    }
+    #cretaria-choices{
+        margin-top: 50px;
+    }
+    .cretaria-choice {
+        width: 100%;
+        display: flex;
+        padding: 20px 20px;
+        border-top: solid 1px #d4d4d4;
+        margin-top: 20px;
+        float: left;
+    }
+    .footer{
+        height: auto;
+        float: left;
+        padding-bottom: 0px;
+        width: 100%;
+    }
+    .footer-contact-left .tel{
+        float: left;
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+    .footer-contact-left .email{
+        float: left;
+        width: 100%;
+        margin-left: 0px;
+    }
+    .footer-contact-right{
+        width: 100%;
+        margin-top: 50px;
+    }
+    .footer-menu{
+        display: block;
+    }
+    .footer-menu .footer-col{
+        float: left;
+        width: 100%;
+        margin-right: 20px;
+        margin-left: 0;
+        margin-top: 50px;
+    }
+    .footer-menu .footer-col:last-child{
+        margin-bottom: 50px;
+    }
+    .profile-frm{
+        display: block;
+    }
+    .div-frm{
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        margin-top: 20px;
+    }
+    .profile-body{
+        padding: 20px;
+    }
+    .div-btn-frm{
+        padding: 20px 0px;
+    }
+    .div-btn-frm .btn{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .form-group{
+        width: 100%;
+    }
+    .block-contact-form .btn{
+        width: 100%;
+    }
+    .cms-top{
+        padding: 20px;
+    }
+    .cms-body {
+        padding: 20px;
+    }
+    .featured-homes-carousel{
+        display: none;
+    }
+    .property-list-row{
+        width: 92%!important;
+        display: block;
+        margin: 0px 20px;
+    }
+    #result-section ul.items li.item{
+        width: 100%;
+    }
+    .block-questions{
+        padding: 20px;
+    }
+    .pricing-list{
+        display: block;
+    }
+    .princing-block{
+        width: 100%!important;
+        margin-bottom: 30px;
+    }
+    .payment-form-group{
+        width: 100%;
+    }
 }

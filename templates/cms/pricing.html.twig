@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CMSController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<script src="https://js.stripe.com/v2/"></script>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ "Our prices"|trans }}</h1>
+        <p>
+            {{ "With Billow, you don’t pay a commission. Our packages are tailored for the amount of time, visibility and support you’ll need to sell."|trans }}
+        </p>
+    </div>
+
+    <div class="cms-body">
+        <h3 class="subtitle">{{ "Pricing for residential properties"|trans }}</h3>
+
+        <div class="pricing-list">
+            {% for pack in packs %}
+                <div class="princing-block">
+                    <p class="text-center">
+                        {{ pack_picto[pack.id]|raw }}
+                    </p>
+                
+                    <h2 class="text-center title package-{{ pack_class[pack.id] }}">{{ pack.title|trans }}</h2>
+
+                    <h3 class="pricing-price">${{ pack.price }}</h3>
+
+                    <a href="/en/goPayment/{{ pack.id }}" data-id="{{ pack.id }}" class="btn-select-pack btn btn-primary all-width mt-20 mb-20">{{ "Select"|trans }}</a>
+
+                    
+                    <ul class="pricing-options">
+                        {% for packOption in pack.packOptions %}
+                            {% if packOption.activ %}
+                                <li data-title='{{ packOption.title|trans }}' data-toggle="modal" data-target="#myModal">{{ packOption.title|trans }} <i class="fa fa-info-circle put-right"></i></li>
+                            {% else %}
+                                <li class="disabled" data-title='{{ packOption.title|trans }}' data-toggle="modal" data-target="#myModal">{{ packOption.title|trans }} <i class="fa fa-info-circle put-right"></i></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cms-content-border" style="margin-top: 50px;border-radius: 5px;">
+            <div class="cms-content" style="width: 100%;height: auto;padding: 10px 15px;font-size: 15px!important;">
+                <p>
+                    {{ 'Our goal connect as many buyers with sellers in the Lower Mainland.'|trans }}<br/><br/>
+                    {{ 'With your support, we are able to increase traffic to Billow,'|trans }} {{ 'help pay our lawyers to create the most comprehensive documents and pay website developers to make our website as easy to use as possible.'|trans}}<br/><br/>
+                    {{ 'If you ever have questions regarding your package or the selling process, we are always here to answer your questions.'|trans }}<br/><br/>
+                    {{ 'Please call us during business hours at'|trans }} <b>604-762-1359</b> {{ 'or email us 24/7 at'|trans }} <b>billowhelpdesk@gmail.com</b> {{ 'and one of our team members will get back to you within 1 business day.'|trans }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Header</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/js/stripe_int.js"></script>
+
+{% endblock %}

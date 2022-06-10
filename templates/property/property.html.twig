@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PropertyController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ 'Edit property'|trans }}</h1>
+        <a href="{{ path('myListing') }}" class="btn btn-light"><i class="fa fa-chevron-circle-left"></i> {{ "Go Back"|trans }}</a>
+        
+        <br/><br/>
+
+        {% if errorMessages is defined and errorMessages is not empty %}
+            <div class="alert alert-danger alert-dismissible fade show flash-error">
+                <ul>
+                {% for errorMessage in errorMessages %}
+                    <li>{{ errorMessage }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="cms-body profile-body">
+        <div id="result-section" class="profile-body-content">
+            <form id="frm-property" name="frm-property" method="POST" action="{{ path('saveProperty') }}" enctype="multipart/form-data">
+                <input type="hidden" id="id" name="id" value="{{ property.id }}" />
+
+                <div class="div-frm">
+                    <div class="frm-group-title">
+                        <span>{{ "Description"|trans }}</span>
+                        <hr/>
+                    </div>
+
+                    <div class="form-group" style="width: 100%">
+                        <label for="title">{{ "Title"|trans }} <span class="star">*</span></label>
+                        <input type="text" id="title" name="title" value="{{ property.title }}" />
+                    </div>
+
+                    <div class="form-group" style="width: 100%">
+                        <label for="description">{{ "Description"|trans }} <span class="star">*</span></label>
+                        <textarea id="desciption" name="description" rows="10">{{ property.description }}</textarea>
+                    </div>
+                </div>
+
+                <div class="div-frm">
+                    <div class="frm-group-title">
+                        <span>{{ "Pictures"|trans }}</span>
+                        <hr/>
+                    </div>
+                    <a class="btn btn-primary" id="add-new-picture"><i class="fa fa-plus-circle"></i> {{ "Add new picture"|trans }}</a>
+                    <div id="div-pictures">
+                        {% set l=1 %}
+                        {% for picture in property.pictures %}
+                            <div class='div-picture'>
+                                <span class='picture-delete' title='Delete picture' data-id="{{ picture.id }}" data-toggle="modal" data-target="#deletePropertyPictureModal"><i class="fa fa-trash"></i></span>
+                                <div class='div-picture-content-img'>
+                                    <img src="{{ picture.url }}" width="100%" height="100%"/>
+                                </div>
+                                <span class='btn btn-primary' style="height: 38.21px"></span>
+                                <input type='file' id='picture-{{ l }}' name='picture-{{ l }}' class='choose-picture-hidden hidden' onchange='previewFile(this);' />
+                            </div>
+                            {% set l = l + 1 %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="profile-frm">
+                    <div class="div-frm div-frm-half-pr-50">
+                        <div class="frm-group-title">
+                            <span>{{ "Criteria"|trans }}</span>
+                            <hr/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propertytype">{{ "Property Type"|trans }} <span class="star">*</span></label>
+                            <select id="propertytype" name="propertytype">
+                                {% for ptype in propertyType %}
+                                    {% if ptype.id == property.propertyType.id %}
+                                        <option value="{{ ptype.id }}" selected >{{ ptype.label }}</option>
+                                    {% else %}
+                                        <option value="{{ ptype.id }}">{{ ptype.label }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">{{ "Price"|trans }} <span class="star">*</span></label>
+                            <input type="number" id="price" name="price" value="{{ property.price }}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bedrooms">{{ "Bedrooms"|trans }}</label>
+                            <input type="number" id="bedrooms" name="bedrooms" value="{{ property.bedrooms }}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bathrooms">{{ "Bathrooms"|trans }}</label>
+                            <input type="number" id="bathrooms" name="bathrooms" value="{{ property.bathrooms }}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="livingspace">{{ "Living space"|trans }}</label>
+                            <input type="number" id="livingspace" name="livingspace" value="{{ property.livingSpace }}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lotdimensions">{{ "Lot dimensions"|trans }}</label>
+                            <input type="number" id="lotdimensions" name="lotdimensions" value="{{ property.lotDimensions }}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="level">{{ "Level"|trans }}</label>
+                            <input type="number" id="level" name="level" value="{{ property.level }}" />
+                        </div>
+                    </div>
+
+                    <div class="div-frm div-frm-half-pl-50">
+                        <div class="frm-group-title">
+                            <span>{{ "Address"|trans }}</span>
+                            <hr/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">{{ "Region"|trans }} <span class="star">*</span></label>
+                            <select id="region" name="region">
+                                {% for region in regions %}
+                                    {% if region.id == property.region.id %}
+                                        <option value="{{ region.id }}" data-id="{{ region.id }}" selected >{{ region.label }}</option>
+                                    {% else %}
+                                        <option value="{{ region.id }}" data-id="{{ region.id }}">{{ region.label }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">{{ "Sub-Area"|trans }} <span class="star">*</span></label>
+                            <select id="city" name="city">
+                                {% for city in cities %}
+                                    {% if city.id == property.city.id %}
+                                        <option value="{{ city.id }}" selected >{{ city.label }}</option>
+                                    {% else %}
+                                        <option value="{{ city.id }}">{{ city.label }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="street">{{ "Address"|trans }} <span class="star">*</span></label>
+                            <input type="text" id="street" name="street" value="{{ property.street }}" class="street-class" />
+                            <div id="address-autocomplete" class="address-autocomplete-class hidden"></div>
+                        </div>
+
+                        <div class="form-group hidden">
+                            <label for="latitude">{{ "Latitude"|trans }}</label>
+                            <input type="text" step="any" id="latitude" name="latitude" value="{{ property.latitude }}"/>
+                        </div>
+
+                        <div class="form-group hidden">
+                            <label for="longitude">{{ "Longitude"|trans }}</label>
+                            <input type="text" step="any" id="longitude" name="longitude" value="{{ property.longitude }}"/>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="div-frm div-btn-frm text-right">
+                    <a href="{{ path('myListing') }}" class="btn btn-danger">{{ "Cancel"|trans }}</a>
+                    <input type="submit" class="btn btn-primary" value='{{ "Save"|trans }}' />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deletePropertyPictureModal" tabindex="-1" role="dialog" aria-labelledby="deletePropertyPictureModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "Delete Property Picture"|trans }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: #FF0000;"><b>{{ "Once deleted, the picture will be deleted and not recoverable a second time."|trans }}</b></p>
+        <p>{{ "Do you really want to delete this picture ?" }}</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-property-picture" type="button" class="btn btn-primary">{{ "Yes, I want to delete"|trans }}</button>
+        <button id="btn-close-modal" type="button" class="btn btn-secondary" data-dismiss="modal">{{ "Close"|trans }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' );
+</script>
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PictureRepository::class)
@@ -31,7 +32,7 @@ class Picture
     private $url;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      * @Groups("property:read")
      */
     private $is_cover;
@@ -70,9 +71,9 @@ class Picture
         return $this->is_cover;
     }
 
-    public function setIs_cover(bool $is_cover): self
+    public function setIsCover(?bool $is_cover): self
     {
-        $this->isCover = $is_cover;
+        $this->is_cover = $is_cover;
 
         return $this;
     }

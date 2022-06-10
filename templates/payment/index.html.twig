@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CMSController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<script src="https://js.stripe.com/v2/"></script>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        <h1>{{ "Finalize your payment online"|trans }}</h1>
+        <p>
+            {{ "Pay your pack safely. For each payment, Billow offers you 6 months access by keeping the unused duration of your last subscription"|trans }}
+        </p>
+    </div>
+
+    <div class="cms-body">
+        {% if is_granted('ROLE_USER') %}
+            <div class="block-contact-form">
+                <p class="text-center">
+                    {{ pack_picto[pack.id]|raw }}
+                </p>
+                
+                <h2 class="text-center title package-{{ pack_class[pack.id] }}">{{ pack.title|trans }}</h2>
+                <h3 class="text-center pricing-price">${{ pack.price }}</h3>
+                
+                <form id="do-payment" name="do-payment" action="/en/doPayment" method="POST">
+                    <input type='hidden' id='cle_publique' name='cle_publique' value='{{ userObj['token'] }}' />
+                    
+                    <div class="row">
+                        <div class="payment-form-group col-md-6">
+                            <label for="stripe_nom">{{ 'Name'|trans }}</label>
+                            <input class="form-control" type="text" id="stripe_nom" name="stripe_nom" value="{{ userObj['name'] }}" />
+                        </div>
+
+                        <div class="payment-form-group col-md-6">
+                            <label for="stripe_email">{{ 'Email'|trans }}</label>
+                            <input class="form-control" type="text" id="stripe_email" name="stripe_email" value="{{ userObj['email'] }}" placeholder="mail@example.com" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="payment-form-group col-md-6">
+                            <label for="code_carte">{{ 'Card number'|trans }}</label>
+                            <input required="required" class="form-control" type="text" id="code_carte" name="code_carte" placeholder="4242424242424242" />
+                        </div>
+
+                        <div class="payment-form-group col-md-2">
+                            <label for="annee">{{ 'Expiry Year'|trans }}</label>
+                            <input required="required" class="form-control" type="text" id="annee" name="annee" placeholder="YY"/>
+                        </div>
+
+                        <div class="payment-form-group col-md-2">
+                            <label for="mois">{{ 'Expiry Month'|trans }}</label>
+                            <input required="required" class="form-control" type="text" id="mois" name="mois" placeholder="mm"/>
+                        </div>
+
+                        <div class="payment-form-group col-md-2">
+                            <labelfor="code_verif" title="Security Code">{{ 'CVV'|trans }}</label>
+                            <input required="required" class="form-control" type="text" id="code_verif" name="code_verif" placeholder="123"/>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="pack_id" name="pack_id" value="{{ pack.id }}" />
+
+                    <p id="stripe-errors" class="alert alert-danger hidden"></p>
+
+                    <div class="row">
+                        <div class="col-md-8 text-left" style="padding: 20px 0px;">
+                            <img src="/img/Secure-Payment-Icon.png" height="40px" />
+                            <img src="/img/payment-cards.png" height="30px" />
+                        </div>
+                        <div class="col-md-4 text-right" style="padding: 0px 10px">
+                            <span id="do-payment" class="btn btn-primary">Do Payment</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <p class="alert alert-danger">{{ 'For doing payments, you must be logged in!'|trans }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<script src="/js/stripe_int.js"></script>
+
+{% endblock %}

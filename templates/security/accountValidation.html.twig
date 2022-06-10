@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+
+<div class="container block-login">
+    <div class="authentification-row">
+        <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'Account Validation'|trans }}</h1>
+        
+        {% if validated == true %}
+            <div class="alert alert-success">{{ 'Your email address has been successfully validated.'|trans }}<br/>{{ 'You can log in now.'|trans }}</div>
+        {% else %}
+            <div class="alert alert-danger">{{ 'An error has occurred.'|trans}}<br/>{{ 'Please contact our customer support service.'|trans }}</div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

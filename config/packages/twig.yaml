@@ -3,6 +3,9 @@ twig:
     globals:
         project_tel: '%project_tel%'
         project_email: '%project_email%'
+        property_full_directory: '%property_full_directory%'
+        pack_class: '%pack_class%'
+        pack_picto: '%pack_picto%'
 
 when@test:
     twig:

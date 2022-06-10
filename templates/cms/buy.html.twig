@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CMSController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top" style="background-image: url('/img/why-sell-your-home.jpg');height: 350px;background-size: cover;background-position: center;">
+        <h1 style="font-size: 5rem;text-align: center;margin-top: 80px;font-weight: 700">Buying with Billow</h1>
+    </div>
+    <div id="block-questions" class="cms-body">
+        <h1 class="cms-title">{{ buyPage.title }}</h1>
+
+        {{ buyPage.content | raw }}
+    </div>
+</div>
+{% endblock %}

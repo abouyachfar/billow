@@ -1,0 +1,24 @@
+<h1>Welcome {{ username }}!</h1>
+
+<p>
+    Your Billow account was created successfully!
+</p>
+<p>
+    <b><u>Your details account:</u></b><br/>
+    <b>Username: </b>{{ username }}<br/>
+    <b>Password: </b>{{ password }}
+</p>
+
+<p>
+    <a href="{{ path('accountValidation') }}?token={{ token }}">Click here to activate your account</a>
+</p>
+
+<hr/>
+
+<p>
+    <img src="/img/logo.png" class="logo-header">
+</p>
+<p>
+    <a href="#" style="float: left; width: 100%;">billowhelpdesk@gmail.com</a>
+    <a href="#" style="float: left; width: 100%;">778-522-9888</a>
+</p>

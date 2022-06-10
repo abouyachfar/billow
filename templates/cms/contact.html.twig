@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper cms">
+    <div class="cms-top">
+        {% for label, messages in app.flashes(['success']) %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% for label, messages in app.flashes(['error', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <h1>{{ "Contact us"|trans }}</h1>
+        <p>
+            {{ "Want to speak to a member of our team?"|trans }}<br/>
+            {{ "Here’s how to reach us."|trans }}
+        </p>
+    </div>
+    <div class="cms-body">
+        <div class="cms-content-border">
+            <div class="cms-content border-right">
+                {{ "Find out how you can sell yours and"|trans }} <b>{{ "save on the commission!"|trans }}</b>
+            </div>
+            <div class="cms-content">
+                <p class="title"><i class="fa fa-mobile"></i> {{ project_tel }}</p>
+                <p class="desc">
+                    <b>{{ "Monday to Thursday"|trans }}:</b> 8:30 a.m. to 8:00 p.m.<br/>
+                    <b>{{ "Friday"|trans }}:</b> 8:30 a.m. to 6:00 p.m.<br/>
+                    <b>{{ "Saturday and Sunday"|trans }}:</b> 9:00 a.m. to 5:00 p.m.
+                </p>
+                <p class="title"><i class="fa fa-envelope-open"></i> {{ project_email }}</p>
+            </div>
+        </div>
+        <div class="form">
+            <form name="contact" method="post">
+
+                <input type="hidden" name="token" value="{{ csrf_token('send-contact') }}"/>
+
+                <div class="block-contact-form">
+                    <h1>{{ "Contact form"|trans }}</h1>
+
+                    <div class="row" style="margin-bottom: 15px;">
+                        <div class="put-left col-6">
+                            <label for="contact_subject" class="required">{{ "Subject"|trans }}</label>
+                            <input type="text" id="contact_subject" name="contact[subject]" required="required" class="form-control">
+                        </div>
+
+                        <div class="put-left col-6">
+                            <label for="contact_name" class="required">{{ "Name"|trans }}</label>
+                            <input type="text" id="contact_name" name="contact[name]" required="required" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 15px;">
+                        <div class="put-left col-6">
+                            <label for="contact_phone" class="required">{{ "Phone"|trans }}</label>
+                            <input type="text" id="contact_phone" name="contact[phone]" required="required" class="form-control">
+                        </div>
+
+                        <div class="put-left col-6">
+                            <label for="contact_email" class="required">{{ "Email"|trans }}</label>
+                            <input type="email" id="contact_email" name="contact[email]" required="required" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="contact_message" class="required">{{ "Message"|trans }}</label>
+                        <textarea id="contact_message" name="contact[message]" class="form-control" required="required" rows="5"></textarea>
+                    </div>
+
+                    <div style="display: flow-root;">
+                        <button class="btn btn-lg btn-primary put-right" type="submit">
+                            {{ "Send"|trans }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
